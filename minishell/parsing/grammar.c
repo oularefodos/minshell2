@@ -14,7 +14,7 @@ int grammar(t_element *s) {
         return 1;
     }
     while(s) {
-        if (s->type != CMD) {
+        if (s->type != CMD && s->type != SQUOT && s->type != DQUOT) {
             if (s->next->type == PIPE) {
                 ft_putstr_fd("bash: syntax error near unexpected token `|'\n", 1);
                 return 1;

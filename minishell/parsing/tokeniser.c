@@ -30,7 +30,13 @@ t_element *new_element(int type, char *str, t_element *prev) {
         return (NULL);
     }
     new->type = type;
-    new->cmd = ft_split(str, ' ');
+    if (*str != '\'' && *str != '"')
+        new->cmd = ft_split(str, ' ');
+    else {
+        new->cmd = malloc(sizeof(char *) * 2);
+        new->cmd[0] = ft_strdup(str);
+        new->cmd[1] = NULL;
+    }
     new->next = NULL;
     new->prev = prev;
     free(str);
@@ -40,7 +46,7 @@ t_element *new_element(int type, char *str, t_element *prev) {
 void add_back(t_element **node, char *str, int type, int len) {
     char *s;
     t_element *lst;
-    if (type == CMD && str)
+    if ((type == CMD || type == SQUOT || type == DQUOT) && str)
         s = ft_substr(str - len, 0, len);
     else
         s = NULL;
@@ -55,6 +61,7 @@ void add_back(t_element **node, char *str, int type, int len) {
 t_element *tokeniser(char *line) {
     t_element *elmnt;
     int len;
+    int i;
     elmnt = NULL;
 
     while(*line) {
@@ -70,6 +77,35 @@ t_element *tokeniser(char *line) {
             }
             add_back(&elmnt, line, CMD, len);
             len = 0;
+        }
+        else if (*line == '\'')
+        {   i = 1;
+            while (i && *line) {
+                line++;
+                len++;
+                if (*line == '\'')
+                    --i;
+            }
+            len++;
+            line++;
+            add_back(&elmnt, line, SQUOT, len);
+            len = 0;
+        }
+        else if (*line == '"')
+        {   
+            i = 1;
+            while (i && *line) {
+                line++;
+                len++;
+                if (*line == '"')
+                    --i;
+            }
+            len++;
+            line++;
+            add_back(&elmnt, line, DQUOT, len);
+            len = 0;
+            if (*line == '\0')
+                break;
         }
         else if (*line =='<')  {
             while(*line && *line == '<' && len < 2) {

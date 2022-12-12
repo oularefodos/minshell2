@@ -13,14 +13,13 @@ void display(t_element *c)
     }
     while (s) {
         printf("TYPE : %s\n", Eltype[s->type]);
-        if (s->type == CMD) {
+        if (s->type == CMD || s->type == SQUOT || s->type == DQUOT) {
             i = 0;
             while(s->cmd[i]) {
-                printf("%s ", s->cmd[i]);
+                printf("%s\n", s->cmd[i]);
                 i++;
             }
         }
-        printf("\n---------------------------------------\n");
         s = s->next;
     }
 }
@@ -32,7 +31,7 @@ int main() {
         line = readline("minishell> ");
         elemnt  = parser(line);
         if (elemnt) {
-            // display(elemnt);
+            display(elemnt);
         }
     }
 }
