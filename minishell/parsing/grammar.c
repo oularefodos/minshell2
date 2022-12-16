@@ -2,6 +2,9 @@
 int grammar(t_element *s) {
     t_element *node;
     t_element *lst;
+    int i;
+    int x;
+    int y;
 
     node = s;
     lst = last(node);
@@ -33,6 +36,26 @@ int grammar(t_element *s) {
             }
             if (s->next->type == INF) {
                 ft_putstr_fd("bash: syntax error near unexpected token `<'\n", 1);
+                return 1;
+            }
+        }
+        else if (s->type != CMD) {
+            i = 0;
+            x = 0;
+            y = 0;
+            while (s->cmd[0][i]) {
+                if (s->cmd[0][i] == '\'' && !x)
+                    x++;
+                else if (s->cmd[0][i] == '\'' && x)
+                    x--;
+                if (s->cmd[0][i] == '"' && !y)
+                    y++;
+                else if (s->cmd[0][i] == '"' && y)
+                    y--;
+            i++;
+            }
+            if (x || y) {
+                ft_putstr_fd("bash: syntax error\n", 1);
                 return 1;
             }
         }
