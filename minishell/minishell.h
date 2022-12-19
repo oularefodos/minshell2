@@ -19,6 +19,7 @@
 
 typedef struct element {
     int type;
+    int space;
     char **cmd;
     struct element *next;
     struct element *prev;
@@ -28,5 +29,6 @@ t_element *tokeniser(char *line);
 t_element *parser(char *line);
 t_element *last(t_element *s);
 int grammar(t_element *s);
+char *add(char **str, char *s);
 
 #endif

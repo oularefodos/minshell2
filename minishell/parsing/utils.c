@@ -9,6 +9,26 @@ int getsize(char **str) {
     return (i);
 }
 
+char *add(char **str, char *s) {
+    int size;
+    int i;
+    char **ret;
+    size = getsize(str) + 2;
+    ret = malloc(sizeof(char *) + size);
+    if (!ret)
+        exit(1);
+    i = 0;
+    while (str[i]){
+        ret[i] = ft_strdup(str);
+        free(str[i++]);
+    }
+    ret[i++] = ft_strdup(s);
+    ret[i] = NULL;
+    free(s);
+    free(str);
+    return ret;
+}
+
 char **ft_concat(char **s1, char **s2) {
     int len;
     char **ret;

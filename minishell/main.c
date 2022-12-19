@@ -16,9 +16,10 @@ void display(t_element *c)
         if (s->type == CMD || s->type == SQUOT || s->type == DQUOT) {
             i = 0;
             while(s->cmd[i]) {
-                printf("%s\n", s->cmd[i]);
+                printf("%s | ", s->cmd[i]);
                 i++;
             }
+            puts("");
         }
         s = s->next;
     }

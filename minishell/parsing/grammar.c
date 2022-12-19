@@ -43,18 +43,9 @@ int grammar(t_element *s) {
             i = 0;
             x = 0;
             y = 0;
-            while (s->cmd[0][i]) {
-                if (s->cmd[0][i] == '\'' && !x)
-                    x++;
-                else if (s->cmd[0][i] == '\'' && x)
-                    x--;
-                if (s->cmd[0][i] == '"' && !y)
-                    y++;
-                else if (s->cmd[0][i] == '"' && y)
-                    y--;
-            i++;
-            }
-            if (x || y) {
+            while (s->cmd[0][i])
+                i++;
+            if (s->cmd[0][0] != s->cmd[0][--i]) {
                 ft_putstr_fd("bash: syntax error\n", 1);
                 return 1;
             }
