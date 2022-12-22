@@ -5,5 +5,7 @@ t_element *parser(char *line) {
     ret = tokeniser(line);
     if (grammar(ret))
         return NULL;
+    // free temp
+    ret = norm_one(ret);
     return ret;
 }

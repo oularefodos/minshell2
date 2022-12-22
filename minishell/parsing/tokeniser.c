@@ -83,7 +83,7 @@ t_element *tokeniser(char *line) {
             len = 0;
         }
         else if (*line == '\'') {
-            if (*(line - 1) == 32 || *(line - 1) == '\t')
+            if (*(line - 1) == 32)
                 s = 1;
             else 
                 s = 0; 
@@ -102,6 +102,10 @@ t_element *tokeniser(char *line) {
                 break;
         }
         else if (*line == '"') {
+            if (*(line - 1) == 32)
+                s = 1;
+            else 
+                s = 0;
             line++;
             len++;
             while (*line != '"' && *line) {
@@ -111,6 +115,7 @@ t_element *tokeniser(char *line) {
             line++;
             len++;
             add_back(&elmnt, line, DQUOT, len);
+            last(elmnt)->space = s;
             len = 0;
             if (*line == '\0')
                 break;

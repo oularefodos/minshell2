@@ -30,5 +30,5 @@ t_element *parser(char *line);
 t_element *last(t_element *s);
 int grammar(t_element *s);
 char *add(char **str, char *s);
-
+t_element *norm_one(t_element *el);
 #endif

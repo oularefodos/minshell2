@@ -22,31 +22,35 @@ int grammar(t_element *s) {
                 ft_putstr_fd("bash: syntax error near unexpected token `|'\n", 1);
                 return 1;
             }
-            if (s->next->type == HERDOC) {
+            if (s->next->type == HERDOC && s->type != PIPE) {
                 ft_putstr_fd("bash: syntax error near unexpected token `<<'\n", 1);
                 return 1;
             }
-            if (s->next->type == ADD) {
+            if (s->next->type == ADD && s->type != PIPE) {
                 ft_putstr_fd("bash: syntax error near unexpected token `>>'\n", 1);
                 return 1;
             }
-            if (s->next->type == SUP) {
+            if (s->next->type == SUP && s->type != PIPE) {
                 ft_putstr_fd("bash: syntax error near unexpected token `>'\n", 1);
                 return 1;
             }
-            if (s->next->type == INF) {
+            if (s->next->type == INF && s->type != PIPE) {
                 ft_putstr_fd("bash: syntax error near unexpected token `<'\n", 1);
                 return 1;
             }
         }
-        else if (s->type != CMD) {
+        if (s->type == SQUOT || s->type == DQUOT) {
             i = 0;
             x = 0;
             y = 0;
             while (s->cmd[0][i])
                 i++;
             if (s->cmd[0][0] != s->cmd[0][--i]) {
-                ft_putstr_fd("bash: syntax error\n", 1);
+                ft_putstr_fd("bash: syntax error", 1);
+                if (s->type == DQUOT)
+                    ft_putstr_fd(" `\"\n", 1);
+                else
+                    ft_putstr_fd(" `'\n", 1);
                 return 1;
             }
         }
