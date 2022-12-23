@@ -28,10 +28,9 @@ void display(t_element *c)
 int main() {
     char *line;
     t_element *elemnt;
-    char *p = getenv("PATH");
-    puts(p);
     while (1) {
         line = readline("minishell> ");
+        add_history(line);
         elemnt  = parser(line);
         if (elemnt) {
             display(elemnt);

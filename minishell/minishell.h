@@ -21,6 +21,7 @@ typedef struct element {
     int type;
     int space;
     char **cmd;
+    int her[2];
     struct element *next;
     struct element *prev;
 }   t_element;
@@ -31,4 +32,5 @@ t_element *last(t_element *s);
 int grammar(t_element *s);
 char *add(char **str, char *s);
 t_element *norm_one(t_element *el);
+char *insert(char *str, int index, char *s);
 #endif
