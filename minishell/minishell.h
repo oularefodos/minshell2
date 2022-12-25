@@ -32,5 +32,5 @@ t_element *last(t_element *s);
 int grammar(t_element *s);
 char *add(char **str, char *s);
 t_element *norm_one(t_element *el);
-char *insert(char *str, int index, char *s);
+void expender(t_element *s, char **env);
 #endif

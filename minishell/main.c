@@ -25,7 +25,11 @@ void display(t_element *c)
     }
 }
 
-int main() {
+int main(int ac, char **str, char **env) {
+
+    (void)ac;
+    (void)str;
+    
     char *line;
     t_element *elemnt;
     while (1) {
@@ -33,6 +37,7 @@ int main() {
         add_history(line);
         elemnt  = parser(line);
         if (elemnt) {
+            expender(elemnt, env);
             display(elemnt);
         }
     }
