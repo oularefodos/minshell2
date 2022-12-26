@@ -33,4 +33,5 @@ int grammar(t_element *s);
 char *add(char **str, char *s);
 t_element *norm_one(t_element *el);
 void expender(t_element *s, char **env);
+void delete_quote(t_element *s);
 #endif

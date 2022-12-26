@@ -61,10 +61,16 @@ int checkvarexist(char *s)
     i = 0;
     x = 0;
     y = 0;
-    while (s[i]) {
-        if (s[i] == '\'')
-            while (s[++i] != '\'')
+    while (s[i])
+    {
+        if (!x && s[i] == '"')
+            x++;
+        if (s[i] == '\'' && !(x % 2))
+        {
+            i++;
+            while (s[i] != '\'')
                 i++;
+        }
         if (s[i] == '$' && s[i + 1] != ' ' && s[i + 1])
             return (i);
         i++;
@@ -76,28 +82,18 @@ int takesize(char *s)
 {
     int i;
     int c;
-    int v;
 
     i = 0;
-
-    v ='"';
     if (*(s + 1) == '\'')
-    {
         c = '\'';
-        v = 0;
-        i += 2;
-    }
-    if(*(s + 1) == '"')
-    {
-        c = '\"';
-        i += 2;
-    }
+    if (*(s + 1) == '"')
+        c = '"';
     else
         c = ' ';
-    while (s[i] && s[i] != c && s[i] != v)
+    while (s[i] && s[i] != c)
     {
         i++;
-        if (s[i] == '$' && c == ' ')
+        if ((s[i] == '$' || s[i] == '\'' || s[i] == '"') && c == ' ')
             break;
     }
     return (i);
@@ -113,14 +109,14 @@ void expender(t_element *s, char **env)
     char *temp;
 
     t = s;
-    if (t->type != CMD && t->type != DQUOT)
+    if (t->type != CMD && t->type != DQUOT && t->type != SQUOT)
         return ;
     i = 0;
     while (t->cmd[i]) {
         index = checkvarexist(t->cmd[i]);
         while (index >= 0)
         {
-            y = takesize(t->cmd[i]);
+            y = takesize(&t->cmd[i][index]);
             if (t->cmd[i][index + 1] !=  '\'' && t->cmd[i][index + 1] !=  '\"')
             {
                 temp = ft_substr(t->cmd[i], index, y);
@@ -136,4 +132,5 @@ void expender(t_element *s, char **env)
         }
         i++;
     }
+    delete_quote(s);
 }
