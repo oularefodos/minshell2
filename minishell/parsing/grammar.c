@@ -18,7 +18,7 @@ void herdoc(t_element *s)
     if (pipe(s->pip) == -1)
         exit(1);
     line = readline("> ");
-    while (ft_strcmp(line, s->next->cmd[0]))
+    while (ft_strcmp(line, s->next->args[0]))
     {
         write(s->pip[1], line, ft_strlen(line));
         write(s->pip[1], "\n", 1);
@@ -47,6 +47,8 @@ int grammar(t_element *s) {
     while(s) {
         if (s->type == HERDOC)
             herdoc(s);
+        if (s->args)
+            s->cmd = s->args[0];
         if (s->type != CMD && s->type != SQUOT && s->type != DQUOT) {
             if (s->next->type == PIPE) {
                 ft_putstr_fd("bash: syntax error near unexpected token `|'\n", 1);
@@ -73,9 +75,9 @@ int grammar(t_element *s) {
             i = 0;
             x = 0;
             y = 0;
-            while (s->cmd[0][i])
+            while (s->args[0][i])
                 i++;
-            if (s->cmd[0][0] != s->cmd[0][--i]) {
+            if (s->args[0][0] != s->args[0][--i]) {
                 ft_putstr_fd("bash: syntax error", 1);
                 if (s->type == DQUOT)
                     ft_putstr_fd(" `\"\n", 1);

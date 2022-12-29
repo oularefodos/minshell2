@@ -81,7 +81,7 @@ t_element *duplicate(t_element *n)
     if (!ret)
         exit(1);
     ret->type = n->type;
-    ret->cmd = double_dup(n->cmd);
+    ret->args = double_dup(n->args);
     ret->next = NULL;
     return (ret);
 }
@@ -107,17 +107,17 @@ void norm_one_rest(t_element *node, t_element *n)
     char *t;
     int i;
 
-    i = getsize(node->cmd) - 1;
+    i = getsize(node->args) - 1;
     if (n->space == 0)
     {
-        t = node->cmd[i];
-        node->cmd[i] = concat(node->cmd[i], n->cmd[0]);
+        t = node->args[i];
+        node->args[i] = concat(node->args[i], n->args[0]);
         free(t);
     }
     else
     {
-        temp = node->cmd;
-        node->cmd = ft_concat(node->cmd, n->cmd);
+        temp = node->args;
+        node->args = ft_concat(node->args, n->args);
         // free temp
     }
 }
@@ -153,7 +153,7 @@ void add_front(t_element **node, char **cmd, t_element **el) {
     n = malloc(sizeof(t_element));
     if (!n)
         exit(1);
-    n->cmd = double_dup(cmd);
+    n->args = double_dup(cmd);
     n->type = CMD;
     prev = (*node)->prev;
     (*node)->prev = n;
@@ -172,15 +172,15 @@ void norm_two(t_element **el) {
     temp = *el;
     while(temp) {
         if ((temp->type == INF || temp->type == ADD || temp->type == SUP || temp->type == HERDOC) 
-            && getsize(temp->next->cmd) > 1)
+            && getsize(temp->next->args) > 1)
         {
             if (temp->prev == NULL || temp->prev->type == PIPE) {
-                add_front(&temp, &temp->next->cmd[1], el);
+                add_front(&temp, &temp->next->args[1], el);
             }
             else
             {
-                t = temp->prev->cmd;
-                temp->prev->cmd = ft_concat(temp->prev->cmd, &temp->next->cmd[1]);
+                t = temp->prev->args;
+                temp->prev->args = ft_concat(temp->prev->args, &temp->next->args[1]);
             }
         }
         temp = temp->next;

@@ -112,23 +112,23 @@ void expender(t_element *s, char **env)
     if (t->type != CMD && t->type != DQUOT && t->type != SQUOT)
         return ;
     i = 0;
-    while (t->cmd[i]) {
-        index = checkvarexist(t->cmd[i]);
+    while (t->args[i]) {
+        index = checkvarexist(t->args[i]);
         while (index >= 0)
         {
-            y = takesize(&t->cmd[i][index]);
-            if (t->cmd[i][index + 1] !=  '\'' && t->cmd[i][index + 1] !=  '\"')
+            y = takesize(&t->args[i][index]);
+            if (t->args[i][index + 1] !=  '\'' && t->args[i][index + 1] !=  '\"')
             {
-                temp = ft_substr(t->cmd[i], index, y);
+                temp = ft_substr(t->args[i], index, y);
                 str = takevarvalue(temp, env);
             }
             else
             {
-                temp = ft_substr(t->cmd[i], index + 1, y - 1);
+                temp = ft_substr(t->args[i], index + 1, y - 1);
                 str = temp;
             }
-            t->cmd[i] = insert(t->cmd[i], index, str, y);
-            index = checkvarexist(t->cmd[i]);
+            t->args[i] = insert(t->args[i], index, str, y);
+            index = checkvarexist(t->args[i]);
         }
         i++;
     }

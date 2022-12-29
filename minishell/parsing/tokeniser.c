@@ -33,14 +33,14 @@ t_element *new_element(int type, char *str, t_element *prev) {
     new->type = type;
     if (type == SQUOT || type == DQUOT)
     {
-        new->cmd = malloc(sizeof(char *) * 2);
+        new->args = malloc(sizeof(char *) * 2);
         if (!new)
             exit(1);
-        new->cmd[0] = ft_strdup(str);
-        new->cmd[1] = 0;
+        new->args[0] = ft_strdup(str);
+        new->args[1] = 0;
     }
     else
-        new->cmd = ft_split(str, ' ');
+        new->args = ft_split(str, ' ');
     new->next = NULL;
     new->prev = prev;
     free(str);

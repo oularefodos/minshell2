@@ -33,25 +33,25 @@ void delete_quote(t_element *t)
 
     i = 0;
     y = 0;
-    while(t->cmd[i])
+    while(t->args[i])
     {
         y = 0;
-        while(t->cmd[i][y])
+        while(t->args[i][y])
         {
             c = 0;
-            if (t->cmd[i][y] == '\'')
+            if (t->args[i][y] == '\'')
                 c = '\'';
-            if (t->cmd[i][y] == '"')
+            if (t->args[i][y] == '"')
                 c = '"';
             if (c)
             {
                 p = y++;
-                while (t->cmd[i][y] != c)
+                while (t->args[i][y] != c)
                     y++;
-                temp = t->cmd[i];
-                t->cmd[i] = deleteone(t->cmd[i], p, y);
+                temp = t->args[i];
+                t->args[i] = deleteone(t->args[i], p, y);
                 free(temp);
-                if (t->cmd[i][y] == 0)
+                if (t->args[i][y] == 0)
                     break;
             } 
             y++;

@@ -1,5 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/18 20:23:17 by mmakboub          #+#    #+#             */
+/*   Updated: 2022/12/29 19:16:27 by mmakboub         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 #define MINISHELL_H
+
+#include<stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include<string.h>
+#include"../libft/libft.h"
+#include <errno.h>
 
 #define PIPE 0
 #define INF 1
@@ -9,14 +29,6 @@
 #define CMD 5
 #define SQUOT 6
 #define DQUOT 7
- 
-#include "libft/libft.h"
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
 
 typedef struct s_env
 {
@@ -25,24 +37,17 @@ typedef struct s_env
     struct s_env *next;
 }   t_env;
 
-typedef struct element {
+typedef struct s_command{
     int type;
     int space;
     char **args;
     char *cmd;
-    int pip[2];
-    struct element *next;
-    struct element *prev;
+    int nbr_args;
+    struct s_command *next;
+    struct s_command *prev;
 }   t_element;
 
-t_element *tokeniser(char *line);
-t_element *parser(char *line);
-t_element *last(t_element *s);
-int grammar(t_element *s);
-char *add(char **str, char *s);
-t_element *norm_one(t_element *el);
-void expender(t_element *s, char **env);
-void delete_quote(t_element *s);
+
 void    printferror(char *str);
 int     check_is_digit(int x);
 int     check_special_caract(char *arg);
@@ -91,5 +96,4 @@ int	ft_lstsize_env(t_env *lst);
 char *convertto_char(t_env *env);
 char	*ft_concatenate(const char *s1, const char *s2, const char *s3);
 void check_cmd(t_element *command, t_env **envv);
-
 #endif
