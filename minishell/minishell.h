@@ -17,6 +17,9 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <string.h>
+#include <errno.h>
+#include <stdbool.h>
 
 typedef struct s_env
 {
@@ -28,6 +31,7 @@ typedef struct s_env
 typedef struct element {
     int type;
     int space;
+    int nbr_args;
     char **args;
     char *cmd;
     int pip[2];
@@ -65,7 +69,6 @@ t_env	*finder_getter(t_env	*env, char *name);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char    *receive_name(char *allstr);
 char    *receive_name_export(char *allstr);
-int	ft_strcmp(const char *s1, const char *s2);
 char    *receive_value(char *allstr);
 t_env	*ft_lstnew(char *allstr, int flag);
 void	ft_lstadd_back(t_env *new, t_env **alst);
@@ -78,19 +81,19 @@ t_env	*env_finder(t_env	*env, char *name);
 void	printf_env(t_env **env);
 int     check_plus(char *str, char c, char x);
 int     check_caract(char *str, char c);
-void handle_pipe(t_element *node, t_env **env);
+void    handle_pipe(t_element *node, t_env **env);
 void	check_arg(t_element *command);
 void    ft_env2(t_env *env, t_element *command);
 void    ft_remove_from_env(t_env **begin_list, t_env *data_ref);
 t_env   *env_finder(t_env	*env, char *name);
 t_env    *exportnameonly(t_element *command);
 void    execve_cmd(t_element *command, t_env **env, char **argv);
-char *join_get_acces(char **splited_path, char *cmd);
-int check_accecs_exec(char *joined_path);
-char **convertto_doublep(t_env *env);
-int	ft_lstsize_env(t_env *lst);
-char *convertto_char(t_env *env);
+char    *join_get_acces(char **splited_path, char *cmd);
+int     check_accecs_exec(char *joined_path);
+char    **convertto_doublep(t_env *env);
+int	    ft_lstsize_env(t_env *lst);
+char    *convertto_char(t_env *env);
 char	*ft_concatenate(const char *s1, const char *s2, const char *s3);
-void check_cmd(t_element *command, t_env **envv);
-
+void    check_cmd(t_element *command, t_env **envv);
+int	    ft_isdigit(int x);
 #endif

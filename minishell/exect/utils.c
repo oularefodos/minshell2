@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:40:03 by mmakboub          #+#    #+#             */
-/*   Updated: 2022/12/29 19:18:03 by mmakboub         ###   ########.fr       */
+/*   Updated: 2022/12/29 21:14:14 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,11 @@ char	*ft_concatenate(const char *s1, const char *s2, const char *s3)
 		new_str[j++] = s3[i++];
 	new_str[j] = '\0';
 	return (new_str);
+}
+
+int	ft_isdigit(int x)
+{
+	if (x >= '0' && x <= '9')
+		return (1);
+	return (0);
 }

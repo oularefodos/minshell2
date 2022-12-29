@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:57:46 by mmakboub          #+#    #+#             */
-/*   Updated: 2022/12/29 19:18:03 by mmakboub         ###   ########.fr       */
+/*   Updated: 2022/12/29 21:00:05 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ char *execute_cmd(t_element *command, t_env **env)
 	char *line;
 	char *path;
 	char **splited_path;
-	int i;
 	if(check_accecs_exec(command->cmd))//todo : ADD another fonction that check only accessibility while the path is executable and replace it in this line (nammed :check_access)
 		return (strdup(command->cmd));
 	line = convertto_char(finder_getter(*env,"PATH"));

@@ -40,7 +40,6 @@ int check_is_digit(int x)
 int check_special_caract(char *arg)
 {
     int i;
-    int j;
     i = 0;
     while(arg[i])
     {
@@ -49,22 +48,6 @@ int check_special_caract(char *arg)
         i++;
     }
     return(1);
-}
-
-t_env *identique_var(char  *arg, t_env **variable)
-{
-    t_env *tmp;
-
-    while(tmp)
-    {
-        if(strcmp((*variable)->name, arg) == 0)
-        {
-            tmp = *variable;
-            return(tmp);
-        }
-        variable = &(*variable)->next;
-    }
-    return(NULL);
 }
 
 void    unset(t_env **variable ,t_element *command)

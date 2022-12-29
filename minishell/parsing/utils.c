@@ -183,6 +183,8 @@ void norm_two(t_element **el) {
                 temp->prev->args = ft_concat(temp->prev->args, &temp->next->args[1]);
             }
         }
+        if (temp->args)
+            temp->nbr_args = getsize(temp->args);
         temp = temp->next;
     }    
 }

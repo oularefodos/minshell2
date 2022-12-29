@@ -4,9 +4,9 @@ int main(int ac, char **str, char **env) {
 
     (void)ac;
     (void)str;
-    t_env *env;
+    t_env *envr;
 
-    env = build_env(env);
+    envr = build_env(env);
     char *line;
     t_element *elemnt;
     while (1) {
