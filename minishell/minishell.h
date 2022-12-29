@@ -10,7 +10,7 @@
 #define SQUOT 6
 #define DQUOT 7
  
-#include "libft/libft.h"
+#include "Libft/libft.h"
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <stdlib.h>
@@ -64,7 +64,7 @@ void	refresh_oldpwd(t_env	**env, t_env *pwd);
 t_env	*finder_getter(t_env	*env, char *name);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char    *receive_name(char *allstr);
-char *receive_name_export(char *allstr);
+char    *receive_name_export(char *allstr);
 char    *receive_value(char *allstr);
 t_env	*ft_lstnew(char *allstr, int flag);
 void	ft_lstadd_back(t_env *new, t_env **alst);
