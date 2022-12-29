@@ -18,7 +18,6 @@ void  ft_remove_from_env(t_env **begin_list, t_env *data_ref)
 		return;
 
 	t_env *tmp = *begin_list;
-    printf("%s\n%s\n", tmp->name, data_ref->name);
 	if(ft_strcmp(tmp->name, data_ref->name)==0)
 	{
 		*begin_list = tmp->next;
@@ -43,7 +42,7 @@ int check_special_caract(char *arg)
     i = 0;
     while(arg[i])
     {
-        if(arg[0] != '#' && (check_is_digit(arg[i])) && ((arg[i]< 'A' && arg[i] > 'Z') ||(arg[i] < 'a' && arg[i] > 'z')) && arg[i] != '_')
+        if(arg[0] != '#' || (!check_is_digit(arg[i])) || ((arg[i] < 'A' && arg[i] > 'Z') ||(arg[i] < 'a' && arg[i] > 'z')) || arg[i] != '_')
             return(0);
         i++;
     }

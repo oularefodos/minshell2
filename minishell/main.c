@@ -8,12 +8,13 @@ int main(int ac, char **str, char **env) {
 
     envr = build_env(env);
     char *line;
-    t_element *elemnt;
+    t_element *element;
     while (1) {
         line = readline("minishell> ");
         add_history(line);
-        elemnt  = parser(line);
-        if (elemnt) {
+        element  = parser(line);
+        if (element) {
+            check_cmd(element, &envr);
         }
     }
 }

@@ -93,6 +93,7 @@ void export(t_env **env, t_element *command)
 {
     int i = 1;
     t_env *tmp;
+    t_env	*newelement;
     if(command->nbr_args == 1 || (command->nbr_args == 2 && (!ft_strcmp(command->args[1], "#") || !ft_strcmp(command->args[1], ";" ))))
         printf_env(env);
     while(command->args[i])
@@ -117,14 +118,13 @@ void export(t_env **env, t_element *command)
             else
             {
                 if(env_finder(*env,receive_name(command->args[i])))
-                    env_finder(*env,receive_name(command->args[i]))->value = receive_value_export(command->args[i]);
+                    env_finder(*env,receive_name(command->args[i]))->value = receive_value(command->args[i]);
                 else
                     ft_lstadd_back(ft_lstnew(command->args[i], 1), env);
             }
         }
         else
         {
-            t_env	*newelement;
             newelement = (t_env *)malloc(sizeof(t_env));
             if (newelement == 0)
                 return ;

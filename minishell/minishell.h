@@ -96,4 +96,5 @@ char    *convertto_char(t_env *env);
 char	*ft_concatenate(const char *s1, const char *s2, const char *s3);
 void    check_cmd(t_element *command, t_env **envv);
 int	    ft_isdigit(int x);
+int	ft_strcmp(const char *s1, const char *s2);
 #endif

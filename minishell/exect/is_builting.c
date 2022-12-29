@@ -38,7 +38,10 @@ void	is_builting(t_element *cmd, t_env **envv)//CMD = ARGV[0]
     else if (!ft_strcmp(cmd->cmd, "unset"))
 		unset(envv, cmd);
     else if (!ft_strcmp(cmd->cmd, "env"))
+	{
+		fprintf(stderr, "In !\n");
 		ft_env2(*envv, cmd);
+	}
 }
 
 

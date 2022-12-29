@@ -6,7 +6,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	unsigned int	i;
 
 	i = 0;
-	while ((s1[i] && s2[i]) && (s1[i] == s2[2]))
+	while ((s1[i] && s2[i]) && (s1[i] == s2[i]))
 		i++;
 	return (s1[i] - s2[i]);
 }
@@ -47,8 +47,6 @@ int grammar(t_element *s) {
     while(s) {
         if (s->type == HERDOC)
             herdoc(s);
-        if (s->args)
-            s->cmd = s->args[0];
         if (s->type != CMD && s->type != SQUOT && s->type != DQUOT) {
             if (s->next->type == PIPE) {
                 ft_putstr_fd("bash: syntax error near unexpected token `|'\n", 1);
