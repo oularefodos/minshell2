@@ -65,6 +65,7 @@ t_env	*finder_getter(t_env	*env, char *name);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char    *receive_name(char *allstr);
 char    *receive_name_export(char *allstr);
+int	ft_strcmp(const char *s1, const char *s2);
 char    *receive_value(char *allstr);
 t_env	*ft_lstnew(char *allstr, int flag);
 void	ft_lstadd_back(t_env *new, t_env **alst);
