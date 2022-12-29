@@ -1,4 +1,32 @@
 #include "../minishell.h"
+
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	unsigned int	i;
+
+	i = 0;
+	while ((s1[i] && s2[i]) && (s1[i] == s2[2]))
+		i++;
+	return (s1[i] - s2[i]);
+}
+
+void herdoc(t_element *s)
+{
+    char *line;
+    
+    if (pipe(s->pip) == -1)
+        exit(1);
+    line = readline("> ");
+    while (ft_strcmp(line, s->next->cmd[0]))
+    {
+        write(s->pip[1], line, ft_strlen(line));
+        write(s->pip[1], "\n", 1);
+        line = readline("> ");
+    }
+    close(s->pip[1]);
+}
+
 int grammar(t_element *s) {
     t_element *node;
     t_element *lst;
@@ -17,6 +45,8 @@ int grammar(t_element *s) {
         return 1;
     }
     while(s) {
+        if (s->type == HERDOC)
+            herdoc(s);
         if (s->type != CMD && s->type != SQUOT && s->type != DQUOT) {
             if (s->next->type == PIPE) {
                 ft_putstr_fd("bash: syntax error near unexpected token `|'\n", 1);

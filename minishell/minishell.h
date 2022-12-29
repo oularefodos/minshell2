@@ -16,12 +16,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <fcntl.h>
 
 typedef struct element {
     int type;
     int space;
     char **cmd;
-    int her[2];
+    int pip[2];
     struct element *next;
     struct element *prev;
 }   t_element;
