@@ -77,14 +77,20 @@ int check_is_valid(char *str)
 		printf("export: usage: export [name[=value]...] or export \n");
         return 0;
 	}
+
+    if(!ft_strcmp(str, "+=") || ft_isdigit(str[0]) || (str[0] == '+'))
+    {
+        printf("minishell: export: `%s': not a valid identifier\n", str);
+            return 0;
+    }
     while(str[i])
     {
-	    if (ft_isdigit(str[0]) || (str[i] = '+' && str[i+1] != '=') ||(str[i] < 'A' && str[i] > 'Z') ||(str[i] < 'a' && str[i] > 'z') || (!ft_strcmp(str, "-")))
+	    if ((str[i] < 'A' && str[i] > 'Z') ||(str[i] < 'a' && str[i] > 'z') || (!ft_strcmp(str, "-")))
         {
-            printf("minishell: export: `%s': not a valid identifier", str);
+            printf("minishell: export: `%s': not a valid identifier\n", str);
             return 0;
         }
-    i++;
+        i++;
     }
     return 1;
 }
@@ -98,10 +104,10 @@ void export(t_env **env, t_element *command)
         printf_env(env);
     while(command->args[i])
     {
+        if (!check_is_valid(command->args[i]))
+           return;
         if(check_caract(command->args[i], '=') == 1)
         {
-            // if (!check_is_valid(command->args[i]))
-            //     return;
             if(check_plus(command->args[i], '+', '='))
             {
                 if(env_finder(*env,receive_name_export(command->args[i])))
