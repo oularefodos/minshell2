@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:40:03 by mmakboub          #+#    #+#             */
-/*   Updated: 2022/12/29 23:32:10 by mmakboub         ###   ########.fr       */
+/*   Updated: 2022/12/30 01:15:45 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_lstadd_back(t_env *new, t_env **alst)
 	node = *alst;
 	if (alst && *alst)
 	{
-		while (node-> next)
+		while (node->next)
 		{
 			node = node->next;
 		}

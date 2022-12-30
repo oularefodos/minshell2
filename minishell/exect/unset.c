@@ -40,9 +40,13 @@ int check_special_caract(char *arg)
 {
     int i;
     i = 0;
+    if (arg[0] == '#')
+        return (1);
+    if (check_is_digit(arg[0]))
+        return (0);
     while(arg[i])
     {
-        if(arg[0] != '#' || (!check_is_digit(arg[i])) || ((arg[i] < 'A' && arg[i] > 'Z') ||(arg[i] < 'a' && arg[i] > 'z')) || arg[i] != '_')
+        if ((i != 0 && arg[i] == '#') || ((arg[i] < 'A' && arg[i] > 'Z') || (arg[i] < 'a' && arg[i] > 'z')))
             return(0);
         i++;
     }
@@ -64,7 +68,7 @@ void    unset(t_env **variable ,t_element *command)
         }
         while (command->args[i])
         {
-            if(!check_is_digit(command->args[i][0]) && check_special_caract(command->args[i]))// && identique_var(command->args[i], variable))
+            if(check_special_caract(command->args[i]))// && identique_var(command->args[i], variable))
             {
                 if(finder_getter(*variable, command->args[i]))
                     ft_remove_from_env(variable, finder_getter(*variable, command->args[i]));

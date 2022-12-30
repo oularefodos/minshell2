@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:57:46 by mmakboub          #+#    #+#             */
-/*   Updated: 2022/12/29 21:00:05 by mmakboub         ###   ########.fr       */
+/*   Updated: 2022/12/30 01:05:21 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ void execve_cmd(t_element *command, t_env **env, char **argv)//command->argv:par
 	char **env1;
     path = execute_cmd(command, env);
 	if(!path)
+	{
+		printf("minishell sucks\n");
 		return ;
+	}
 	env1 = convertto_doublep(*env);
     if(execve(path, argv, env1) == -1)
         perror("Minishell: error: ");
@@ -84,10 +87,31 @@ void execve_cmd(t_element *command, t_env **env, char **argv)//command->argv:par
 // 			check_cmd(command, env);
 // 	}
 // }
+
+int	ft_lstsize_elem(t_element *lst)
+{
+	int	len;
+
+	len = 0;
+	while (lst)
+	{
+		if (lst && lst->type != PIPE)
+			len++;
+		lst = lst -> next;
+	}
+	return (len);
+}
+
 void check_cmd(t_element *command, t_env **envv)
 {
-	if(check_builtings(command))
-		is_builting(command, envv);
+	// printf("size == %d\n", ft_lstsize_elem(command));
+	if (ft_lstsize_elem(command) > 1)
+		handle_pipe(command, envv);
 	else
-		execve_cmd(command, envv, command->args);
+	{
+		if(check_builtings(command))
+			is_builting(command, envv);
+		else
+			execve_cmd(command, envv, command->args);		
+	}
 }

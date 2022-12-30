@@ -128,10 +128,10 @@ void export(t_env **env, t_element *command)
             newelement = (t_env *)malloc(sizeof(t_env));
             if (newelement == 0)
                 return ;
-            newelement->name = command->args[i];
+            newelement->name = ft_strdup(command->args[i]);
             newelement->value = NULL;
+            newelement->next = NULL;
             ft_lstadd_back(newelement, env);
-            printf_env(env);
         }
         i++;
     }
