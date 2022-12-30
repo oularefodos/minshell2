@@ -98,4 +98,5 @@ void    check_cmd(t_element *command, t_env **envv);
 int	    ft_isdigit(int x);
 int	ft_strcmp(const char *s1, const char *s2);
 int	ft_lstsize_elem(t_element *lst);
+int getsize(char **str);
 #endif

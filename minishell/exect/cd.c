@@ -22,7 +22,7 @@ void back_to_home(t_env **env, t_env *pwd)
         return;
     }
     if(chdir(&home->value[1]) == -1)
-        printf("minishell: cd: %s:\n",strerror(errno));
+        printf("minishell: cd: %s\n",strerror(errno));
     else 
         {
             refresh_oldpwd(env, pwd);
@@ -45,7 +45,7 @@ void cd(t_element *command, t_env **env)
     else if (command->nbr_args > 1)
     {
         if (chdir(command->args[1]) == -1)
-            printf("minishell: cd: %s:\n",strerror(errno));
+            printf("minishell: cd: %s\n",strerror(errno));
         else
         {
             refresh_oldpwd(env, pwd);

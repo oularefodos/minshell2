@@ -12,9 +12,11 @@ int main(int ac, char **str, char **env) {
     while (1) {
         line = readline("minishell> ");
         add_history(line);
+        if(*line) {
         element  = parser(line);
         if (element) {
             check_cmd(element, &envr);
+        }
         }
     }
 }

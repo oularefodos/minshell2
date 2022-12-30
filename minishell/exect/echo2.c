@@ -30,6 +30,7 @@ void print_echoarg(char **arg)
 {
     int i = 1;
     int j;
+
     bool check = false;
     bool ok = false;
     while(arg[i])
@@ -51,7 +52,12 @@ void print_echoarg(char **arg)
         i++;
     }
     while(arg[i])
-        printf("%s", arg[i++]);
+    {
+        printf("%s", arg[i]);
+        if (arg[i + 1])
+            printf(" ");
+        i++;
+    }
     if (!check)
        printf("\n");
 }

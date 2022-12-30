@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:57:46 by mmakboub          #+#    #+#             */
-/*   Updated: 2022/12/30 01:05:21 by mmakboub         ###   ########.fr       */
+/*   Updated: 2022/12/30 16:20:56 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,31 +62,18 @@ void execve_cmd(t_element *command, t_env **env, char **argv)//command->argv:par
 {
     char *path;
 	char **env1;
+	env1 = convertto_doublep(*env);
+	// expender(command, env1);
     path = execute_cmd(command, env);
 	if(!path)
 	{
-		printf("minishell sucks\n");
+		printf("minishell: %s: %s\n",path, strerror(errno));
 		return ;
 	}
-	env1 = convertto_doublep(*env);
     if(execve(path, argv, env1) == -1)
-        perror("Minishell: error: ");
+        printf("minishell: %s: %s\n", path, strerror(errno));
     free(path);
 }
-
-// void execution(t_element *command, t_env **env)
-// {
-// 	if (command->type = PIPE)
-// 		 exec_pipe();
-// 	else
-// 	{
-// 		if (command->type == HERDOC|| command->type == SUP
-// 			|| command->type == INF ||command->type = ADD)
-// 				handle_redirection();
-// 		else if (command->type == CMD)
-// 			check_cmd(command, env);
-// 	}
-// }
 
 int	ft_lstsize_elem(t_element *lst)
 {

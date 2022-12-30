@@ -55,21 +55,22 @@ char **ft_concat(char **s1, char **s2) {
     char **ret;
     int i;
     int y;
+    
     len = getsize(s1) + getsize(s2) + 1;
     ret = malloc(sizeof(char *) * len);
     if (!ret)
-        return NULL;
+        exit(1);
     i = 0;
     y = 0;
     while (s1[i]) {
-        ret[i] = s1[i];
+        ret[i] = ft_strdup(s1[i]);
         i++;
     }
     while (s2[y]) {
-        ret[i + y] = s2[y];
+        ret[i + y] = ft_strdup(s2[y]);
         y++;
     }
-    ret[len] = NULL;
+    ret[i + y] = NULL;
     return (ret);
 }
 
