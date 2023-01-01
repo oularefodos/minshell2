@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:57:46 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/01 22:25:53 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/01 23:48:01 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,6 @@ char *join_get_acces(char **splited_path, char *cmd)
 	return(NULL);
 }
 
-
-/*
-	1 : acces = >1 execve
-	2 : path ==> /bin/ls => not fond
-
-*/
-
 void handle_redirection(t_element *red)
 {
     t_element *tmp;
@@ -76,11 +69,8 @@ void handle_redirection(t_element *red)
 	int fd;
 
     tmp = red;
-	if (red)
-		printf("hhh\n");
     while (tmp)
-    {
-            
+    {   
     //    if (tmp->type == PIPE)
     //        break;
        if (tmp->type == SUP)
@@ -129,6 +119,9 @@ void handle_redirection(t_element *red)
 void execve_cmd(t_element *command, t_env **env, char **argv)
 {
     char *path;
+	
+	if(!env)
+		return ;
     path = execute_cmd(command, env);
     if(fork() == 0)
 	{

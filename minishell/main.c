@@ -42,9 +42,15 @@ int main(int ac, char **str, char **env) {
         element  = parser(line);
         if (element) 
         {
+            if(!envr)
+            {
+                printf("sadly ! there is no env\n");
+                return(1);
+            }
             check_cmd(element, &envr);
         }
         }
         dup2(fd_1, 1);
     }
+    return(0);
 }
