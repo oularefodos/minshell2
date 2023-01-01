@@ -25,6 +25,7 @@ int	check_builtings(t_element	*command)
 
 void	is_builting(t_element *cmd, t_env **envv)
 {
+	handle_redirection(cmd);
 	if (!ft_strcmp(cmd->cmd, "echo"))
 		echo(cmd->args);
 	else if (!ft_strcmp(cmd->cmd, "pwd"))

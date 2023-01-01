@@ -1,15 +1,15 @@
 #ifndef MINISHELL_H
 #define MINISHELL_H
 
-#define PIPE 0
-#define INF 1
-#define SUP 2
-#define ADD 3
-#define HERDOC 4
-#define CMD 5
-#define SQUOT 6
-#define DQUOT 7
-#define F 8
+#define PIPE 2
+#define INF 4
+#define SUP 8
+#define ADD 16
+#define HERDOC 32
+#define CMD 64
+#define SQUOT 128
+#define DQUOT 256
+#define F 512
  
 #include "Libft/libft.h"
 #include <readline/readline.h>
@@ -97,7 +97,8 @@ char    *convertto_char(t_env *env);
 char	*ft_concatenate(const char *s1, const char *s2, const char *s3);
 void    check_cmd(t_element *command, t_env **envv);
 int	    ft_isdigit(int x);
-int	ft_strcmp(const char *s1, const char *s2);
-int	ft_lstsize_elem(t_element *lst);
-int getsize(char **str);
+int	    ft_strcmp(const char *s1, const char *s2);
+int	    ft_lstsize_elem(t_element *lst);
+int     getsize(char **str);
+void    handle_redirection(t_element *rederection);
 #endif

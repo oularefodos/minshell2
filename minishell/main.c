@@ -15,12 +15,11 @@ void display(t_element *c)
         if (s->type == CMD || s->type == SQUOT || s->type == DQUOT) {
             i = 0;
             while(s->args[i]) {
-                printf("%s | ", s->args[i]);
+                printf("%s ", s->args[i]);
                 i++;
             }
         }
         puts("\n------------------------------");
-        pause();
         s = s->next;
     }
 }
@@ -32,17 +31,20 @@ int main(int ac, char **str, char **env) {
     t_env *envr;
     char *line;
     t_element *element;
-
+    int fd_1 = dup(1);
     envr = build_env(env);
     while (1) {
         line = readline("minishell> ");
-        add_history(line);
+        if (!line)
+            exit(0);
         if(*line) {
+        add_history(line);
         element  = parser(line);
         if (element) 
         {
             check_cmd(element, &envr);
         }
         }
+        dup2(fd_1, 1);
     }
 }

@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:57:46 by mmakboub          #+#    #+#             */
-/*   Updated: 2022/12/31 19:15:23 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/01 22:25:53 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 char *execute_cmd(t_element *command, t_env **env)
 {
+	if(!env)
+		return(NULL);
 	char *line;
 	char *path;
 	char **splited_path;
@@ -66,19 +68,76 @@ char *join_get_acces(char **splited_path, char *cmd)
 	2 : path ==> /bin/ls => not fond
 
 */
+
+void handle_redirection(t_element *red)
+{
+    t_element *tmp;
+    t_element *next_node;
+	int fd;
+
+    tmp = red;
+	if (red)
+		printf("hhh\n");
+    while (tmp)
+    {
+            
+    //    if (tmp->type == PIPE)
+    //        break;
+       if (tmp->type == SUP)
+       {
+           next_node = tmp->next;
+           fd = open(next_node->cmd, O_CREAT | O_WRONLY, 0777);
+		   if (fd < 0)
+		   {
+				printf("sup fd error %d %s\n", fd, next_node->cmd);
+				exit (1);
+		   }
+           dup2(fd, 1);
+		   close(fd);
+       }
+
+       if (tmp->type == INF)
+       {
+           next_node = tmp->next;
+           fd = open(next_node->cmd, O_CREAT | O_RDONLY, 0777);
+		   if (fd < 0)
+		   {
+				printf("inf fd error %d %s\n", fd, next_node->cmd);
+				exit (1);
+		   }
+           dup2(fd, 0);
+		   close(fd);
+       }
+
+       if (tmp->type == ADD)
+       {
+           next_node = tmp->next;
+           int fd = open(next_node->cmd, O_CREAT | O_WRONLY | O_APPEND);
+		   if (fd < 0)
+		   {
+				printf("inf fd error %d %s\n", fd, next_node->cmd);
+				exit (1);
+		   }
+           dup2(fd, 1);
+		   close(fd);
+       }
+       tmp = tmp->next;
+    }
+}
+
+
 void execve_cmd(t_element *command, t_env **env, char **argv)
 {
     char *path;
-	//char **env1;
-	//env1 = convertto_doublep(*env);
     path = execute_cmd(command, env);
-	if(!path)
-	{
-		printf("minishell :%s: command not found\n", command->cmd);
-		return ;
-	}
     if(fork() == 0)
 	{
+		handle_redirection(command);
+		if(!path)
+		{
+			printf("minishell :%s: command not found\n", command->cmd);
+			exit(127);
+		}
 		if(execve(path, argv, convertto_doublep(*env)) == -1)
         	printf("minishell: %s: %s\n", path, strerror(errno));
 		exit(0);
@@ -91,10 +150,10 @@ int	ft_lstsize_elem(t_element *lst)
 {
 	int	len;
 
-	len = 0;
+	len = 1;
 	while (lst)
 	{
-		if (lst && lst->type != PIPE)
+		if (lst->type == PIPE)
 			len++;
 		lst = lst -> next;
 	}
