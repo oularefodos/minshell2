@@ -9,6 +9,7 @@
 #define CMD 5
 #define SQUOT 6
 #define DQUOT 7
+#define F 8
  
 #include "Libft/libft.h"
 #include <readline/readline.h>

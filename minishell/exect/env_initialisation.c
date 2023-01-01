@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:42:52 by mmakboub          #+#    #+#             */
-/*   Updated: 2022/12/30 00:44:34 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/01 16:17:30 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,8 @@ void env_initialisation(t_env **env)
 	{
 		shlvl = ft_atoi(ft_strdup(tmp->value));
 		printf("%d", shlvl);
-		//new_shlvl = atoi(ft_strdup(tmp->value)) + 1;
-		free(tmp->value);
 		if(shlvl < 0)
 			shlvl = 0;
-		//else if (shlvl == 999)
-			//shlvl == atoi(ft_strdup(""));
-		// else if (shlvl >=1000)
-		// {
-		// 	printf("minishell: warning: shell level %s too high, resetting to 1", );
-		// 	shlvl = 1;
-		// }
 		else
 			tmp->value = ft_itoa(shlvl) + 1;
 		printf("%d", shlvl);

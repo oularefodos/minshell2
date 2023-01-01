@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:54:30 by mmakboub          #+#    #+#             */
-/*   Updated: 2022/12/30 01:08:26 by mmakboub         ###   ########.fr       */
+/*   Updated: 2022/12/31 18:00:31 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,32 @@ void handle_pipe(t_element *node, t_env **env)
         pid_t pid = fork();
         if (pid == 0)
         {
+
+            // rediction
+            /*
+
+                void open_file_add(char *file_name)
+                {
+                    int fd;
+
+                    fd = open(file_name, O_RONLY);
+                    if (fd < 0)
+                        return ;
+                    
+                    dup2(fd, 1);
+                }
+
+                cat < file >> file2
+
+                cat
+                file < (read in)
+                file2 >> (APPEND)
+            
+                if (command->type = ADD)
+                {
+                    open_file_add(file_name);
+                }
+            */
             if (node->next) {
                 if (dup2(fd[1],1) == -1)
                 {
@@ -40,7 +66,10 @@ void handle_pipe(t_element *node, t_env **env)
             if(check_builtings(node))
 		    	is_builting(node, env);
 		    else
+            {
+                
 		    	execve_cmd(node, env, node->args);
+            }
             exit(0);
         }
         if (node->next)

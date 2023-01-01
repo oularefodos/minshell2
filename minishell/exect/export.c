@@ -43,9 +43,13 @@ void	printf_env(t_env **env)
 	t_env *current = *env;
 	while (current != 0)
 	{
-		printf("declare -x %s", current->name);
         if(current->value)
+        {
+		    printf("declare -x %s", current->name);
             printf("=%s\n",current->value);
+        }
+        else
+             printf("declare -x %s\n", current->name);
 		current = current->next;
 	}
 }
@@ -78,7 +82,7 @@ int check_is_valid(char *str)
         return 0;
 	}
 
-    if(!ft_strcmp(str, "+=") || ft_isdigit(str[0]) || (str[0] == '+'))
+    if(!ft_strcmp(str, "+=") || ft_isdigit(str[0]) || (str[0] == '+') || (str[0] == '='))
     {
         printf("minishell: export: `%s': not a valid identifier\n", str);
             return 0;

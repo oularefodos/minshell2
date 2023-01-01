@@ -6,11 +6,12 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:57:46 by mmakboub          #+#    #+#             */
-/*   Updated: 2022/12/30 16:20:56 by mmakboub         ###   ########.fr       */
+/*   Updated: 2022/12/31 19:15:23 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../minishell.h"
+
 
 char *execute_cmd(t_element *command, t_env **env)
 {
@@ -40,11 +41,11 @@ int check_accecs_exec(char *joined_path)
 		return(1);
 	return(0);
 }
+
 char *join_get_acces(char **splited_path, char *cmd)
 {
 	int i;
 	i = 0;
-	//char *path_name;
 	char *tmp;
 	while(splited_path[i])
 	{
@@ -58,20 +59,31 @@ char *join_get_acces(char **splited_path, char *cmd)
 	}
 	return(NULL);
 }
-void execve_cmd(t_element *command, t_env **env, char **argv)//command->argv:paramt3
+
+
+/*
+	1 : acces = >1 execve
+	2 : path ==> /bin/ls => not fond
+
+*/
+void execve_cmd(t_element *command, t_env **env, char **argv)
 {
     char *path;
-	char **env1;
-	env1 = convertto_doublep(*env);
-	// expender(command, env1);
+	//char **env1;
+	//env1 = convertto_doublep(*env);
     path = execute_cmd(command, env);
 	if(!path)
 	{
-		printf("minishell: %s: %s\n",path, strerror(errno));
+		printf("minishell :%s: command not found\n", command->cmd);
 		return ;
 	}
-    if(execve(path, argv, env1) == -1)
-        printf("minishell: %s: %s\n", path, strerror(errno));
+    if(fork() == 0)
+	{
+		if(execve(path, argv, convertto_doublep(*env)) == -1)
+        	printf("minishell: %s: %s\n", path, strerror(errno));
+		exit(0);
+	}
+	wait(NULL);
     free(path);
 }
 
@@ -91,8 +103,10 @@ int	ft_lstsize_elem(t_element *lst)
 
 void check_cmd(t_element *command, t_env **envv)
 {
+	if (command->type == INF)
+		puts("-------------------");
 	// printf("size == %d\n", ft_lstsize_elem(command));
-	if (ft_lstsize_elem(command) > 1)
+	else if (ft_lstsize_elem(command) > 1)
 		handle_pipe(command, envv);
 	else
 	{

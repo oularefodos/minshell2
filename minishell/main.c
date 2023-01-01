@@ -1,20 +1,46 @@
 #include "minishell.h"
 
+void display(t_element *c)
+{
+    char *Eltype[] = {"PIPE", "INF", "SUP", "ADD", "HER", "CMD", "SQUOT", "DQUOT", "FILE"};
+    int i = 0;
+    t_element *s;
+    s = c;
+    if (s->type < 0){
+        printf("error\n\n");
+        exit(1);
+    }
+    while (s) {
+        printf("TYPE : %s\n", Eltype[s->type]);
+        if (s->type == CMD || s->type == SQUOT || s->type == DQUOT) {
+            i = 0;
+            while(s->args[i]) {
+                printf("%s | ", s->args[i]);
+                i++;
+            }
+        }
+        puts("\n------------------------------");
+        pause();
+        s = s->next;
+    }
+}
+// > file < f >
 int main(int ac, char **str, char **env) {
 
     (void)ac;
     (void)str;
     t_env *envr;
-
-    envr = build_env(env);
     char *line;
     t_element *element;
+
+    envr = build_env(env);
     while (1) {
         line = readline("minishell> ");
         add_history(line);
         if(*line) {
         element  = parser(line);
-        if (element) {
+        if (element) 
+        {
             check_cmd(element, &envr);
         }
         }

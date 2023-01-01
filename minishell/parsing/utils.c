@@ -175,6 +175,7 @@ void norm_two(t_element **el) {
         if ((temp->type == INF || temp->type == ADD || temp->type == SUP || temp->type == HERDOC) 
             && getsize(temp->next->args) > 1)
         {
+            
             if (temp->prev == NULL || temp->prev->type == PIPE) {
                 add_front(&temp, &temp->next->args[1], el);
             }
