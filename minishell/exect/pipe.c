@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:54:30 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/01 22:06:25 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/02 17:20:14 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ void handle_pipe(t_element *node, t_env **env)
     int fd[2];
     int i = 0;
     int argc = ft_lstsize_elem(node);
-    // t_element *red;
-    // printf("lol\n");
-    int in_tmp = dup(0);   
+    char **envv;
+    int in_tmp = dup(0);
+
+    envv = convertto_doublep(*env);   
     while (node != NULL)
     {
         if(i < argc - 1)
@@ -30,32 +31,6 @@ void handle_pipe(t_element *node, t_env **env)
         pid_t pid = fork();
         if (pid == 0)
         {
-
-            // rediction
-            /*
-
-                void open_file_add(char *file_name)
-                {
-                    int fd;
-
-                    fd = open(file_name, O_RONLY);
-                    if (fd < 0)
-                        return ;
-                    
-                    dup2(fd, 1);
-                }
-
-                cat < file >> file2
-
-                cat
-                file < (read in)
-                file2 >> (APPEND)
-            
-                if (command->type = ADD)
-                {
-                    open_file_add(file_name);
-                }
-            */
             if (i < argc - 1) {
                 if (dup2(fd[1],1) == -1)
                 {
@@ -64,13 +39,7 @@ void handle_pipe(t_element *node, t_env **env)
                 close(fd[1]);
                 close(fd[0]);
             }
-            // redirections:
-            // red = node->next;
-            // while (red && red->type != PIPE) {
-            //     if (red->type & (ADD | SUP | INF | HERDOC))
-            //         handle_redirection(red);
-            //     red = red->next;
-             //}
+            expender(node, envv);
             if(check_builtings(node))
 		    	is_builting(node, env);
 		    else

@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:57:46 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/01 23:48:01 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/02 17:24:22 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void handle_redirection(t_element *red)
        if (tmp->type == SUP)
        {
            next_node = tmp->next;
-           fd = open(next_node->cmd, O_CREAT | O_WRONLY, 0777);
+           fd = open(next_node->cmd, O_CREAT | O_WRONLY | O_TRUNC, 0777);
 		   if (fd < 0)
 		   {
 				printf("sup fd error %d %s\n", fd, next_node->cmd);
@@ -155,13 +155,15 @@ int	ft_lstsize_elem(t_element *lst)
 
 void check_cmd(t_element *command, t_env **envv)
 {
-	if (command->type == INF)
-		puts("-------------------");
-	// printf("size == %d\n", ft_lstsize_elem(command));
-	else if (ft_lstsize_elem(command) > 1)
+	char **env = convertto_doublep(*envv);
+	// if (command->type == INF)
+	// 	puts("-------------------");
+	// // printf("size == %d\n", ft_lstsize_elem(command));
+	if (ft_lstsize_elem(command) > 1)
 		handle_pipe(command, envv);
 	else
 	{
+		expender(command, env);
 		if(check_builtings(command))
 			is_builting(command, envv);
 		else
