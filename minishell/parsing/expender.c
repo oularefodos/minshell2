@@ -78,6 +78,33 @@ int checkvarexist(char *s)
     return (-1);
 }
 
+char **fixed_char(char **str)
+{
+    int size;
+    char **newstr;
+    int i;
+    int y;
+
+    size = getsize(str);
+    i = 0;
+    while(str[i])
+        if (str[i++][0] == '\0')
+            size--;
+    i = 0;
+    y = 0;
+    newstr = malloc(sizeof(char *) * (size + 1));
+    if(!newstr)
+        exit(1);
+    while (str[i])
+    {
+        if (str[i][0])
+            newstr[y++] = ft_strdup(str[i]);
+        i++;
+    }
+    newstr[y] = NULL;
+    return (newstr);
+}
+
 int takesize(char *s)
 {
     int i;
@@ -132,5 +159,7 @@ void expender(t_element *s, char **env)
         }
         i++;
     }
+    t->args = fixed_char(t->args);
+    t->cmd = t->args[0];
     delete_quote(s);
 }

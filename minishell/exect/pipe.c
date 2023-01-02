@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:54:30 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/02 17:20:14 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/02 17:50:31 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ void handle_pipe(t_element *node, t_env **env)
                 close(fd[0]);
             }
             expender(node, envv);
-            if(check_builtings(node))
-		    	is_builting(node, env);
-		    else
-		    	execve_cmd(node, env, node->args);
+            if (node->args[0]){
+                if(check_builtings(node))
+                    is_builting(node, env);
+                else
+                    execve_cmd(node, env, node->args);
+            }
             exit(0);
         }
         if (i < argc - 1)

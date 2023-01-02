@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:57:46 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/02 17:24:22 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:00:27 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,10 @@ void handle_redirection(t_element *red)
        if (tmp->type == INF)
        {
            next_node = tmp->next;
-           fd = open(next_node->cmd, O_CREAT | O_RDONLY, 0777);
+           fd = open(next_node->cmd,O_RDONLY, 0777);
 		   if (fd < 0)
 		   {
-				printf("inf fd error %d %s\n", fd, next_node->cmd);
+				printf("minishell: %d %s\n", fd, next_node->cmd);
 				exit (1);
 		   }
            dup2(fd, 0);
@@ -105,7 +105,7 @@ void handle_redirection(t_element *red)
            int fd = open(next_node->cmd, O_CREAT | O_WRONLY | O_APPEND);
 		   if (fd < 0)
 		   {
-				printf("inf fd error %d %s\n", fd, next_node->cmd);
+				printf("add fd error %d %s\n", fd, next_node->cmd);
 				exit (1);
 		   }
            dup2(fd, 1);
@@ -164,9 +164,11 @@ void check_cmd(t_element *command, t_env **envv)
 	else
 	{
 		expender(command, env);
-		if(check_builtings(command))
-			is_builting(command, envv);
-		else
-			execve_cmd(command, envv, command->args);		
+		if (command->args[0]) {	
+			if(check_builtings(command))
+				is_builting(command, envv);
+			else
+				execve_cmd(command, envv, command->args);
+		}
 	}
 }
