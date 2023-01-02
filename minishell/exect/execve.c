@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:57:46 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/02 18:00:27 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:49:57 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,9 +156,11 @@ int	ft_lstsize_elem(t_element *lst)
 void check_cmd(t_element *command, t_env **envv)
 {
 	char **env = convertto_doublep(*envv);
-	// if (command->type == INF)
-	// 	puts("-------------------");
-	// // printf("size == %d\n", ft_lstsize_elem(command));
+	if(finder_getter(*envv, "PATH") == NULL)
+	{
+		printf("minishell: %s: no such file or directory\n", command->cmd);
+		return ;
+	}
 	if (ft_lstsize_elem(command) > 1)
 		handle_pipe(command, envv);
 	else

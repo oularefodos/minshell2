@@ -46,7 +46,7 @@ int check_special_caract(char *arg)
         return (0);
     while(arg[i])
     {
-        if ((i != 0 && arg[i] == '#') || ((arg[i] < 'A' && arg[i] > 'Z') || (arg[i] < 'a' && arg[i] > 'z')))
+        if ((i != 0 && arg[i] == '#') || (arg[i] == '=') || ((arg[i] < 'A' && arg[i] > 'Z') || (arg[i] < 'a' && arg[i] > 'z')))
             return(0);
         i++;
     }
