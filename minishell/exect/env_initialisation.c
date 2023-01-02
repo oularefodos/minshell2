@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:42:52 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/01 17:03:24 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/02 16:08:05 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_lstsize_env(t_env *lst)
 	}
 	return (len);
 }
-
+""
 char **convertto_doublep(t_env *env)
 {
 	int len;

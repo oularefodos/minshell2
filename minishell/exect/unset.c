@@ -68,7 +68,7 @@ void    unset(t_env **variable ,t_element *command)
         }
         while (command->args[i])
         {
-            if(check_special_caract(command->args[i]))// && identique_var(command->args[i], variable))
+            if(check_special_caract(command->args[i]))
             {
                 if(finder_getter(*variable, command->args[i]))
                     ft_remove_from_env(variable, finder_getter(*variable, command->args[i]));

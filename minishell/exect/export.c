@@ -145,8 +145,6 @@ void export(t_env **env, t_element *command)
         }
         i++;
     }
-
-
 }
 
 
