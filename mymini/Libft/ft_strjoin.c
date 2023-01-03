@@ -5,48 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 20:26:29 by foulare           #+#    #+#             */
-/*   Updated: 2022/12/30 20:07:10 by mmakboub         ###   ########.fr       */
+/*   Created: 2021/11/15 02:25:18 by mmakboub          #+#    #+#             */
+/*   Updated: 2021/12/02 23:52:48 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_getlen(const char *s)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-	int	i;
+	char	*new_str;
+	size_t	len_s1;
+	size_t	len_s2;
+	size_t	j;
+	size_t	i;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	int		len;
-	char	*tab;
-	int		i;
-
-	i = 0;
-	if (!s1 || !s2)
+	if (!s1)
 		return (NULL);
-	len = ft_getlen(s1) + ft_getlen(s2) + 1;
-	tab = (char *)malloc(sizeof(char) * (len));
-	if (!tab)
+	len_s1 = ft_strlen(s1);
+	len_s2 = ft_strlen(s2);
+	new_str = (char *)malloc((len_s1 + len_s2 + 1) * sizeof(char));
+	if (!new_str)
 		return (NULL);
+	i = 0;
+	j = 0;
 	while (s1[i])
-	{
-		tab[i] = s1[i];
-		i++;
-	}
-	len = 0;
-	while (s2[len])
-	{
-		tab[i] = s2[len];
-		i++;
-		len++;
-	}
-	tab[i] = '\0';
-	return (tab);
+		new_str[j++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		new_str[j++] = s2[i++];
+	new_str[j] = '\0';
+	return (new_str);
 }

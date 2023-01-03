@@ -3,34 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foulare <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 16:49:37 by foulare           #+#    #+#             */
-/*   Updated: 2021/11/09 15:34:12 by foulare          ###   ########.fr       */
+/*   Created: 2021/11/09 20:03:44 by mmakboub          #+#    #+#             */
+/*   Updated: 2021/12/01 17:35:57 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
-#include <stdlib.h>
 
-void	*ft_calloc(size_t nelem, size_t elsize)
+void	*ft_calloc(size_t count, size_t size)
+
 {
-	char			*str;
-	unsigned int	i;
+	void	*a;
 
-	i = 0;
-	if (nelem == 0 || elsize == 0)
-	{
-		nelem = 1;
-		elsize = 1;
-	}
-	str = (char *)malloc(nelem * elsize);
-	if (str)
-	{
-		while (i < nelem * elsize)
-		{
-			str[i] = 0;
-			i++;
-		}
-	}
-	return (str);
+	a = malloc(count * size);
+	if (!a)
+		return (NULL);
+	ft_bzero (a, count * size);
+	return (a);
 }

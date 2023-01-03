@@ -3,37 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foulare <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 10:35:04 by foulare           #+#    #+#             */
-/*   Updated: 2021/11/06 18:28:06 by foulare          ###   ########.fr       */
+/*   Created: 2021/11/06 08:19:32 by mmakboub          #+#    #+#             */
+/*   Updated: 2021/12/02 23:23:18 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 int	ft_atoi(const char *str)
+
 {
 	int	i;
 	int	result;
-	int	n;
+	int	sign;
 
-	i = 0;
-	n = 1;
+	sign = 1;
 	result = 0;
+	i = 0;
 	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
 		i++;
-	if (str[i] == '-')
+	while (str[i] == '+' || str[i] == '-')
 	{
-		n *= -1;
+		if (str[i] == '-')
+			sign = sign * (-1);
 		i++;
+		if (str[i] == '+' || str[i] == '-')
+			return (0);
 	}
-	else if (str[i] == '+')
-		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		result = result * 10 + str[i] - '0';
+		result = (result * 10) + (str[i] - 48);
 		i++;
 	}
-	return (result * n);
+	return (sign * result);
 }

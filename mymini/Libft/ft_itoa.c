@@ -3,59 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foulare <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 14:49:58 by foulare           #+#    #+#             */
-/*   Updated: 2021/11/04 18:31:20 by foulare          ###   ########.fr       */
+/*   Created: 2021/11/11 11:59:19 by mmakboub          #+#    #+#             */
+/*   Updated: 2021/12/02 23:52:25 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
+
 #include "libft.h"
 
-int	ft_getlen(int n)
-{
-	long int	nb;
-	int			i;
+static int	lencalculate(long int a)
 
-	nb = n;
-	i = 1;
-	if (nb < 0)
+{
+	int	len;
+
+	len = 0;
+	if (a < 0)
 	{
-		i++;
-		nb = nb * -1;
+		a *= -1;
+		len = 1;
 	}
-	while (nb >= 10)
+	while (a > 9)
 	{
-		nb = nb / 10;
-		i++;
+		a = a / 10;
+		len++;
 	}
-	return (i);
+	len++;
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
-	char		*str;
-	long int	nb;
-	int			len;	
+	int			len;
+	char		*p;
+	long int	nbr;
 
-	len = ft_getlen(n);
-	nb = n;
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
+	len = lencalculate(n);
+	nbr = n;
+	if (nbr < 0)
+		nbr *= -1;
+	p = malloc(sizeof(char) * len + 1);
+	if (!p)
 		return (NULL);
-	if (nb < 0)
+	p[len] = '\0';
+	while (len--)
 	{
-		nb = nb * -1;
-		str[0] = '-';
+		p[len] = nbr % 10 + '0';
+		nbr /= 10;
 	}
-	str[len] = 0;
-	len--;
-	while (nb >= 10)
-	{
-		str[len] = (nb % 10) + 48;
-		nb = nb / 10;
-		len--;
-	}
-	str[len] = nb + 48;
-	return (str);
+	if (n < 0)
+		p[0] = '-';
+	return (p);
 }

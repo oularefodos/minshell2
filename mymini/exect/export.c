@@ -72,17 +72,6 @@ t_env	*env_finder(t_env	*env, char *name)
 	return(NULL);
 }
 
-int	ft_isalpha(int c)
-{
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-	{
-		return (!0);
-	}
-	return (0);
-}
-
-#include <string.h>
-
 int check_is_valid(char *str)
 {
     int i;

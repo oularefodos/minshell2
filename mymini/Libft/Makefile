@@ -5,45 +5,81 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/11/04 13:59:28 by foulare           #+#    #+#              #
-#    Updated: 2022/12/29 21:11:38 by mmakboub         ###   ########.fr        #
+#    Created: 2021/11/17 16:58:29 by mmakboub          #+#    #+#              #
+#    Updated: 2023/01/03 16:35:35 by mmakboub         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME= libft.a
+NAME = libft.a
+FONCTIONS = ft_atoi.c\
+		ft_isalpha.c\
+		ft_itoa.c\
+		ft_memmove.c\
+		ft_putnbr_fd.c\
+		ft_strdup.c\
+		ft_strlcpy.c\
+		ft_strnstr.c\
+		ft_tolower.c\
+		ft_bzero.c\
+		ft_isascii.c\
+		ft_memchr.c\
+		ft_memset.c\
+		ft_putstr_fd.c\
+		ft_striteri.c\
+		ft_strlen.c\
+		ft_strrchr.c\
+		ft_toupper.c\
+		ft_calloc.c\
+		ft_isdigit.c\
+		ft_memcmp.c\
+		ft_putchar_fd.c\
+		ft_strjoin.c\
+		ft_strmapi.c\
+		ft_strtrim.c\
+		ft_isalnum.c\
+		ft_isprint.c\
+		ft_memcpy.c\
+		ft_putendl_fd.c\
+		ft_strchr.c\
+		ft_strlcat.c\
+		ft_strncmp.c\
+		ft_substr.c\
+		ft_split.c
+BONUS_FUNCTION = ft_lstnew_list.c\
+		ft_lstadd_front.c\
+		ft_lstsize.c\
+		ft_lstlast.c\
+		ft_lstadd_back_list.c\
+		ft_lstdelone.c\
+		ft_lstclear.c
 
-SRCS= 	ft_atoi.c       ft_isascii.c    ft_memcmp.c     ft_putendl_fd.c ft_strdup.c     ft_strlen.c     ft_strtrim.c \
-		ft_bzero.c       ft_memcpy.c     ft_putnbr_fd.c  ft_striteri.c   ft_strmapi.c    ft_substr.c	\
-		ft_calloc.c     ft_isprint.c    ft_memmove.c    ft_putstr_fd.c  ft_strjoin.c    ft_strncmp.c    ft_tolower.c \
-		ft_isalnum.c    ft_itoa.c       ft_memset.c     ft_split.c      ft_strlcat.c    ft_strnstr.c    ft_toupper.c \
-		ft_isalpha.c    ft_memchr.c     ft_putchar_fd.c ft_strchr.c     ft_strlcpy.c    ft_strrchr.c 	ft_strcmp.c
+GC = gcc
+CFLAG = -Wall -Werror -Wextra
+RM = rm -f
+AR = ar
+ARFLAG = crs
+INCLUDE = libft.h
 
-SRCSB= ft_lstadd_back.c ft_lstclear.c ft_lstiter.c ft_lstmap.c ft_lstsize.c\
-	   ft_lstadd_front.c ft_lstdelone.c ft_lstlast.c ft_lstnew.c
+OBJS = $(FONCTIONS:.c=.o)
+B_OBJS = $(BONUS_FUNCTION:.c=.o)
 
-OBJS :=$(SRCS:.c=.o)
 
-OBJSB:=$(SRCSB:.c=.o)
+all : $(NAME)
 
-CFLAGS = -Wall -Wextra -Werror
+%.o : %.c 
 
-.PHONY: all clean fclean re bonus
+	$(GC) $(CFLAG) -c $< -o $@
 
-all: $(NAME)
+$(NAME):$(OBJS) $(INCLUDE)
+	$(AR) $(ARFLAG) $(NAME) $(OBJS)
 
-$(NAME): $(OBJS)
-	ar -cr $@ $^
-
-%.o: %.c
-	gcc $(CFLAGS) -c $<  -o $@
+bonus: $(OBJS) $(B_OBJS) $(INCLUDE)
+	$(AR) $(ARFLAG) $(NAME) $(OBJS) $(B_OBJS)
 
 clean:
-	rm -f $(OBJS)
+	$(RM) $(OBJS) $(B_OBJS)
 
-bonus: $(OBJSB)
-	ar -cr $(NAME) $(OBJSB)
-
-fclean: clean
-	rm -f $(NAME)
+fclean : clean
+	$(RM) $(NAME)
 
 re: fclean all

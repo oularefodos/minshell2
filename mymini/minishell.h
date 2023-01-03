@@ -112,4 +112,5 @@ int	    ft_strcmp(const char *s1, const char *s2);
 int	    ft_lstsize_elem(t_element *lst);
 int     getsize(char **str);
 void    handle_redirection(t_element *rederection);
+void    check_cd(t_element *command);
 #endif

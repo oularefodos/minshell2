@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 21:16:47 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/03 16:21:19 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/03 16:37:35 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,7 @@ int main(int ac, char **str, char **env)
 
             sr_cap = tgetstr("sr", NULL);
             tputs(sr_cap, 0, ft_putchar);
-	        printf("\nminishell$> exit\n");
-    system("leaks a.out");
-
+	        printf("\nminishell> exit\n");
             exit(0);
         }
         if(*line) {

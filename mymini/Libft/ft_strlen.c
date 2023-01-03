@@ -5,18 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 12:26:17 by foulare           #+#    #+#             */
-/*   Updated: 2022/12/29 21:04:14 by mmakboub         ###   ########.fr       */
+/*   Created: 2021/11/04 13:06:58 by mmakboub          #+#    #+#             */
+/*   Updated: 2021/12/02 23:53:04 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-int	ft_strlen(char const *str)
+size_t	ft_strlen(const char *str)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (str[i])
+	while (str[i] != '\0')
+	{
 		i++;
+	}
 	return (i);
 }

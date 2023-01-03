@@ -18,8 +18,8 @@ void	pwd(void)
 
 	path = getcwd(NULL, 0);
 	if (path == NULL)
-		perror("Error");
-	else if (printf("%s\n", path) != ft_strlen(path) + 1)
-		perror("Error");
+		printf("getcwd couldn't find the pwd");
+	else
+		printf("%s\n", path);
 	free(path);
 }

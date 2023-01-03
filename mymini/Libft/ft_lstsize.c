@@ -3,23 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foulare <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 12:56:41 by foulare           #+#    #+#             */
-/*   Updated: 2021/11/06 18:38:23 by foulare          ###   ########.fr       */
+/*   Created: 2021/11/28 00:01:39 by mmakboub          #+#    #+#             */
+/*   Updated: 2021/12/02 23:52:02 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 int	ft_lstsize(t_list *lst)
+
 {
 	int	len;
 
 	len = 0;
 	while (lst)
 	{
-		len++;
 		lst = lst -> next;
+		len++;
 	}
 	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:57:46 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/03 15:48:06 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/03 18:35:55 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void execve_cmd(t_element *command, t_env **env, char **argv)
 		handle_redirection(command);
 		if(!path)
 		{
-			printf("minishell : %s: command not found\n", command->cmd);
+			printf("minishell FGD: %s: command not found\n", command->cmd);
 			//g_global.exit_status = 127;
 			exit(127);
 		}

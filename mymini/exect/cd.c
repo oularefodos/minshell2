@@ -44,6 +44,7 @@ void	cd(t_element	*command, t_env	**env)
 		back_to_home(env, pwd);
 	else if (command->nbr_args > 1)
 	{
+		//check_cd(command);
 		if (chdir(command->args[1]) == -1)
 			printf("minishell: cd: %s\n", strerror(errno));
 		else
@@ -58,3 +59,16 @@ void	cd(t_element	*command, t_env	**env)
 		}
 	}
 }	
+
+// void check_cd(t_element *command)
+// {
+// 	if(command->nbr_args == 2 && !ft_strcmp(command->args[0],"cd") && (!ft_strcmp(command->args[1], ".")))
+// 	{
+// 		if(getcwd(NULL, 0) == NULL)
+// 		{
+// 			printf("cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n");
+// 			// t_env *new_pwd = finder_getter(&pwd, "pwd");
+// 			// ft_strjoin("PWD=",ft_concatenate(pwd->value, "/", command->args[1]);
+// 		}
+// 	}
+// }
