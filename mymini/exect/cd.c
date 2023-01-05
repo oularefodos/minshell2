@@ -48,39 +48,40 @@ void updatepwd(t_env **env, char *arg)
 	temp = NULL;
 }
 
-bool fix(t_env **env, char *arg)
-{
-	char *tmp;
-	bool	ok;
+// bool fix(t_env **env, char *arg)
+// {
+// 	char *tmp;
+// 	bool	ok;
 
-	tmp = put_my_shlvl(finder_getter(*env, "PWD")->value);
-	tmp = ft_concatenate(tmp, "/", arg);
-	printf("%s\n",tmp);
-	if (access(tmp, F_OK) == 0) {
-		ok = 1;
-	} else {
-		ok = 0;
-	}
-	free(tmp);
-	return ok;
-}
+// 	tmp = put_my_shlvl(finder_getter(*env, "PWD")->value);
+// 	tmp = ft_concatenate(tmp, "/", arg);
+// 	printf("%s\n",tmp);
+// 	if (access(tmp, F_OK) == 0) {
+// 		ok = 1;
+// 	} else {
+// 		ok = 0;
+// 	}
+// 	free(tmp);
+// 	return ok;
+// }
 
 void	cd(t_element	*command, t_env	**env)
 {
 	t_env	*pwd;
 	t_env	*oldpwd;
-	char path[4069];
+	//char *tmp;
 	pwd = finder_getter(*env, "PWD");
 	oldpwd = finder_getter(*env, "OLDPWD");
+	// tmp = put_my_shlvl(finder_getter(*env, "PWD")->value);
+	// tmp = ft_concatenate(tmp, "/", command->args[1]);
 
-	if(command->nbr_args == 2 && !ft_strcmp(command->args[0],"cd") && (!ft_strcmp(command->args[1], ".")) && errno == ENOENT)
-	{
-		perror("minishell: cd: error retrieving current directory: "
-			"getcwd: cannot access parent directories");
-		updatepwd(env, command->args[1]);
-		return ;
-	}
-	else if ((!ft_strcmp(command->args[0], "cd") && command->nbr_args == 1) \
+	// if((access(tmp, F_OK) != 0))
+	// {
+	// 	perror("minishell: cd: error retrieving current directory: "
+	// 		"getcwd: cannot access parent directories");
+	// 		return;
+	// }
+	if ((!ft_strcmp(command->args[0], "cd") && command->nbr_args == 1) \
 		|| (!ft_strcmp(command->cmd, "cd") && (!strcmp(command->args[1], "--") \
 		|| !strcmp(command->args[1], "~") || (command->args[1][0] == '#'))))
 		back_to_home(env, pwd);

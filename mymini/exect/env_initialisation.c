@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:42:52 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/05 03:16:19 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:24:06 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void env_initialisation(t_env **env)
 				return (printf("minishell: memory was not allocated!\n"), \
 				(void)0);
 			free(head->value);
-				head->value = shlvl;
+			head->value = ft_strjoin("=",shlvl);
 			return ;
 		}
 		head = head->next;

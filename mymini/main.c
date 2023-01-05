@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 21:16:47 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/05 04:26:46 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:29:26 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int main(int ac, char **str, char **env)
     t_element *element;
     int fd_1 = dup(1);
     envr = build_env(env);
-    ft_remove_from_env((&envr), finder_getter(envr,"OLDPWD"));
     puts("hi");
     env_initialisation(&envr);
     handling_sig();

@@ -85,6 +85,7 @@ void	printf_env(t_env **env)
 {
 	t_env *current;
 
+    write(1, "passed/n", 8);
     current = *env;
     sort_env(current);
 	while (current != 0)
@@ -128,6 +129,7 @@ int check_is_valid(char *str)
         str = ft_substr(str, 0, ft_strlen(str) - 1);
     if(ft_strlen(str) == 0)
     {
+        
         printf("minishell: export: `%s': not a valid identifier\n", str);
         return 0;
     }
@@ -151,14 +153,18 @@ int check_is_valid(char *str)
 
 void export(t_env **env, t_element *command)
 {
+    write(1, "passed1\n", 9);
     int i = 1;
     t_env *tmp;
     t_env	*newelement;
+    
     if(command->nbr_args == 1 || (command->nbr_args == 2 && (!ft_strcmp(command->args[1], "#") || !ft_strcmp(command->args[1], ";" ))))
     {
+        write(1, "passed\n", 8);
         printf_env(env);
         return ;
     }
+    
     while(command->args[i])
     {
         if (!check_is_valid(command->args[i]))
@@ -194,6 +200,7 @@ void export(t_env **env, t_element *command)
             newelement->name = ft_strdup(command->args[i]);
             newelement->value = NULL;
             newelement->next = NULL;
+            printf("%s\n",newelement->name);
             ft_lstadd_back(newelement, env);
         }
         i++;
