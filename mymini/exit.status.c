@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 00:41:35 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/02 00:44:15 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/05 03:24:51 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,7 @@ int main(int argc, char* argv[]) {
             return 2;
         }
     } else {
-        int wstatus;
-        wait(&wstatus);
         
-        if (WIFEXITED(wstatus)) {
-            int statusCode = WEXITSTATUS(wstatus);
-            if (statusCode == 0) {
-                printf("Success\n");
-            } else {
-                printf("Failure with status code %d\n", statusCode);
-            }
-        }
     }
-
     return 0;
 }

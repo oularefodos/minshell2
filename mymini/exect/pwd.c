@@ -12,13 +12,29 @@
 
 #include"../minishell.h"
 
-void	pwd(void)
+char *findevalue(t_env	*env, char	*name)
+{
+	while (env && ft_strcmp(env->name, name))
+		env = env->next;
+	if (env && env->value)
+		return (env->value);
+	return (NULL);
+}
+
+void	pwd(t_env *env, char *name)
 {
 	char	*path;
+	char	*str;
 
 	path = getcwd(NULL, 0);
 	if (path == NULL)
-		printf("getcwd couldn't find the pwd");
+	{	
+		str = findevalue(env, name);
+		if (str)
+			printf("%s\n", &str[1]);
+		else
+			printf("getcwd couldn't find the pwd\n");
+	}
 	else
 		printf("%s\n", path);
 	free(path);

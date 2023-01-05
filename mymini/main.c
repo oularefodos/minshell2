@@ -6,42 +6,38 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 21:16:47 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/03 16:37:35 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/05 04:26:46 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+t_global	g_global;
 int ft_putchar(int  c)
 {
   write(1, &c, 1);
   return (1);     
 }
-
-void display(t_element *c)
+ void	handler(int signum)
 {
-    char *Eltype[] = {"PIPE", "INF", "SUP", "ADD", "HER", "CMD", "SQUOT", "DQUOT"};
-    int i = 0;
-    t_element *s;
-    s = c;
-    if (s->type < 0){
-        printf("error\n\n");
-        exit(1);
-    }
-    while (s) {
-        printf("TYPE : %s\n", Eltype[s->type]);
-        if (s->type == CMD || s->type == SQUOT || s->type == DQUOT) {
-            i = 0;
-            while(s->args[i]) {
-                printf("%s ", s->args[i]);
-                i++;
-            }
-        }
-        puts("\n------------------------------");
-        s = s->next;
-    }
+	if (signum == SIGINT)
+	{
+		printf("\n");
+	    rl_replace_line("", 0);
+	    rl_on_new_line();
+	    rl_redisplay();
+	}
 }
-// > file < f >
+ 
+void    handling_sig(void)
+{
+    rl_catch_signals = 0;
+	if (signal(SIGINT, handler) == SIG_ERR \
+	 || signal(SIGQUIT, SIG_IGN) == SIG_ERR)
+	{
+		write(2, "sig error\n", 10);
+		exit (1);
+	}
+}
 int main(int ac, char **str, char **env) 
 {
 
@@ -52,6 +48,10 @@ int main(int ac, char **str, char **env)
     t_element *element;
     int fd_1 = dup(1);
     envr = build_env(env);
+    ft_remove_from_env((&envr), finder_getter(envr,"OLDPWD"));
+    puts("hi");
+    env_initialisation(&envr);
+    handling_sig();
     while (1) {
         line = readline("minishell> ");
         if (!line)
@@ -60,14 +60,12 @@ int main(int ac, char **str, char **env)
 
             sr_cap = tgetstr("sr", NULL);
             tputs(sr_cap, 0, ft_putchar);
-	        printf("\nminishell> exit\n");
+	        printf("minishell> exit\n");
             exit(0);
         }
         if(*line) {
         add_history(line);
         element  = parser(line);
-        // printf("%d\n", element->next->args == NULL);
-        // display(element);
         if (element) 
         {
             if(!envr)

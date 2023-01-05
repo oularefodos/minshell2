@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:57:46 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/03 18:35:55 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/05 03:48:22 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,22 +133,32 @@ void execve_cmd(t_element *command, t_env **env, char **argv)
 	if(!env)
 		return ;
     path = execute_cmd(command, env);
-    if(fork() == 0)
+	if(fork() == 0)
 	{
 		handle_redirection(command);
 		if(!path)
 		{
-			printf("minishell FGD: %s: command not found\n", command->cmd);
-			//g_global.exit_status = 127;
-			exit(127);
+			printf("minishell :%s: command not found\n", command->cmd);
+			g_global.exit_status = 127;
+			return ;
 		}
 		if (!command->args || !command->args[0])
 			exit(0);
 		if(execve(path, argv, convertto_doublep(*env)) == -1)
-        	printf("minishell: %s: %s\n", path, strerror(errno));
+		{
+        	printf("minishell:%s: command not found\n", command->args[0]);
+			g_global.exit_status = 127;
+		}
 		exit(0);
 	}
 	wait(NULL);
+	int wstatus;
+    wait(&wstatus);
+    if (WIFEXITED(wstatus)) {
+        int statusCode = WEXITSTATUS(wstatus);
+		g_global.exit_status = statusCode;
+    }
+	g_global.exit_status = wstatus;
     free(path);
 }
 
@@ -168,11 +178,15 @@ int	ft_lstsize_elem(t_element *lst)
 
 void check_cmd(t_element *command, t_env **envv)
 {
-	char **env = convertto_doublep(*envv);
+	char **env;
+	//char *cmd;
+
+	env = convertto_doublep(*envv);
+
 	if(finder_getter(*envv, "PATH") == NULL)
 	{
 		printf("minishell: %s: no such file or directory\n", command->cmd);
-		//g_global.exit_status = 127;
+		g_global.exit_status = 127;
 		return ;
 	}
 	if (ft_lstsize_elem(command) > 1)

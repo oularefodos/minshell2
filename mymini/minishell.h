@@ -14,8 +14,6 @@
 #include "Libft/libft.h"
 #include <readline/readline.h>
 #include <readline/history.h>
-//#include "/Users/mmakboub/.brew/Cellar/readline/8.2.1/include/readline/readline.h"
-//#include "/Users/mmakboub/.brew/Cellar/readline/8.2.1/lib/readline"
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -26,12 +24,12 @@
 #include <term.h>
 #include <stdbool.h>
 
-// typedef struct s_global
-// {
-// 	int		exit_status;
-// }       t_global;
+typedef struct s_global
+{
+	int		exit_status;
+}       t_global;
 
-// extern t_global	g_global;
+extern t_global	g_global;
 
 typedef struct s_env
 {
@@ -64,7 +62,7 @@ int     check_is_digit(int x);
 int     check_special_caract(char *arg);
 t_env   *identique_var(char  *arg, t_env **variable);
 void    unset(t_env **variable ,t_element *command);
-void    pwd(void);
+void    pwd(t_env *env, char *name);
 void    ft_exit(t_element *command);
 long    check_exit_status(char *str);
 void    export(t_env **env, t_element *command);
@@ -111,6 +109,18 @@ int	    ft_isdigit(int x);
 int	    ft_strcmp(const char *s1, const char *s2);
 int	    ft_lstsize_elem(t_element *lst);
 int     getsize(char **str);
+int check_rest_error(int type, int next);
 void    handle_redirection(t_element *rederection);
 void    check_cd(t_element *command);
+int check_error(int type, int next);
+void herdoc(t_element *s);
+char *insert(char *str, int index, char *s, int sz);
+char *takevarvalue(char *str, char **env);
+void    all_lower(char *cmd);
+void    add_back(t_element **node, char *str, int type, int len);
+void    str_tokeniser(char **str, t_element **elmnt, int *len);
+int issep(char c, char *sep);
+void    squote_tokeniser(char **str, t_element **elmnt, int *len);
+void redir_tokeniser(char **str, t_element **elmnt, int *len);
+char *put_my_shlvl(char *str);
 #endif

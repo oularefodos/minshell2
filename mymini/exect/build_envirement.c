@@ -51,16 +51,16 @@ void	refresh_pwd(t_env	**env)
 	char	*joined;
 
 	head = *env;
+	pwd = getcwd(NULL, 0);
 	while (head && ft_strcmp(head->name, "PWD"))
 		head = head->next;
 	if (head && head->value)
 	{
 		head->value = NULL;
-		head->value = ft_strjoin("=", getcwd(NULL, 0));
+		head->value = ft_strjoin("=", pwd);
 	}
 	else
 	{
-		pwd = getcwd(NULL, 0);
 		joined = ft_strjoin("PWD=", pwd);
 		ft_lstadd_back(ft_lstnew(joined, 1), env);
 	}

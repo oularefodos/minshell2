@@ -8,7 +8,8 @@ t_element *last(t_element *s) {
     return c;
 }
 
-int issep(char c, char *sep) {
+int issep(char c, char *sep)
+{
     int i;
 
     i = 0;
@@ -22,7 +23,8 @@ int issep(char c, char *sep) {
 } 
 
 
-t_element *new_element(int type, char *str, t_element *prev) {
+t_element *new_element(int type, char *str, t_element *prev)
+{
     t_element *new;
     new = malloc(sizeof(t_element));
     if (!new)
@@ -47,7 +49,8 @@ t_element *new_element(int type, char *str, t_element *prev) {
     return (new);   
 }
 
-void add_back(t_element **node, char *str, int type, int len) {
+void add_back(t_element **node, char *str, int type, int len)
+{
     char *s;
     t_element *lst;
     if ((type == CMD || type == SQUOT || type == DQUOT) && str)
@@ -62,90 +65,31 @@ void add_back(t_element **node, char *str, int type, int len) {
     }
 }
 
-t_element *tokeniser(char *line) {
+t_element *tokeniser(char *line)
+{
     t_element *elmnt;
     int len;
-    int s;
+    
     elmnt = NULL;
-
-    while(*line) {
+    while(*line)
+    {
         len = 0;
         while(*line == ' ')
             line++;
         if (*line == '\0')
             break;
-        if (!issep(*line, "<>|'\"")) {
-            while(!issep(*line, "<>|'\"") && *line) {
-                len++;
-                line++;
-            }
-            add_back(&elmnt, line, CMD, len);
-            len = 0;
-        }
-        else if (*line == '\'') {
-            if (*(line - 1) == 32)
-                s = 1;
-            else 
-                s = 0; 
-            line++;
-            len++;
-            while (*line != '\'' && *line) {
-                line++;
-                len++;
-            }
-            line++;
-            len++;
-            add_back(&elmnt, line, SQUOT, len);
-            last(elmnt)->space = s;
-            len = 0;
+        if (!issep(*line, "<>|'\""))
+            str_tokeniser(&line, &elmnt, &len);
+        else if (*line == '\'' || *line == '"')
+        {
+            squote_tokeniser(&line, &elmnt, &len);
             if (*line == '\0')
                 break;
         }
-        else if (*line == '"') {
-            if (*(line - 1) == 32)
-                s = 1;
-            else 
-                s = 0;
-            line++;
-            len++;
-            while (*line != '"' && *line) {
-                line++;
-                len++;
-            }
-            line++;
-            len++;
-            add_back(&elmnt, line, DQUOT, len);
-            last(elmnt)->space = s;
-            len = 0;
-            if (*line == '\0')
-                break;
-        }
-        else if (*line =='<')  {
-            while(*line && *line == '<' && len < 2) {
-                len++;
-                line++;
-            }
-            if (len == 1)
-                add_back(&elmnt, NULL, INF, len);
-            else if (len == 2)
-                add_back(&elmnt, NULL, HERDOC, len);
-            len = 0;
-        }
-        else if (*line =='>')  {
-            while(*line && *line == '>' && len < 2) {
-                len++;
-                line++;
-            }
-            if (len == 1)
-                add_back(&elmnt, NULL, SUP, len);
-            else if (len == 2)
-                add_back(&elmnt, NULL, ADD, len);
-            len = 0;
-            }
-        else if (*line =='|') {
+        else if (*line =='<' || *line == '>')
+            redir_tokeniser(&line, &elmnt, &len);
+        else if (*(line++) =='|')
             add_back(&elmnt, NULL, PIPE, len);
-            line++;
-        }
     }
     return elmnt;
 }

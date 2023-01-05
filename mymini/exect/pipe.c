@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:54:30 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/03 15:54:51 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/05 03:23:07 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ void handle_pipe(t_element *node, t_env **env)
         if(i < argc - 1)
         {
             if (pipe(fd) == -1)
-                exit(1);
+            {
+                perror("fd: ");
+                return ;
+            }
         }
         pid_t pid = fork();
         if (pid == 0)
@@ -34,7 +37,8 @@ void handle_pipe(t_element *node, t_env **env)
             if (i < argc - 1) {
                 if (dup2(fd[1],1) == -1)
                 {
-                    perror("lol1");
+                    perror("fd : ");
+                    return ;
                 }
                 close(fd[1]);
                 close(fd[0]);
@@ -50,7 +54,7 @@ void handle_pipe(t_element *node, t_env **env)
         {
             if (dup2(fd[0],0) == -1)
             {
-                perror("lol2");
+                perror("fd : ");
             }
             close(fd[1]);
             close(fd[0]);

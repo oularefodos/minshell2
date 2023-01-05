@@ -6,43 +6,41 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:42:52 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/02 17:13:07 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/05 03:16:19 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+char *put_my_shlvl(char *str)
+{
+    return (ft_substr(str, \
+			ft_strlen(str) - ft_strlen(ft_strchr(str, '=') + 1), \
+			ft_strlen(str)));
+}
+
 void env_initialisation(t_env **env)
 {
-	int shlvl;
-	char *pwd;
-	t_env *tmp;
-	char new_shlvl;
+	t_env	*head;
+	char		*shlvl;
 
-	tmp = *env;
-	if(finder_getter(tmp,"PWD") == NULL)
+	head = *env;
+	while (head)
 	{
-		pwd = getcwd(NULL, 0);
-		char *joined = ft_strjoin("PWD=", pwd);
-		ft_lstadd_back(ft_lstnew(joined, 1), env);
-		free(pwd);
+		if (ft_strcmp(head->name, "SHLVL") == 0)
+		{
+			shlvl = ft_itoa((ft_atoi(put_my_shlvl(head->value)) + 1));
+			if (!shlvl)
+				return (printf("minishell: memory was not allocated!\n"), \
+				(void)0);
+			free(head->value);
+				head->value = shlvl;
+			return ;
+		}
+		head = head->next;
 	}
-	while (ft_strcmp("SHLVL", tmp->name) && tmp)
-		tmp = tmp->next;
-	if(tmp)
-	{
-		shlvl = ft_atoi(ft_strdup(tmp->value));
-		printf("%d", shlvl);
-		if(shlvl < 0)
-			shlvl = 0;
-		else
-			tmp->value = ft_itoa(shlvl) + 1;
-		printf("%d", shlvl);
-	}
-	else
-	{
-		new_shlvl = printf("SHLVL=1");
-		ft_lstadd_back((ft_lstnew(&new_shlvl, 1)), &tmp);
-	}
+	// new_shlvl = printf("SHLVL=1");
+	// ft_lstadd_back((ft_lstnew(&new_shlvl, 1)), &head);
 }
 
 int	ft_lstsize_env(t_env *lst)

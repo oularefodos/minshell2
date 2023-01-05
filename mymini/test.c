@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 01:21:19 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/03 04:10:38 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/05 02:33:52 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,30 @@
 #include<signal.h>
 #include "minishell.h"
   
-// Handler for SIGINT, caused by
-// Ctrl-C at keyboard
-void	handler(int signum)
+// void    all_lower(char *cmd)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (cmd[i++])
+// 		cmd[i] = ft_tolower(cmd[i]);
+// }
+// int main()
+// {
+//     char cmd[10] = "mariaHHJm";
+//     all_lower(cmd);
+//     return 0;
+// }
+char *put_my_shlvl(char *str)
 {
-	if (signum == SIGINT)
-	{
-		printf("\n");
-	    rl_replace_line("", 0);
-	    rl_on_new_line();
-	    rl_redisplay();
-	}
+    return (ft_substr(str, \
+			ft_strlen(str) - ft_strlen(ft_strchr(str, '=') + 1), \
+			ft_strlen(str)));
 }
-  
 int main()
 {
-    char *line;
-        //rl_catch_signals = 0;
-        signal(SIGINT, handler);
-    while (1) 
-    {
-        line = readline("minishell> ");
-        if (!line)
-            exit(0);
-        if(*line)
-        {
-            add_history(line);
-            
-        }           
-    }
+    char cmd[10] = "ma=riaHHJm";
+    printf("%s\n",put_my_shlvl(cmd));
     return 0;
 }
+

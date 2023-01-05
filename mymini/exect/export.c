@@ -38,15 +38,61 @@ int check_plus(char *str, char c, char x)
     }
     return(0);
 }
+int	ft_envsize(t_env *lst)
+{
+	int	len;
+
+	len = 0;
+	while (lst)
+	{
+		lst = lst -> next;
+		len++;
+	}
+	return (len);
+}
+ 
+t_env *  sort_env(t_env *env)
+{    
+    char    *tmp_name;
+    char    *tmp_value;
+    t_env   *temp_head;
+    int  i;
+
+    temp_head = env;
+    i = ft_envsize(temp_head);
+    while (i > 0)
+    {
+        temp_head = env;
+        while (temp_head != NULL && temp_head->next != NULL)
+        {
+            if (temp_head->name[0] > temp_head->next->name[0])
+            {
+                tmp_name = temp_head->name;
+                tmp_value = temp_head->value;
+                temp_head->name = temp_head->next->name;
+                temp_head->value = temp_head->next->value;
+                temp_head->next->name = tmp_name;
+                temp_head->next->value = tmp_value;
+            }
+            temp_head = temp_head->next;
+        }
+        i--;
+    }
+    return(env);
+}
+
 void	printf_env(t_env **env)
 {
-	t_env *current = *env;
+	t_env *current;
+
+    current = *env;
+    sort_env(current);
 	while (current != 0)
 	{
         if(current->value)
         {
 		    printf("declare -x %s", current->name);
-            printf("=%s\n",current->value);
+            printf("%s\n",current->value);
         }
         else
              printf("declare -x %s\n", current->name);
@@ -63,6 +109,7 @@ char *receive_value_export(char *allstr)
 {
      return(ft_substr(allstr, strlen(allstr) - strlen(strchr(allstr, '=')) + 1, strlen(allstr)));
 }
+
 t_env	*env_finder(t_env	*env, char *name)
 {
 	while(env && strcmp(env->name, name))

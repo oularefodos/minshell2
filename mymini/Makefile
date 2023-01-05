@@ -6,7 +6,7 @@
 #    By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/03 04:13:27 by mmakboub          #+#    #+#              #
-#    Updated: 2023/01/03 19:27:39 by mmakboub         ###   ########.fr        #
+#    Updated: 2023/01/04 23:46:27 by mmakboub         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,12 +43,14 @@ FONCTIONS = ./exect/cd.c\
 			./libft/ft_strrchr.c ./libft/ft_strcmp.c\
 			./parsing/delete_qote.c\
 			./parsing/expender.c\
+			./parsing/expender_utils.c\
 			./parsing/grammar.c\
+			./parsing/grammar_utils.c\
 			./parsing/parser.c\
 			./parsing/tokeniser.c\
+			./parsing/tokeniser_utils.c\
 			./parsing/utils.c\
 			./main.c
-
 	
 CC = cc
 CFLAGS = -Wall -Werror -Wextra

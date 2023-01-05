@@ -23,12 +23,36 @@ char *deleteone(char *s, int index, int x)
     return (str);
 }
 
-void delete_quote(t_element *t)
+int rest_delete(t_element *t, int i, int *y)
 {
     char *temp;
-    int i;
     int c;
     int p;
+
+    c = 0;
+    if (t->args[i][*y] == '\'')
+        c = '\'';
+    if (t->args[i][*y] == '"')
+        c = '"';
+    if (c)
+    {
+        p = (*y)++;
+        while (t->args[i][*y] != c)
+            (*y)++;
+        temp = t->args[i];
+        t->args[i] = deleteone(t->args[i], p, *y);
+        *y -= 1;
+        free(temp);
+        if (t->args[i][*y] == 0)
+            return (1);
+    }
+        return (0);
+
+}
+
+void delete_quote(t_element *t)
+{
+    int i;
     int y;
 
     i = 0;
@@ -38,24 +62,16 @@ void delete_quote(t_element *t)
         y = 0;
         while(t->args[i][y])
         {
-            c = 0;
-            if (t->args[i][y] == '\'')
-                c = '\'';
-            if (t->args[i][y] == '"')
-                c = '"';
-            if (c)
-            {
-                p = y++;
-                while (t->args[i][y] != c)
-                    y++;
-                temp = t->args[i];
-                t->args[i] = deleteone(t->args[i], p, y);
-                free(temp);
-                if (t->args[i][y] == 0)
+
+           if (t->args[i][y] == '\'' || t->args[i][y] == '"')
+           {
+                if (rest_delete(t, i, &y))
                     break;
-            } 
-            y++;
+           }
+            else
+                y++;
         }
         i++;
     }
+    t->cmd = t->args[0];
 }
