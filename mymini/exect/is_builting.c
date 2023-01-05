@@ -2,34 +2,37 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   is_builting.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2022/11/19 01:38:45 by mmakboub          #+#    #+#             */
 /*   Updated: 2022/12/31 01:12:59 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../minishell.h"
+#include "../minishell.h"
 
-void    all_lower(char *cmd)
+
+void	all_lower(char *cmd)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (cmd[i++])
 		cmd[i] = ft_tolower(cmd[i]);
 }
 
-int	check_builtings(t_element	*command)
+int	check_builtings(t_element *command)
 {
 	if (!command->args || !command->args[0])
 		return (0);
 	if (!ft_strcmp(command->cmd, "cd") || !ft_strcmp(command->cmd, "echo")
 		|| !ft_strcmp(command->cmd, "pwd") || !ft_strcmp(command->cmd, "env")
-		|| !ft_strcmp(command->cmd, "export") \
-		|| !ft_strcmp(command->cmd, "unset")
-		|| !ft_strcmp(command->cmd, "exit"))
+		|| !ft_strcmp(command->cmd, "export") || !ft_strcmp(command->cmd,
+			"unset") || !ft_strcmp(command->cmd, "exit"))
 		return (1);
 	return (0);
 }

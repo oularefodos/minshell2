@@ -2,17 +2,20 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   build_envirement.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2022/11/26 10:39:54 by mmakboub          #+#    #+#             */
 /*   Updated: 2022/12/31 00:08:28 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../minishell.h"
+#include "../minishell.h"
 
-void	refresh_oldpwd(t_env	**env, t_env	*pwd)
+void	refresh_oldpwd(t_env **env, t_env *pwd)
 {
 	t_env	*tmp;
 	char	*joined;
@@ -35,7 +38,7 @@ void	refresh_oldpwd(t_env	**env, t_env	*pwd)
 	}
 }
 
-t_env	*finder_getter(t_env	*env, char	*name)
+t_env	*finder_getter(t_env *env, char *name)
 {
 	while (env && ft_strcmp(env->name, name))
 		env = env->next;
@@ -44,7 +47,7 @@ t_env	*finder_getter(t_env	*env, char	*name)
 	return (NULL);
 }
 
-void	refresh_pwd(t_env	**env)
+void	refresh_pwd(t_env **env)
 {
 	char	*pwd;
 	t_env	*head;
@@ -66,24 +69,24 @@ void	refresh_pwd(t_env	**env)
 	}
 }
 
-char	*receive_name(char	*allstr)
+char	*receive_name(char *allstr)
 {
-	char *name;
+	char	*name;
+
 	name = ft_strchr(allstr, '=');
 	if (!name)
-		return(allstr);
-	return(ft_substr(allstr, 0,ft_strlen(allstr) - ft_strlen(name)));
-
+		return (allstr);
+	return (ft_substr(allstr, 0, ft_strlen(allstr) - ft_strlen(name)));
 }
 
-char	*receive_value(char	*allstr)
+char	*receive_value(char *allstr)
 {
 	return (ft_substr(allstr, \
 			ft_strlen(allstr) - ft_strlen(ft_strchr(allstr, '=')), \
 			ft_strlen(allstr)));
 }
 
-t_env	*build_env(char	**env)
+t_env	*build_env(char **env)
 {
 	int		i;
 	t_env	*tmp;

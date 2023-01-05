@@ -2,17 +2,21 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2022/11/20 15:55:23 by mmakboub          #+#    #+#             */
 /*   Updated: 2022/12/31 01:07:25 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../minishell.h"
+#include "../minishell.h"
 
-char *findevalue(t_env	*env, char	*name)
+
+char	*findevalue(t_env *env, char *name)
 {
 	while (env && ft_strcmp(env->name, name))
 		env = env->next;
@@ -23,12 +27,12 @@ char *findevalue(t_env	*env, char	*name)
 
 void	pwd(t_env *env, char *name)
 {
-	char	*path;
-	char	*str;
+	char *path;
+	char *str;
 
 	path = getcwd(NULL, 0);
 	if (path == NULL)
-	{	
+	{
 		str = findevalue(env, name);
 		if (str)
 			printf("%s\n", &str[1]);

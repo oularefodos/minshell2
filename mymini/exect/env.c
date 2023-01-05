@@ -2,17 +2,20 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2022/11/23 15:20:23 by mmakboub          #+#    #+#             */
 /*   Updated: 2022/12/31 00:50:10 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../minishell.h"
+#include "../minishell.h"
 
-void	ft_env2(t_env	*env, t_element	*command)
+void	ft_env2(t_env *env, t_element *command)
 {
 	if (command->nbr_args > 1)
 		printf("env: %s: No such file or directory\n", command->args[1]);

@@ -2,15 +2,18 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   echo2.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2022/11/20 19:01:01 by mmakboub          #+#    #+#             */
 /*   Updated: 2022/12/31 00:46:49 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../minishell.h"
+#include "../minishell.h"
 
 int	check_echo_n(char *arg)
 {
@@ -27,7 +30,7 @@ int	check_echo_n(char *arg)
 	return (1);
 }
 
-void	print_echoarg(char	**arg)
+void	print_echoarg(char **arg)
 {
 	int		i;
 	int		j;
@@ -66,7 +69,7 @@ void	print_echoarg(char	**arg)
 		printf("\n");
 }
 
-void	echo2(char	**arg)
+void	echo2(char **arg)
 {
 	if (arg[1] == NULL)
 		write(1, "\n", 1);

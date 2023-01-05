@@ -6,11 +6,12 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 21:16:47 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/05 16:29:26 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/05 20:19:20 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 t_global	g_global;
 int ft_putchar(int  c)
 {
@@ -26,6 +27,16 @@ int ft_putchar(int  c)
 	    rl_on_new_line();
 	    rl_redisplay();
 	}
+}
+void ignsig(void)
+{
+    signal(SIGINT, SIG_IGN);
+    signal(SIGQUIT,SIG_IGN);
+}
+void sig_default(void)
+{
+    signal(SIGINT, SIG_DFL);
+    signal(SIGQUIT, SIG_DFL);
 }
  
 void    handling_sig(void)
@@ -48,10 +59,10 @@ int main(int ac, char **str, char **env)
     t_element *element;
     int fd_1 = dup(1);
     envr = build_env(env);
-    puts("hi");
     env_initialisation(&envr);
-    handling_sig();
-    while (1) {
+    while (1) 
+    {
+        handling_sig();
         line = readline("minishell> ");
         if (!line)
         {
