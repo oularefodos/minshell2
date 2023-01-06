@@ -29,35 +29,8 @@ int	check_echo_n(char *arg)
 	}
 	return (1);
 }
-
-void	print_echoarg(char **arg)
+static void print_arg(char ** arg, int i, bool check)
 {
-	int		i;
-	int		j;
-	bool	check;
-	bool	ok;
-
-	check = false;
-	ok = false;
-	i = 1;
-	while (arg[i])
-	{
-		j = 0;
-		while (arg[i][j])
-		{
-			if (arg[i][0] && arg[i][0] == '-' && check_echo_n(arg[i]))
-				check = true;
-			else
-			{
-				ok = true;
-				break ;
-			}
-			j++;
-		}
-		if (ok)
-			break ;
-		i++;
-	}
 	while (arg[i])
 	{
 		printf("%s", arg[i]);
@@ -67,6 +40,23 @@ void	print_echoarg(char **arg)
 	}
 	if (!check)
 		printf("\n");
+}
+void	print_echoarg(char **arg)
+{
+	int		i;
+	bool	check;
+
+	check = false;
+	i = 1;
+	while (arg[i])
+	{
+		if (arg[i][0] && arg[i][0] == '-' && check_echo_n(arg[i]))
+			check = true;
+		else
+			break;
+		i++;
+	}
+	print_arg(arg, i, check);
 }
 
 void	echo2(char **arg)

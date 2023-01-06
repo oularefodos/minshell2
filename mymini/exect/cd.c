@@ -50,26 +50,35 @@ void	updatepwd(t_env **env, char *arg)
 	free(temp);
 	temp = NULL;
 }
+int	cd_home(t_element *command)
+{
+	if ((!ft_strcmp(command->args[0], "cd") && command->nbr_args == 1)
+		|| (!ft_strcmp(command->cmd, "cd") && (!strcmp(command->args[1], "--")
+				|| !strcmp(command->args[1], "~")
+				|| (command->args[1][0] == '#'))))
+				return (0);
+	else
+		return (1);
+}
+
+void cd_error(void)
+{
+	printf("minishell: cd: error retrieving current directory: "
+			"getcwd: cannot access parent directories\n");
+	chdir("~");
+	printf("ok");
+	return ;
+}
 
 void	cd(t_element *command, t_env **env)
 {
 	t_env	*pwd;
 	t_env	*oldpwd;
-	// char *tmp;
 	pwd = finder_getter(*env, "PWD");
 	oldpwd = finder_getter(*env, "OLDPWD");
 	if(!getcwd(NULL, 0))
-	{
-		printf("minishell: cd: error retrieving current directory: "
-			"getcwd: cannot access parent directories\n");
-		chdir("~");
-		printf("ok");
-		return ;
-	}
-	if ((!ft_strcmp(command->args[0], "cd") && command->nbr_args == 1)
-		|| (!ft_strcmp(command->cmd, "cd") && (!strcmp(command->args[1], "--")
-				|| !strcmp(command->args[1], "~")
-				|| (command->args[1][0] == '#'))))
+		cd_error();
+	if (!cd_home(command))
 		back_to_home(env, pwd);
 	else if (command->nbr_args > 1)
 	{

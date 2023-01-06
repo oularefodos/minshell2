@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:57:46 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 02:15:03 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 04:06:33 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,70 +66,37 @@ char	*join_get_acces(char **splited_path, char *cmd)
 	}
 	return (NULL);
 }
-
-void	handle_redirection(t_element *red)
+void	path_error(char *cmd)
 {
-	t_element	*tmp;
-	t_element	*next_node;
-	int			fd;
+	printf("minisherll: %s: command not found\n", cmd);
+	g_global.exit_status = 127;
+	exit(127);
+	return ;
+}
 
-	tmp = red;
-	while (tmp)
-	{
-		if (tmp->type == SUP)
-		{
-			next_node = tmp->next;
-			fd = open(next_node->cmd, O_CREAT | O_WRONLY | O_TRUNC, 0777);
-			if (fd < 0)
-			{
-				printf("sup fd error %d %s\n", fd, next_node->cmd);
-				exit(1);
-			}
-			dup2(fd, 1);
-			close(fd);
-		}
-		if (tmp->type == INF)
-		{
-			next_node = tmp->next;
-			fd = open(next_node->cmd, O_RDONLY, 0777);
-			if (fd < 0)
-			{
-				printf("minishell: %s No such file or directory\n", \
-						next_node->cmd);
-				exit(1);
-			}
-			dup2(fd, 0);
-			close(fd);
-		}
-		if (tmp->type == ADD)
-		{
-			next_node = tmp->next;
-			fd = open(next_node->cmd, O_CREAT | O_WRONLY | O_APPEND);
-			if (fd < 0)
-			{
-				printf("add fd error %d %s\n", fd, next_node->cmd);
-				exit(1);
-			}
-			dup2(fd, 1);
-			close(fd);
-		}
-		if (tmp->type == HERDOC)
-		{
-			dup2(tmp->pip[0], 0);
-			close(tmp->pip[0]);
-		}
-		tmp = tmp->next;
-	}
+void	execve_cmd_error(char *path, t_element *command)
+{
+	if(!path)
+		path_error(command->cmd);
+	if (!command->args || !command->args[0])
+			exit(0);
+}
+
+void	execve_failure(char *cmd)
+{
+	perror(cmd);
+	g_global.exit_status = 127;
+	exit(127);
+	return ;
 }
 
 void	execve_cmd(t_element *command, t_env **env, char **argv)
 {
 	char	*path;
 	int		wstatus;
-	int		statuscode;
 	int		pid;
 
-	if (!env)
+	if (!env || !command || !argv)
 		return ;
 	pid = fork();
 	path = execute_cmd(command, env);
@@ -137,33 +104,17 @@ void	execve_cmd(t_element *command, t_env **env, char **argv)
 	{
 		sig_default();
 		handle_redirection(command);
-		if (!path)
-		{
-			printf("minishell: %s: command not found\n", command->cmd);
-			g_global.exit_status = 127;
-			exit(127);
-			return ;
-		}
-		if (!command->args || !command->args[0])
-			exit(0);
+		execve_cmd_error(path, command);
 		if (execve(path, argv, convertto_doublep(*env)) == -1)
-		{
-			perror(command->cmd);
-			g_global.exit_status = 127;
-			exit(127);
-		}
+			execve_failure(command->cmd);
 		exit(0);
 	}
 	ignsig();
-	waitpid(pid, &g_global.exit_status, 0);
-	wait(&wstatus);
+	waitpid(pid, &wstatus, 0);
 	if (WIFEXITED(wstatus))
-	{
-		statuscode = WEXITSTATUS(wstatus);
-		g_global.exit_status = statuscode;
-	}
-	g_global.exit_status = wstatus;
-	free(path);
+		g_global.exit_status = WEXITSTATUS(wstatus);
+	else
+		g_global.exit_status = wstatus;
 }
 
 int	ft_lstsize_elem(t_element *lst)
