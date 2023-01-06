@@ -176,8 +176,15 @@ void	export(t_env **env, t_element *command)
 
 	while (command->args[i])
 	{
-		 if (!check_is_valid(command->args[i]))
+		if (!check_is_valid(command->args[i]))
 			return ;
+		if (env_finder(*env, receive_name(command->args[i])))
+		{
+			env_finder(*env,
+							receive_name(command->args[i]))->value = receive_value(command->args[i]);
+			i++;
+			continue;
+		}
 		if (check_caract(command->args[i], '=') == 1)
 		{
 			if (check_plus(command->args[i], '+', '='))

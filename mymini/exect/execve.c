@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:57:46 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/05 23:14:50 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 02:15:03 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,8 +187,14 @@ void	check_cmd(t_element *command, t_env **envv)
 	env = convertto_doublep(*envv);
 	if (finder_getter(*envv, "PATH") == NULL)
 	{
-		printf("minishell: %s: no such file or directory\n", command->cmd);
-		g_global.exit_status = 127;
+		if (check_builtings(command))
+			is_builting(command, envv);
+		else
+		{
+			printf("minishell: %s: no such file or directory\n", command->cmd);
+			g_global.exit_status = 127;
+			return;
+		}
 		return ;
 	}
 	if (ft_lstsize_elem(command) > 1)
