@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:57:46 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 04:06:33 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 20:17:09 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,37 +57,12 @@ char	*join_get_acces(char **splited_path, char *cmd)
 	while (splited_path[i])
 	{
 		tmp = ft_strdup(splited_path[i]);
-		free(splited_path[i]);
 		splited_path[i] = ft_concatenate(tmp, "/", cmd);
-		free(tmp);
 		if (check_accecs_exec(splited_path[i]))
 			return (ft_strdup(splited_path[i]));
 		i++;
 	}
 	return (NULL);
-}
-void	path_error(char *cmd)
-{
-	printf("minisherll: %s: command not found\n", cmd);
-	g_global.exit_status = 127;
-	exit(127);
-	return ;
-}
-
-void	execve_cmd_error(char *path, t_element *command)
-{
-	if(!path)
-		path_error(command->cmd);
-	if (!command->args || !command->args[0])
-			exit(0);
-}
-
-void	execve_failure(char *cmd)
-{
-	perror(cmd);
-	g_global.exit_status = 127;
-	exit(127);
-	return ;
 }
 
 void	execve_cmd(t_element *command, t_env **env, char **argv)
@@ -115,47 +90,4 @@ void	execve_cmd(t_element *command, t_env **env, char **argv)
 		g_global.exit_status = WEXITSTATUS(wstatus);
 	else
 		g_global.exit_status = wstatus;
-}
-
-int	ft_lstsize_elem(t_element *lst)
-{
-	int	len;
-
-	len = 1;
-	while (lst)
-	{
-		if (lst->type == PIPE)
-			len++;
-		lst = lst->next;
-	}
-	return (len);
-}
-
-void	check_cmd(t_element *command, t_env **envv)
-{
-	char	**env;
-
-	env = convertto_doublep(*envv);
-	if (finder_getter(*envv, "PATH") == NULL)
-	{
-		if (check_builtings(command))
-			is_builting(command, envv);
-		else
-		{
-			printf("minishell: %s: no such file or directory\n", command->cmd);
-			g_global.exit_status = 127;
-			return;
-		}
-		return ;
-	}
-	if (ft_lstsize_elem(command) > 1)
-		handle_pipe(command, envv);
-	else
-	{
-		expender(command, env);
-		if (check_builtings(command))
-			is_builting(command, envv);
-		else
-			execve_cmd(command, envv, command->args);
-	}
 }

@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   execve_errors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 11:43:18 by mmakboub          #+#    #+#             */
-/*   Updated: 2021/12/02 23:41:02 by mmakboub         ###   ########.fr       */
+/*   Created: 2023/01/06 16:19:48 by mmakboub          #+#    #+#             */
+/*   Updated: 2023/01/06 17:23:27 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-char	*ft_strdup(const char *s1)
+void	path_error(char *cmd)
 {
-	char	*p;
-	int		i;
-	int		l;
+	printf("minisherll: %s: command not found\n", cmd);
+	g_global.exit_status = 127;
+	exit(127);
+	return ;
+}
 
-	i = 0;
-	l = ft_strlen(s1);
-	p = (char *)malloc(sizeof(char) * (l + 1));
-	if (!(p))
-		return (NULL);
-	while (i < l)
-	{
-		p[i] = s1[i];
-		i++;
-	}
-	p[l] = '\0';
-	return (p);
+void	execve_cmd_error(char *path, t_element *command)
+{
+	if (!path)
+		path_error(command->cmd);
+	if (!command->args || !command->args[0])
+		exit(0);
+}
+
+void	execve_failure(char *cmd)
+{
+	perror(cmd);
+	g_global.exit_status = 127;
+	exit(127);
+	return ;
 }

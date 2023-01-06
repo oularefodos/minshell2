@@ -15,60 +15,6 @@
 
 #include "../minishell.h"
 
-void	refresh_oldpwd(t_env **env, t_env *pwd)
-{
-	t_env	*tmp;
-	char	*joined;
-
-	tmp = *env;
-	while (tmp && ft_strcmp(tmp->name, "OLDPWD"))
-		tmp = tmp->next;
-	if (tmp && tmp->value)
-	{
-		tmp->value = NULL;
-		if (pwd)
-			tmp->value = pwd->value;
-		else
-			tmp->value = ft_strdup("=");
-	}
-	else
-	{
-		joined = ft_strjoin("OLDPWD=", pwd->value);
-		ft_lstadd_back(ft_lstnew(joined, 1), env);
-	}
-}
-
-t_env	*finder_getter(t_env *env, char *name)
-{
-	while (env && ft_strcmp(env->name, name))
-		env = env->next;
-	if (env && env->value)
-		return (env);
-	return (NULL);
-}
-
-void	refresh_pwd(t_env **env)
-{
-	char	*pwd;
-	t_env	*head;
-	char	*joined;
-
-	head = *env;
-	pwd = getcwd(NULL, 0);
-	while (head && ft_strcmp(head->name, "PWD"))
-		head = head->next;
-	if (head && head->value)
-	{
-		head->value = NULL;
-		head->value = ft_strjoin("=", pwd);
-	}
-	else
-	{
-		joined = ft_strjoin("PWD=", pwd);
-		ft_lstadd_back(ft_lstnew(joined, 1), env);
-	}
-}
-
 char	*receive_name(char *allstr)
 {
 	char	*name;
@@ -84,6 +30,39 @@ char	*receive_value(char *allstr)
 	return (ft_substr(allstr, \
 			ft_strlen(allstr) - ft_strlen(ft_strchr(allstr, '=')), \
 			ft_strlen(allstr)));
+}
+
+t_env	*ft_lstnew(char *allstr, int flag)
+{
+	t_env	*newelement;
+
+	newelement = (t_env *)ft_malloc(sizeof(t_env), 0);
+	if (newelement == 0)
+		return (0);
+	if (flag == 1)
+		newelement->name = receive_name(allstr);
+	else
+		newelement->name = receive_name_export(allstr);
+	newelement->value = receive_value(allstr);
+	newelement->next = NULL;
+	return (newelement);
+}
+
+void	ft_lstadd_back(t_env *new, t_env **alst)
+{
+	t_env	*node;
+
+	node = *alst;
+	if (alst && *alst)
+	{
+		while (node && node->next)
+		{
+			node = node->next;
+		}
+		node->next = new;
+	}
+	else
+		*alst = new;
 }
 
 t_env	*build_env(char **env)

@@ -6,11 +6,11 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 18:34:00 by mmakboub          #+#    #+#             */
-/*   Updated: 2021/12/02 23:49:53 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 21:14:00 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
 static size_t	ft_total(char const *s, char c)
 {
@@ -53,6 +53,7 @@ char	**ft_split(char const *s, char c)
 	str = (char **)malloc(sizeof(char *) * (ft_total(s, c) + 1));
 	if (!str)
 		return (0);
+	add_back_memory(str, 1);
 	while (*s)
 	{
 		while (*s && *s == c)
@@ -61,7 +62,10 @@ char	**ft_split(char const *s, char c)
 		while (s[len] && s[len] != c)
 			len++;
 		if (len != 0)
+		{
 			str[i++] = ft_substr(s, 0, len);
+			add_back_memory(str, 1);
+		}
 		if (len != 0 && !str[i - 1])
 			return (ft_free(str, i - 1));
 		s += len;

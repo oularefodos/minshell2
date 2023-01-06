@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:22:43 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/05 23:25:58 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 18:38:21 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	redir_tokeniser(char **str, t_element **elmnt, int *len)
 			add_back(elmnt, NULL, ADD, *len);
 	}
 	*len = 0;
-	line--;
+	if (*line)
+		line--;
 	*str = line;
 }

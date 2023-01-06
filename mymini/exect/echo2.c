@@ -29,7 +29,8 @@ int	check_echo_n(char *arg)
 	}
 	return (1);
 }
-static void print_arg(char ** arg, int i, bool check)
+
+static void	print_arg(char **arg, int i, bool check)
 {
 	while (arg[i])
 	{
@@ -41,6 +42,7 @@ static void print_arg(char ** arg, int i, bool check)
 	if (!check)
 		printf("\n");
 }
+
 void	print_echoarg(char **arg)
 {
 	int		i;
@@ -53,7 +55,7 @@ void	print_echoarg(char **arg)
 		if (arg[i][0] && arg[i][0] == '-' && check_echo_n(arg[i]))
 			check = true;
 		else
-			break;
+			break ;
 		i++;
 	}
 	print_arg(arg, i, check);

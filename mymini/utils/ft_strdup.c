@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 21:24:58 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/05 21:55:13 by mmakboub         ###   ########.fr       */
+/*   Created: 2021/11/09 11:43:18 by mmakboub          #+#    #+#             */
+/*   Updated: 2023/01/06 20:27:39 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-t_list	*ft_lstnew_list(void *content)
+
+char	*ft_strdup(const char *s1)
 {
-	t_list	*newelement;
+	char	*p;
+	int		i;
+	int		l;
 
-	newelement = (t_list *)malloc(sizeof(t_list));
-	if (newelement == 0)
-		return (0);
-	newelement -> content = content;
-	newelement -> next = 0;
-	return (newelement);
+	i = 0;
+	l = ft_strlen(s1);
+	p = (char *)malloc(sizeof(char) * (l + 1));
+	if (!(p))
+		return (NULL);
+	while (i < l)
+	{
+		p[i] = s1[i];
+		i++;
+	}
+	p[l] = '\0';
+	return (p);
 }

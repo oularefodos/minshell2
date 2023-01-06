@@ -25,9 +25,6 @@ void	ft_remove_from_env(t_env **begin_list, t_env *data_ref)
 	if (ft_strcmp(tmp->name, data_ref->name) == 0)
 	{
 		*begin_list = tmp->next;
-		free(tmp->name);
-		free(tmp->value);
-		free(tmp);
 		return ;
 	}
 	ft_remove_from_env(&((*begin_list)->next), data_ref);
@@ -51,7 +48,6 @@ int	check_special_caract(char *arg)
 		return (1);
 	else if (check_is_digit(arg[0]) || arg[0] == '-')
 		return (0);
-	
 	while (arg[i])
 	{
 		if ((i != 0 && arg[i] == '#') || (arg[i] == '=') || ((arg[i] < 'A'
@@ -80,8 +76,8 @@ void	unset(t_env **variable, t_element *command)
 								command->args[i]));
 			}
 			else
-				return(printf("minishell: unset: `%s': not a valid identifier\n", \
-						command->args[1]), (void)0);
+				return (printf("minishell: unset: `%s': \
+				not a valid identifier\n", command->args[1]), (void)0);
 			i++;
 		}
 	}

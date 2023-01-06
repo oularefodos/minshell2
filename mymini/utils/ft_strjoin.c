@@ -6,11 +6,12 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 02:25:18 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/05 15:18:00 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 20:27:43 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
+
 
 char	*ft_strjoin(const char *s1, const char *s2)
 {
@@ -20,7 +21,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	size_t	j;
 	size_t	i;
 
-	if (!s1 || !s2)
+	if (!s1)
 		return (NULL);
 	len_s1 = ft_strlen(s1);
 	len_s2 = ft_strlen(s2);

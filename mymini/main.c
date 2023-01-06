@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 21:16:47 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 01:19:45 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 17:55:33 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	main(int ac, char **str, char **env)
 		if (*line)
 		{
 			add_history(line);
-			element = parser(line);
+			element = parser(line, env);
 			if (element)
 			{
 				if (!envr)

@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:21:57 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/05 22:16:44 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 20:09:33 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ char	*insert(char *str, int index, char *s, int sz)
 	str = malloc(sizeof(char) * (size + 1));
 	if (str == NULL)
 		exit(1);
+	add_back_memory(str, 1);
 	i = -1;
 	while (++i < index)
 		str[i] = temp[i];
@@ -33,7 +34,6 @@ char	*insert(char *str, int index, char *s, int sz)
 	while (temp[y])
 		str[i++] = temp[y++];
 	str[i] = 0;
-	free(temp);
 	return (str);
 }
 
@@ -44,6 +44,7 @@ char	*takevarvalue(char *str, char **env)
 	char	*ret;
 	int		sz;
 
+	puts(str);
 	s = ft_strjoin(str + 1, "=");
 	i = 0;
 	sz = ft_strlen(s);
@@ -58,7 +59,5 @@ char	*takevarvalue(char *str, char **env)
 	}
 	if (ret == NULL)
 		ret = ft_strdup("");
-	free(s);
-	free(str);
 	return (ret);
 }

@@ -6,11 +6,11 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 11:59:19 by mmakboub          #+#    #+#             */
-/*   Updated: 2021/12/02 23:52:25 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 20:31:15 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
 static int	lencalculate(long int a)
 
@@ -43,6 +43,7 @@ char	*ft_itoa(int n)
 	if (nbr < 0)
 		nbr *= -1;
 	p = malloc(sizeof(char) * len + 1);
+	add_back_memory(p, 0);
 	if (!p)
 		return (NULL);
 	p[len] = '\0';

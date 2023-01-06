@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:22:28 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/05 23:17:34 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 17:42:42 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	checklast(t_element *node)
 	return (0);
 }
 
-int	grammar(t_element *s)
+int	grammar(t_element *s, char **env)
 {
 	t_element	*node;
 
@@ -82,7 +82,7 @@ int	grammar(t_element *s)
 			if (check_quote(s->args[0], s->type))
 				return (1);
 		if (s->type == HERDOC)
-			herdoc(s);
+			herdoc(s, env);
 		s = s->next;
 	}
 	if (checklast(node))

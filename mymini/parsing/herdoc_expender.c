@@ -1,0 +1,67 @@
+#include "../minishell.h"
+
+int	takesize_her(char *str)
+{
+	int	i;
+
+	i = 0;
+	str++;
+	if (str[i] == '?')
+		return (2);
+	while (ft_isalnum(str[i]) || str[i] == '_')
+		i++;
+	return (i + 1);
+}
+
+int	get_var_index(char *line)
+{
+	int	i;
+
+	i = -1;
+	while (line[++i])
+		if (line[i] == '$' && (ft_isalnum(line[i + 1]) || line[i + 1] == '_'
+				|| line[i + 1] == '?'))
+			return (i);
+	return (-1);
+}
+
+char	*mygetline(char *line, int index, char **env)
+{
+	char	*str;
+	char	*temp;
+	char	*temp_sub;
+	int		i;
+
+	i = 0;
+	while (index > -1)
+	{
+		i = takesize_her(&line[index]);
+		temp_sub = ft_substr(line, index, i);
+		str = takevarvalue(temp_sub, env);
+		temp = line;
+		line = insert(line, index, str, i);
+		index = get_var_index(line);
+	}
+	return (line);
+}
+
+void	herdoc(t_element *s, char **env)
+{
+	char *line;
+	int index;
+
+	if (pipe(s->pip) == -1)
+		exit(1);
+	line = readline("> ");
+	while (line && ft_strcmp(line, s->next->args[0]))
+	{
+		index = get_var_index(line);
+		if (index > -1)
+			line = mygetline(line, index, env);
+		printf("%d\n", index);
+		write(s->pip[1], line, ft_strlen(line));
+		write(s->pip[1], "\n", 1);
+		line = readline("> ");
+	}
+	close(s->pip[1]);
+}

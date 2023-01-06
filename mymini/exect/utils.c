@@ -6,44 +6,11 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:40:03 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/05 21:20:45 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 20:08:41 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-t_env	*ft_lstnew(char *allstr, int flag)
-{
-	t_env	*newelement;
-
-	newelement = (t_env *)malloc(sizeof(t_env));
-	if (newelement == 0)
-		return (0);
-	if (flag == 1)
-		newelement->name = receive_name(allstr);
-	else
-		newelement->name = receive_name_export(allstr);
-	newelement->value = receive_value(allstr);
-	newelement->next = NULL;
-	return (newelement);
-}
-
-void	ft_lstadd_back(t_env *new, t_env **alst)
-{
-	t_env	*node;
-
-	node = *alst;
-	if (alst && *alst)
-	{
-		while (node && node->next)
-		{
-			node = node->next;
-		}
-		node->next = new;
-	}
-	else
-		*alst = new;
-}
 
 char	*ft_concatenate(const char *s1, const char *s2, const char *s3)
 {
@@ -56,6 +23,7 @@ char	*ft_concatenate(const char *s1, const char *s2, const char *s3)
 	new_str = (char *)malloc((ft_strlen(s1) + \
 			ft_strlen(s2) + ft_strlen(s3) + 1) \
 			* sizeof(char));
+	add_back_memory(new_str, 1);
 	if (!new_str)
 		return (NULL);
 	i = 0;
@@ -72,9 +40,67 @@ char	*ft_concatenate(const char *s1, const char *s2, const char *s3)
 	return (new_str);
 }
 
-int	ft_isdigit(int x)
+char	**convertto_doublep(t_env *env)
 {
-	if (x >= '0' && x <= '9')
-		return (1);
+	int		len;
+	int		i;
+	char	**dp;
+
+	i = 0;
+	len = ft_lstsize_env(env);
+	dp = (char **)malloc(sizeof(char *) * (len + 1));
+	if (!dp)
+		exit(1);
+	add_back_memory(dp, 1);
+	while (env)
+	{
+		dp[i] = ft_strjoin(env->name, env->value);
+		add_back_memory(dp[i], 1);
+		i++;
+		env = env->next;
+	}
+	dp[i] = NULL;
+	return (dp);
+}
+
+char	*convertto_char(t_env *env)
+{
+	char	*p;
+
+	p = ft_strjoin(env->name, env->value);
+	if (p == NULL)
+		return (NULL);
+	return (p);
+}
+
+int	check_caract(char *str, char c)
+{
+	int	i;
+
+	i = 1;
+	if (!str)
+		return (0);
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	check_plus(char *str, char c, char x)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i] && str[i + 1])
+	{
+		if (str[i] == c && str[i + 1] == x)
+			return (1);
+		i++;
+	}
 	return (0);
 }

@@ -22,12 +22,20 @@
 # include <string.h>
 # include <term.h>
 # include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+
+typedef struct s_garbage_collector
+{
+	void	*memory;
+	struct s_garbage_collector *next;
+}	t_garbage;
 
 typedef struct s_global
 {
 	int				exit_status;
+	t_garbage		*temp;
+	t_garbage		*end;
 }					t_global;
 
 extern t_global		g_global;
@@ -52,9 +60,9 @@ typedef struct element
 }					t_element;
 
 t_element			*tokeniser(char *line);
-t_element			*parser(char *line);
+t_element			*parser(char *line, char **env);
 t_element			*last(t_element *s);
-int					grammar(t_element *s);
+int					grammar(t_element *s, char **env);
 char				*add(char **str, char *s);
 t_element			*norm_one(t_element *el);
 void				expender(t_element *s, char **env);
@@ -113,10 +121,10 @@ int					ft_strcmp(const char *s1, const char *s2);
 int					ft_lstsize_elem(t_element *lst);
 int					getsize(char **str);
 int					check_rest_error(int type, int next);
-void				handle_redirection(t_element *rederection);
+void				handle_redirection(t_element *red);
 void				check_cd(t_element *command);
 int					check_error(int type, int next);
-void				herdoc(t_element *s);
+void				herdoc(t_element *s, char **env);
 char				*insert(char *str, int index, char *s, int sz);
 char				*takevarvalue(char *str, char **env);
 void				all_lower(char *cmd);
@@ -129,4 +137,18 @@ char				*put_my_shlvl(char *str);
 void				sig_default(void);
 void				ignsig(void);
 void				norm_two(t_element **el);
+t_env				*sort_env(t_env *env);
+int					check_is_valid(char *str);
+void				path_error(char *cmd);
+void				execve_cmd_error(char *path, t_element *command);
+void				execve_failure(char *cmd);
+void				check_empty_export(char *str);
+void 				add_back_memory(void *mem, int i);
+void				free_memory(int i);
+char				*ft_substr(char const *s, unsigned int start, size_t len);
+char				**ft_split(char const *s, char c);
+char				*ft_strdup(const char *s1);
+char				*ft_strjoin(const char *s1, const char *s2);
+char				*ft_itoa(int n);
+void				*ft_malloc(size_t len, int type);
 #endif

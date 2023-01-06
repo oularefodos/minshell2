@@ -40,5 +40,4 @@ void	pwd(t_env *env, char *name)
 	}
 	else
 		printf("%s\n", path);
-	free(path);
 }

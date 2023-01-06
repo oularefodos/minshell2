@@ -6,7 +6,7 @@
 #    By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 16:58:29 by mmakboub          #+#    #+#              #
-#    Updated: 2023/01/03 16:35:35 by mmakboub         ###   ########.fr        #
+#    Updated: 2021/12/03 00:08:04 by mmakboub         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,11 +45,11 @@ FONCTIONS = ft_atoi.c\
 		ft_strncmp.c\
 		ft_substr.c\
 		ft_split.c
-BONUS_FUNCTION = ft_lstnew_list.c\
+BONUS_FUNCTION = ft_lstnew.c\
 		ft_lstadd_front.c\
 		ft_lstsize.c\
 		ft_lstlast.c\
-		ft_lstadd_back_list.c\
+		ft_lstadd_back.c\
 		ft_lstdelone.c\
 		ft_lstclear.c
 

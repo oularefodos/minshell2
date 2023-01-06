@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:22:07 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/05 22:16:11 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 20:09:45 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ char	**fixed_char(char **str)
 	newstr = malloc(sizeof(char *) * (size + 1));
 	if (!newstr)
 		exit(1);
+	add_back_memory(newstr, 1);
 	while (str[i])
 	{
 		if (str[i][0])

@@ -6,17 +6,17 @@
 #    By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/03 04:13:27 by mmakboub          #+#    #+#              #
-#    Updated: 2023/01/06 01:19:34 by mmakboub         ###   ########.fr        #
+#    Updated: 2023/01/06 20:24:42 by mmakboub         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = minishell
-FONCTIONS = ./exect/cd.c\
+FONCTIONS = ./exect/about_cd.c ./exect/cd.c\
 			./exect/echo2.c\
-			./exect/env.c\
+			./exect/about_env.c ./exect/env.c\
 			./exect/exit.c\
-			./exect/export.c\
+			./exect/export.c ./exect/export_errors.c\
 			./exect/is_builting.c\
 			./exect/pipe.c\
             ./exect/pwd.c\
@@ -24,25 +24,27 @@ FONCTIONS = ./exect/cd.c\
             ./exect/utils.c\
             ./exect/build_envirement.c\
             ./exect/env_initialisation.c\
+			./exect/execve_errors.c\
 			./exect/execve.c ./libft/ft_memset.c\
-			./libft/ft_strjoin.c ./libft/ft_strtrim.c\
+			./utils/ft_strjoin.c ./libft/ft_strtrim.c\
 			./libft/ft_isprint.c\
 			./libft/ft_putchar_fd.c ./libft/ft_strlcat.c\
-			./libft/ft_substr.c ./libft/ft_atoi.c\
-			./libft/ft_itoa.c ./libft/ft_putendl_fd.c\
-			./libft/ft_strlcpy.c \
+			./utils/ft_substr.c ./libft/ft_atoi.c\
+			./utils/ft_itoa.c ./libft/ft_putendl_fd.c\
+			./libft/ft_strlcpy.c ./libft/ft_isdigit.c\
 			./libft/ft_bzero.c ./libft/ft_putnbr_fd.c\
 			./libft/ft_strlen.c ./libft/ft_toupper.c ./libft/ft_calloc.c\
 			./libft/ft_memchr.c ./libft/ft_putstr_fd.c\
 			./libft/ft_strmapi.c ./libft/ft_isalnum.c\
 			./libft/ft_memcmp.c ./libft/ft_strncmp.c\
-			./libft/ft_isalpha.c ./libft/ft_split.c\
+			./libft/ft_isalpha.c ./utils/ft_split.c\
 			./libft/ft_memcpy.c ./libft/ft_strchr.c\
 			./libft/ft_strnstr.c ./libft/ft_tolower.c\
-			./libft/ft_memmove.c ./libft/ft_strdup.c\
+			./libft/ft_memmove.c ./utils/ft_strdup.c\
 			./libft/ft_strrchr.c ./libft/ft_strcmp.c\
 			./parsing/delete_qote.c\
 			./parsing/expender.c\
+			./parsing/herdoc_expender.c\
 			./parsing/expender_utils.c\
 			./parsing/grammar.c\
 			./parsing/grammar_utils.c\
@@ -50,7 +52,10 @@ FONCTIONS = ./exect/cd.c\
 			./parsing/tokeniser.c\
 			./parsing/tokeniser_utils.c\
 			./parsing/utils.c\
-			./main.c
+			./exect/redirection.c\
+			./exect/execution.c\
+			./main.c\
+			./free.c
 	
 CC = cc
 CFLAGS = -Wall -Werror -Wextra

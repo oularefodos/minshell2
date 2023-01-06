@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:23:29 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 00:59:23 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 20:11:08 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*concat(char *s1, char *s2)
 	ret = malloc(sizeof(char) * size);
 	if (!ret)
 		exit(1);
+	add_back_memory(ret, 1);
 	i = -1;
 	while (s1[++i])
 		ret[i] = s1[i];
@@ -54,6 +55,7 @@ char	**double_dup(char **s)
 	ret = malloc(sizeof(char *) * (getsize(s) + 1));
 	if (ret == NULL)
 		exit(1);
+	add_back_memory(ret, 1);
 	while (s[i])
 	{
 		ret[i] = ft_strdup(s[i]);
@@ -74,6 +76,7 @@ char	**ft_concat(char **s1, char **s2)
 	ret = malloc(sizeof(char *) * len);
 	if (!ret)
 		exit(1);
+	add_back_memory(ret, 1);
 	i = 0;
 	y = 0;
 	while (s1[i])
@@ -97,6 +100,7 @@ t_element	*duplicate(t_element *n)
 	ret = malloc(sizeof(t_element));
 	if (!ret)
 		exit(1);
+	add_back_memory(ret, 1);
 	ret->type = n->type;
 	ret->args = double_dup(n->args);
 	ret->pip[0] = n->pip[0];
@@ -134,13 +138,11 @@ void	norm_one_rest(t_element *node, t_element *n)
 	{
 		t = node->args[i];
 		node->args[i] = concat(node->args[i], n->args[0]);
-		free(t);
 	}
 	else
 	{
 		temp = node->args;
 		node->args = ft_concat(node->args, n->args);
-		// free temp
 	}
 }
 
@@ -178,6 +180,7 @@ void	add_front(t_element **node, char **cmd, t_element **el)
 	n = malloc(sizeof(t_element));
 	if (!n)
 		exit(1);
+	add_back_memory(n, 1);
 	n->args = double_dup(cmd);
 	n->type = CMD;
 	prev = (*node)->prev;

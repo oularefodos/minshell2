@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:22:51 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/05 21:47:49 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 20:10:17 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,15 @@ t_element	*new_element(int type, char *str, t_element *prev)
 
 	new = malloc(sizeof(t_element));
 	if (!new)
-	{
-		free(str);
 		return (NULL);
-	}
+	add_back_memory(new, 1);
 	new->type = type;
 	if (type == SQUOT || type == DQUOT)
 	{
 		new->args = malloc(sizeof(char *) * 2);
 		if (!new)
 			exit(1);
+		add_back_memory(new->args, 1);
 		new->args[0] = ft_strdup(str);
 		new->args[1] = 0;
 	}
@@ -59,7 +58,6 @@ t_element	*new_element(int type, char *str, t_element *prev)
 		new->args = ft_split(str, ' ');
 	new->next = NULL;
 	new->prev = prev;
-	free(str);
 	return (new);
 }
 

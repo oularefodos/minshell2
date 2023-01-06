@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 22:57:34 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 03:22:46 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 17:05:17 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static void	redirec_inp(t_element *tmp, t_element *next_node, int fd)
 	fd = open(next_node->cmd, O_RDONLY, 0777);
 	if (fd < 0)
 	{
-		printf("minishell: %s No such file or directory\n",
-				next_node->cmd);
+		printf("minishell: %s No such file or directory\n", \
+			next_node->cmd);
 		exit(1);
 	}
 	dup2(fd, 0);
@@ -60,13 +60,13 @@ static void	redirec_add(t_element *tmp, t_element *next_node, int fd)
 
 void	handle_redirection(t_element *red)
 {
-	t_element *tmp;
-	t_element *next_node;
-	int fd;
+	t_element	*tmp;
+	t_element	*next_node;
+	int			fd;
 
 	tmp = red;
-    fd = 0;
-    next_node = NULL;
+	fd = 0;
+	next_node = NULL;
 	while (tmp)
 	{
 		if (tmp->type == SUP)

@@ -6,13 +6,14 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 00:01:39 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/04 20:57:29 by mmakboub         ###   ########.fr       */
+/*   Updated: 2021/12/02 23:52:02 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 int	ft_lstsize(t_list *lst)
+
 {
 	int	len;
 

@@ -6,11 +6,11 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 20:47:14 by mmakboub          #+#    #+#             */
-/*   Updated: 2021/12/02 23:58:12 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 20:27:48 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 
