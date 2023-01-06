@@ -22,6 +22,8 @@
 # include <string.h>
 # include <term.h>
 # include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 typedef struct s_global
 {
@@ -103,7 +105,8 @@ int					check_accecs_exec(char *joined_path);
 char				**convertto_doublep(t_env *env);
 int					ft_lstsize_env(t_env *lst);
 char				*convertto_char(t_env *env);
-char				*ft_concatenate(const char *s1, const char *s2, const char *s3);
+char				*ft_concatenate(const char *s1, const char *s2,
+						const char *s3);
 void				check_cmd(t_element *command, t_env **envv);
 int					ft_isdigit(int x);
 int					ft_strcmp(const char *s1, const char *s2);
@@ -123,6 +126,7 @@ int					issep(char c, char *sep);
 void				squote_tokeniser(char **str, t_element **elmnt, int *len);
 void				redir_tokeniser(char **str, t_element **elmnt, int *len);
 char				*put_my_shlvl(char *str);
-void	            sig_default(void);
-void                ignsig(void);
+void				sig_default(void);
+void				ignsig(void);
+void				norm_two(t_element **el);
 #endif

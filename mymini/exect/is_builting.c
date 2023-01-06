@@ -15,10 +15,9 @@
 
 #include "../minishell.h"
 
-
 void	all_lower(char *cmd)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (cmd[i++])

@@ -15,7 +15,6 @@
 
 #include "../minishell.h"
 
-
 char	*findevalue(t_env *env, char *name)
 {
 	while (env && ft_strcmp(env->name, name))
@@ -27,8 +26,8 @@ char	*findevalue(t_env *env, char *name)
 
 void	pwd(t_env *env, char *name)
 {
-	char *path;
-	char *str;
+	char	*path;
+	char	*str;
 
 	path = getcwd(NULL, 0);
 	if (path == NULL)

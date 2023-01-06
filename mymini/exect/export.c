@@ -129,7 +129,7 @@ t_env	*env_finder(t_env *env, char *name)
 int	check_is_valid(char *str)
 {
 	int i;
-	i = 0;
+	i = 1;
 	str = receive_name(str);
 	if (str[ft_strlen(str) - 1] == '+')
 		str = ft_substr(str, 0, ft_strlen(str) - 1);
@@ -138,15 +138,20 @@ int	check_is_valid(char *str)
 		printf("minishell: export: `%s': not a valid identifier\n", str);
 		return (0);
 	}
-	if (str[0] == '-')
+	else if (str[0] == '-')
 	{
 		printf("minishell: export: -%c: invalid option \n", str[1]);
 		printf("export: usage: export [name[=value]...] or export \n");
 		return (0);
 	}
-	while (str[i])
+	else if (str[0] != '_' && !ft_isalpha(str[0]))
+    {
+        printf("minishell: export: `%s': not a valid identifier\n", str);
+		return (0);
+    }
+	while (str[i] && str[i] != '=')
 	{
-		if ((!ft_isalpha(str[i])))
+		if ((!ft_isalpha(str[i]) && !ft_isdigit(str[i]) && str[i] != '_'))
 		{
 			printf("minishell: export: `%s': not a valid identifier\n", str);
 			return (0);
@@ -155,10 +160,8 @@ int	check_is_valid(char *str)
 	}
 	return (1);
 }
-
 void	export(t_env **env, t_element *command)
 {
-	write(1, "passed1\n", 9);
 	int i = 1;
 	t_env *tmp;
 	t_env *newelement;
@@ -167,14 +170,13 @@ void	export(t_env **env, t_element *command)
 			&& (!ft_strcmp(command->args[1], "#")
 				|| !ft_strcmp(command->args[1], ";"))))
 	{
-		write(1, "passed\n", 8);
 		printf_env(env);
 		return ;
 	}
 
 	while (command->args[i])
 	{
-		if (!check_is_valid(command->args[i]))
+		 if (!check_is_valid(command->args[i]))
 			return ;
 		if (check_caract(command->args[i], '=') == 1)
 		{

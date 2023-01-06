@@ -15,13 +15,13 @@
 
 #include "../minishell.h"
 
-
 void	ft_remove_from_env(t_env **begin_list, t_env *data_ref)
 {
+	t_env	*tmp;
+
 	if (begin_list == NULL || *begin_list == NULL)
 		return ;
-
-	t_env *tmp = *begin_list;
+	tmp = *begin_list;
 	if (ft_strcmp(tmp->name, data_ref->name) == 0)
 	{
 		*begin_list = tmp->next;
@@ -42,12 +42,16 @@ int	check_is_digit(int x)
 
 int	check_special_caract(char *arg)
 {
-	int i;
+	int	i;
+
 	i = 0;
-	if (arg[0] == '#')
-		return (1);
-	if (check_is_digit(arg[0]))
+	if (ft_strlen(arg) == 0)
 		return (0);
+	else if (arg[0] == '#')
+		return (1);
+	else if (check_is_digit(arg[0]) || arg[0] == '-')
+		return (0);
+	
 	while (arg[i])
 	{
 		if ((i != 0 && arg[i] == '#') || (arg[i] == '=') || ((arg[i] < 'A'
@@ -60,31 +64,24 @@ int	check_special_caract(char *arg)
 
 void	unset(t_env **variable, t_element *command)
 {
-	int i;
+	int	i;
+
 	i = 1;
 	if (!variable)
 		return ;
 	if (command->nbr_args >= 2)
 	{
-		if (command->args[1] && command->args[1][0] == '-')
-		{
-			printf("-minishell: unset:\
-					-%c: invalid option\nunset: \
-					usage: unset [-f] [-v] [-n] [-name ...]\n", \
-					command->args[1][1]);
-			return ;
-		}
 		while (command->args[i])
 		{
 			if (check_special_caract(command->args[i]))
 			{
 				if (finder_getter(*variable, command->args[i]))
-					ft_remove_from_env(variable, finder_getter(*variable,
+					ft_remove_from_env(variable, finder_getter(*variable, \
 								command->args[i]));
 			}
 			else
-				printf("minishell: unset: `%s': not a valid identifier\n",
-						command->args[1]);
+				return(printf("minishell: unset: `%s': not a valid identifier\n", \
+						command->args[1]), (void)0);
 			i++;
 		}
 	}

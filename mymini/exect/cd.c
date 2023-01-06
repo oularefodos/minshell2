@@ -55,17 +55,17 @@ void	cd(t_element *command, t_env **env)
 {
 	t_env	*pwd;
 	t_env	*oldpwd;
-	//char *tmp;
+	// char *tmp;
 	pwd = finder_getter(*env, "PWD");
 	oldpwd = finder_getter(*env, "OLDPWD");
-	// tmp = put_my_shlvl(finder_getter(*env, "PWD")->value);
-	// tmp = ft_concatenate(tmp, "/", command->args[1]);
-	// if((access(tmp, F_OK) != 0))
-	// {
-	// 	perror("minishell: cd: error retrieving current directory: "
-	// 		"getcwd: cannot access parent directories");
-	// 		return ;
-	// }
+	if(!getcwd(NULL, 0))
+	{
+		printf("minishell: cd: error retrieving current directory: "
+			"getcwd: cannot access parent directories\n");
+		chdir("~");
+		printf("ok");
+		return ;
+	}
 	if ((!ft_strcmp(command->args[0], "cd") && command->nbr_args == 1)
 		|| (!ft_strcmp(command->cmd, "cd") && (!strcmp(command->args[1], "--")
 				|| !strcmp(command->args[1], "~")

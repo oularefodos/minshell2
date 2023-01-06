@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:40:03 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/05 20:26:53 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/05 21:20:45 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ char	*ft_concatenate(const char *s1, const char *s2, const char *s3)
 
 	if (!s1 || !s2 || !s3)
 		return (NULL);
-	new_str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) +
-								ft_strlen(s3) + 1) *
-								sizeof(char));
+	new_str = (char *)malloc((ft_strlen(s1) + \
+			ft_strlen(s2) + ft_strlen(s3) + 1) \
+			* sizeof(char));
 	if (!new_str)
 		return (NULL);
 	i = 0;

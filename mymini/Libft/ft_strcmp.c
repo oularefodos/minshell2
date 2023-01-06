@@ -6,11 +6,12 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:45:51 by mmakboub          #+#    #+#             */
-/*   Updated: 2022/12/29 20:46:09 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/05 21:56:10 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;

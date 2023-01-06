@@ -15,7 +15,6 @@
 
 #include "../minishell.h"
 
-
 void	printferror(char *str)
 {
 	write(1, "exit\n", 5);
@@ -27,7 +26,9 @@ void	printferror(char *str)
 
 int	isalldigits(const char *s)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (s[i])
 	{
 		if (!ft_isdigit(s[i]))
@@ -39,9 +40,9 @@ int	isalldigits(const char *s)
 
 long	check_exit_status(char *str)
 {
-	int i;
-	long result;
-	long sign;
+	int		i;
+	long	result;
+	long	sign;
 
 	sign = 1;
 	result = 0;
@@ -66,13 +67,14 @@ long	check_exit_status(char *str)
 
 void	ft_exit(t_element *command)
 {
-	long exit_status;
+	long	exit_status;
+
 	if (command->nbr_args == 1)
 	{
 		printf("%s\n", "exit");
 		exit(0);
 	}
-	else if (!isalldigits(command->args[1])
+	else if (!isalldigits(command->args[1]) \
 			|| ft_strlen(command->args[1]) > 20)
 		printferror(command->args[1]);
 	else if ((command->args[1] && command->args[2]))

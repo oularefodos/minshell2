@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 21:24:58 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/03 16:35:15 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/05 21:55:13 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,3 @@ t_list	*ft_lstnew_list(void *content)
 	newelement -> next = 0;
 	return (newelement);
 }
-int main()
-{

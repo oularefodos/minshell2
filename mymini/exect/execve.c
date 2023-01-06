@@ -6,16 +6,11 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:57:46 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/05 20:56:05 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/05 23:14:50 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-int	check_start(char *cmd)
-{
-	return (cmd[0] == '/' || (cmd[0] == '.' && cmd[1] == '/'));
-}
 
 char	*execute_cmd(t_element *command, t_env **env)
 {
@@ -27,7 +22,7 @@ char	*execute_cmd(t_element *command, t_env **env)
 		return (NULL);
 	if (!command->args || !command->args[0])
 		return (ft_strdup(""));
-	if (check_start(command->cmd) && check_accecs_exec(command->cmd))
+	if (check_caract(command->cmd, '/'))
 		return (ft_strdup(command->cmd));
 	line = convertto_char(finder_getter(*env, "PATH"));
 	if (!line)
@@ -132,31 +127,35 @@ void	execve_cmd(t_element *command, t_env **env, char **argv)
 	char	*path;
 	int		wstatus;
 	int		statuscode;
+	int		pid;
 
 	if (!env)
 		return ;
+	pid = fork();
 	path = execute_cmd(command, env);
-	if (fork() == 0)
+	if (pid == 0)
 	{
 		sig_default();
 		handle_redirection(command);
 		if (!path)
 		{
-			printf("minishell :%s: command not found\n", command->cmd);
+			printf("minishell: %s: command not found\n", command->cmd);
 			g_global.exit_status = 127;
+			exit(127);
 			return ;
 		}
 		if (!command->args || !command->args[0])
 			exit(0);
 		if (execve(path, argv, convertto_doublep(*env)) == -1)
 		{
-			printf("minishell:%s: command not found\n", command->args[0]);
+			perror(command->cmd);
 			g_global.exit_status = 127;
+			exit(127);
 		}
 		exit(0);
 	}
 	ignsig();
-	wait(NULL);
+	waitpid(pid, &g_global.exit_status, 0);
 	wait(&wstatus);
 	if (WIFEXITED(wstatus))
 	{
