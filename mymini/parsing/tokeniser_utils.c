@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:22:43 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 18:38:21 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 01:25:39 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,13 @@ void	redir_tokeniser(char **str, t_element **elmnt, int *len)
 
 	line = *str;
 	c = *line;
-	while (*line && *(line++) == c && *len < 2)
-		(*len)++;
+	*len = 1;
+	line++;
+	if (*line == c)
+	{
+		*len = 2;
+		line++;
+	}
 	if (c == '<')
 	{
 		if (*len == 1)
@@ -80,7 +85,5 @@ void	redir_tokeniser(char **str, t_element **elmnt, int *len)
 			add_back(elmnt, NULL, ADD, *len);
 	}
 	*len = 0;
-	if (*line)
-		line--;
 	*str = line;
 }

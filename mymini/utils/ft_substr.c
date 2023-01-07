@@ -6,13 +6,13 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 20:47:14 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 20:27:48 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 02:03:49 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len, int type)
 
 {
 	size_t	firstc;
@@ -23,7 +23,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	if (start > ft_strlen(s))
 	{
-		newstr = malloc(1);
+		newstr = ft_malloc(1, type);
 		if (!newstr)
 			return (NULL);
 		newstr[0] = '\0';
@@ -31,7 +31,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	if (len > ft_strlen(s))
 		len = ft_strlen(s);
-	newstr = (char *)malloc(sizeof(char) * (len + 1));
+	newstr = (char *)ft_malloc(sizeof(char) * (len + 1), type);
 	if (!newstr)
 		return (NULL);
 	while (firstc < len && start < ft_strlen(s))

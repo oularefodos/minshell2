@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:23:29 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 20:11:08 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 22:08:15 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ char	*concat(char *s1, char *s2)
 	char	*ret;
 
 	size = ft_strlen(s1) + ft_strlen(s2) + 1;
-	ret = malloc(sizeof(char) * size);
-	if (!ret)
-		exit(1);
-	add_back_memory(ret, 1);
+	ret = ft_malloc(sizeof(char) * size, 1);
 	i = -1;
 	while (s1[++i])
 		ret[i] = s1[i];
@@ -52,13 +49,10 @@ char	**double_dup(char **s)
 	i = 0;
 	if (s == NULL)
 		return (NULL);
-	ret = malloc(sizeof(char *) * (getsize(s) + 1));
-	if (ret == NULL)
-		exit(1);
-	add_back_memory(ret, 1);
+	ret = ft_malloc(sizeof(char *) * (getsize(s) + 1), 1);
 	while (s[i])
 	{
-		ret[i] = ft_strdup(s[i]);
+		ret[i] = ft_strdup(s[i], 1);
 		i++;
 	}
 	ret[i] = NULL;
@@ -73,20 +67,17 @@ char	**ft_concat(char **s1, char **s2)
 	int		y;
 
 	len = getsize(s1) + getsize(s2) + 1;
-	ret = malloc(sizeof(char *) * len);
-	if (!ret)
-		exit(1);
-	add_back_memory(ret, 1);
+	ret = ft_malloc(sizeof(char *) * len, 1);
 	i = 0;
 	y = 0;
 	while (s1[i])
 	{
-		ret[i] = ft_strdup(s1[i]);
+		ret[i] = ft_strdup(s1[i], 1);
 		i++;
 	}
 	while (s2[y])
 	{
-		ret[i + y] = ft_strdup(s2[y]);
+		ret[i + y] = ft_strdup(s2[y], 1);
 		y++;
 	}
 	ret[i + y] = NULL;
@@ -97,10 +88,7 @@ t_element	*duplicate(t_element *n)
 {
 	t_element	*ret;
 
-	ret = malloc(sizeof(t_element));
-	if (!ret)
-		exit(1);
-	add_back_memory(ret, 1);
+	ret = ft_malloc(sizeof(t_element), 1);
 	ret->type = n->type;
 	ret->args = double_dup(n->args);
 	ret->pip[0] = n->pip[0];
@@ -177,10 +165,7 @@ void	add_front(t_element **node, char **cmd, t_element **el)
 	t_element	*prev;
 	t_element	*n;
 
-	n = malloc(sizeof(t_element));
-	if (!n)
-		exit(1);
-	add_back_memory(n, 1);
+	n = ft_malloc(sizeof(t_element), 1);
 	n->args = double_dup(cmd);
 	n->type = CMD;
 	prev = (*node)->prev;
@@ -218,7 +203,7 @@ void	norm_two(t_element **el)
 		if (temp->args)
 		{
 			temp->nbr_args = getsize(temp->args);
-			temp->cmd = ft_strdup(temp->args[0]);
+			temp->cmd = ft_strdup(temp->args[0], 1);
 		}
 		temp = temp->next;
 	}

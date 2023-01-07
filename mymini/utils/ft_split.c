@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 18:34:00 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 21:14:00 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 23:56:38 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,7 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	if (!s)
 		return (NULL);
-	str = (char **)malloc(sizeof(char *) * (ft_total(s, c) + 1));
-	if (!str)
-		return (0);
-	add_back_memory(str, 1);
+	str = (char **)ft_malloc(sizeof(char *) * (ft_total(s, c) + 1), 1);
 	while (*s)
 	{
 		while (*s && *s == c)
@@ -62,10 +59,7 @@ char	**ft_split(char const *s, char c)
 		while (s[len] && s[len] != c)
 			len++;
 		if (len != 0)
-		{
-			str[i++] = ft_substr(s, 0, len);
-			add_back_memory(str, 1);
-		}
+			str[i++] = ft_substr(s, 0, len, 1);
 		if (len != 0 && !str[i - 1])
 			return (ft_free(str, i - 1));
 		s += len;

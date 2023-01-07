@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:21:43 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 20:09:12 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 21:43:19 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@ char	*deleteone(char *s, int index, int x)
 	int		y;
 	char	*str;
 
-	str = malloc(sizeof(char) * ft_strlen(s) - 1);
+	str = ft_malloc(sizeof(char) * ft_strlen(s) - 1, 1);
 	if (!str)
 		exit(1);
-	add_back_memory(str, 1);
 	i = 0;
 	y = 0;
 	while (s[i])

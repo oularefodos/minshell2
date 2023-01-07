@@ -15,17 +15,16 @@
 
 #include "../minishell.h"
 
-
 char	*receive_name_export(char *allstr)
 {
-	return (ft_substr(allstr, 0, strlen(allstr) - strlen(strchr(allstr,
-					'+'))));
+	return (ft_substr(allstr, 0, ft_strlen(allstr) - ft_strlen(ft_strchr(allstr,
+					'+')), 0));
 }
 
 char	*receive_value_export(char *allstr)
 {
 	return (ft_substr(allstr, strlen(allstr) - strlen(strchr(allstr, '=')) + 1,
-			strlen(allstr)));
+			strlen(allstr), 0));
 }
 void	check_empty_export(char *str)
 {
@@ -71,7 +70,7 @@ void	export(t_env **env, t_element *command)
 										receive_name_export(command->args[i]));
 					if (tmp->value)
 						tmp->value = ft_strjoin(tmp->value,
-												receive_value_export(command->args[i]));
+												receive_value_export(command->args[i]), 0);
 					else
 						tmp->value = receive_value_export(command->args[i]);
 				}
@@ -90,17 +89,15 @@ void	export(t_env **env, t_element *command)
 		}
 		else
 		{
-			newelement = (t_env *)ft_malloc(sizeof(t_env), 1);
+			newelement = (t_env *)ft_malloc(sizeof(t_env), 0);
 			if (newelement == 0)
 				return ;
-			newelement->name = ft_strdup(command->args[i]);
+			newelement->name = ft_strdup(command->args[i], 0);
+			add_back_memory(newelement->name, 0);
 			newelement->value = NULL;
 			newelement->next = NULL;
-			printf("%s\n", newelement->name);
 			ft_lstadd_back(newelement, env);
 		}
 		i++;
 	}
 }
-
-//still trsiting first condition case it should not add the argument to exportand and handled errors;

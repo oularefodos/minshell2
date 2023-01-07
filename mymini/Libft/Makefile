@@ -6,7 +6,7 @@
 #    By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 16:58:29 by mmakboub          #+#    #+#              #
-#    Updated: 2021/12/03 00:08:04 by mmakboub         ###   ########.fr        #
+#    Updated: 2023/01/06 23:15:21 by mmakboub         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,6 @@ FONCTIONS = ft_atoi.c\
 		ft_putchar_fd.c\
 		ft_strjoin.c\
 		ft_strmapi.c\
-		ft_strtrim.c\
 		ft_isalnum.c\
 		ft_isprint.c\
 		ft_memcpy.c\

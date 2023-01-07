@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 11:59:19 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 20:31:15 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 23:20:51 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	lencalculate(long int a)
 	return (len);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(int n, int type)
 {
 	int			len;
 	char		*p;
@@ -42,10 +42,7 @@ char	*ft_itoa(int n)
 	nbr = n;
 	if (nbr < 0)
 		nbr *= -1;
-	p = malloc(sizeof(char) * len + 1);
-	add_back_memory(p, 0);
-	if (!p)
-		return (NULL);
+	p = ft_malloc(sizeof(char) * len + 1, type);
 	p[len] = '\0';
 	while (len--)
 	{

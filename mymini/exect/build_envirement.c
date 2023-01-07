@@ -22,14 +22,14 @@ char	*receive_name(char *allstr)
 	name = ft_strchr(allstr, '=');
 	if (!name)
 		return (allstr);
-	return (ft_substr(allstr, 0, ft_strlen(allstr) - ft_strlen(name)));
+	return (ft_substr(allstr, 0, ft_strlen(allstr) - ft_strlen(name), 0));
 }
 
 char	*receive_value(char *allstr)
 {
 	return (ft_substr(allstr, \
 			ft_strlen(allstr) - ft_strlen(ft_strchr(allstr, '=')), \
-			ft_strlen(allstr)));
+			ft_strlen(allstr), 0));
 }
 
 t_env	*ft_lstnew(char *allstr, int flag)

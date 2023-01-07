@@ -6,7 +6,7 @@
 #    By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/03 04:13:27 by mmakboub          #+#    #+#              #
-#    Updated: 2023/01/06 20:24:42 by mmakboub         ###   ########.fr        #
+#    Updated: 2023/01/07 02:25:55 by mmakboub         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ FONCTIONS = ./exect/about_cd.c ./exect/cd.c\
             ./exect/env_initialisation.c\
 			./exect/execve_errors.c\
 			./exect/execve.c ./libft/ft_memset.c\
-			./utils/ft_strjoin.c ./libft/ft_strtrim.c\
+			./utils/ft_strjoin.c\
 			./libft/ft_isprint.c\
 			./libft/ft_putchar_fd.c ./libft/ft_strlcat.c\
 			./utils/ft_substr.c ./libft/ft_atoi.c\
@@ -56,13 +56,12 @@ FONCTIONS = ./exect/about_cd.c ./exect/cd.c\
 			./exect/execution.c\
 			./main.c\
 			./free.c
-	
+
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
-RM = rm -f
 INCLUDE = minishell.h
-LFLAGS = -L/Users/mmakboub/.brew/opt/readline/lib
-IFLAGS = -I/Users/mmakboub/.brew/opt/readline/include
+LFLAGS = -L/Users/mmakboub/.brew/opt/readline/lib 
+IFLAGS = -I/Users/mmakboub/.brew/opt/readline/include 
 
 OBJS = $(FONCTIONS:.c=.o)
 

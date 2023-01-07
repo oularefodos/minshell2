@@ -6,14 +6,14 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:43:18 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 20:27:39 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 22:08:56 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1, int type)
 {
 	char	*p;
 	int		i;
@@ -21,7 +21,7 @@ char	*ft_strdup(const char *s1)
 
 	i = 0;
 	l = ft_strlen(s1);
-	p = (char *)malloc(sizeof(char) * (l + 1));
+	p = (char *)ft_malloc(sizeof(char) * (l + 1), type);
 	if (!(p))
 		return (NULL);
 	while (i < l)

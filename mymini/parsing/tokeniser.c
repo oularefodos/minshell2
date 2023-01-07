@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:22:51 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 20:10:17 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 00:58:53 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,12 @@ t_element	*new_element(int type, char *str, t_element *prev)
 {
 	t_element	*new;
 
-	new = malloc(sizeof(t_element));
-	if (!new)
-		return (NULL);
-	add_back_memory(new, 1);
+	new = ft_malloc(sizeof(t_element), 1);
 	new->type = type;
 	if (type == SQUOT || type == DQUOT)
 	{
-		new->args = malloc(sizeof(char *) * 2);
-		if (!new)
-			exit(1);
-		add_back_memory(new->args, 1);
-		new->args[0] = ft_strdup(str);
+		new->args = ft_malloc(sizeof(char *) * 2, 1);
+		new->args[0] = ft_strdup(str, 1);
 		new->args[1] = 0;
 	}
 	else
@@ -67,7 +61,7 @@ void	add_back(t_element **node, char *str, int type, int len)
 	t_element	*lst;
 
 	if ((type == CMD || type == SQUOT || type == DQUOT) && str)
-		s = ft_substr(str - len, 0, len);
+		s = ft_substr(str - len, 0, len, 1);
 	else
 		s = NULL;
 	if (*node == NULL)
@@ -79,12 +73,25 @@ void	add_back(t_element **node, char *str, int type, int len)
 	}
 }
 
+void replace(char *line)
+{
+	int	i;
+
+	i = -1;
+	while(line[++i])
+	{
+		if (line[i] == '\t' || line[i] == '\r')
+			line[i] = ' ';
+	}
+}
+
 t_element	*tokeniser(char *line)
 {
 	t_element	*elmnt;
 	int			len;
 
 	elmnt = NULL;
+	replace(line);
 	while (*line)
 	{
 		len = 0;

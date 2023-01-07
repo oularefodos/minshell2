@@ -6,11 +6,23 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 21:16:47 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 17:55:33 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 02:26:41 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void print(t_element *m)
+{
+	t_element *t = m;
+
+	while (t)
+	{
+		printf("%d\n", t->type);
+		printf("%s\n", t->cmd);
+		t = t->next;
+	}
+}
 
 t_global	g_global;
 int	ft_putchar(int c)
@@ -57,12 +69,15 @@ int	main(int ac, char **str, char **env)
 	char *line;
 	t_element *element;
 	int fd_1 = dup(1);
+	g_global.end = NULL;
+	g_global.temp = NULL;
 	envr = build_env(env);
 	env_initialisation(&envr);
 	while (1)
 	{
 		handling_sig();
 		line = readline("minishell> ");
+		add_back_memory(line, 1);
 		if (!line)
 		{
 			char *sr_cap;
@@ -70,6 +85,8 @@ int	main(int ac, char **str, char **env)
 			sr_cap = tgetstr("sr", NULL);
 			tputs(sr_cap, 0, ft_putchar);
 			printf("minishell> exit\n");
+			free_memory(0);
+			system("leaks minishell");
 			exit(g_global.exit_status);
 		}
 		if (*line)
@@ -84,6 +101,7 @@ int	main(int ac, char **str, char **env)
 					return (1);
 				}
 				check_cmd(element, &envr);
+				free_memory(1);
 			}
 		}
 		dup2(fd_1, 1);

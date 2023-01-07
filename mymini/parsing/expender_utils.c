@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:21:57 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 20:09:33 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 23:10:42 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ char	*insert(char *str, int index, char *s, int sz)
 
 	size = ft_strlen(str) - sz + ft_strlen(s);
 	temp = str;
-	str = malloc(sizeof(char) * (size + 1));
-	if (str == NULL)
-		exit(1);
-	add_back_memory(str, 1);
+	str = ft_malloc(sizeof(char) * (size + 1), 1);
 	i = -1;
 	while (++i < index)
 		str[i] = temp[i];
@@ -45,19 +42,19 @@ char	*takevarvalue(char *str, char **env)
 	int		sz;
 
 	puts(str);
-	s = ft_strjoin(str + 1, "=");
+	s = ft_strjoin(str + 1, "=", 1);
 	i = 0;
 	sz = ft_strlen(s);
 	ret = NULL;
 	if (!ft_strcmp(str, "$?"))
-		return (ft_itoa(g_global.exit_status));
+		return (ft_itoa(g_global.exit_status, 1));
 	while (env[i])
 	{
 		if (!ft_strncmp(s, env[i], sz))
-			ret = ft_strdup(&env[i][sz]);
+			ret = ft_strdup(&env[i][sz], 1);
 		i++;
 	}
 	if (ret == NULL)
-		ret = ft_strdup("");
+		ret = ft_strdup("", 1);
 	return (ret);
 }

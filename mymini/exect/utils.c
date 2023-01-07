@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:40:03 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 20:08:41 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 23:05:01 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ char	*ft_concatenate(const char *s1, const char *s2, const char *s3)
 
 	if (!s1 || !s2 || !s3)
 		return (NULL);
-	new_str = (char *)malloc((ft_strlen(s1) + \
+	new_str = (char *)ft_malloc((ft_strlen(s1) + \
 			ft_strlen(s2) + ft_strlen(s3) + 1) \
-			* sizeof(char));
-	add_back_memory(new_str, 1);
+			* sizeof(char), 1);
 	if (!new_str)
 		return (NULL);
 	i = 0;
@@ -48,14 +47,12 @@ char	**convertto_doublep(t_env *env)
 
 	i = 0;
 	len = ft_lstsize_env(env);
-	dp = (char **)malloc(sizeof(char *) * (len + 1));
+	dp = (char **)ft_malloc(sizeof(char *) * (len + 1), 1);
 	if (!dp)
 		exit(1);
-	add_back_memory(dp, 1);
 	while (env)
 	{
-		dp[i] = ft_strjoin(env->name, env->value);
-		add_back_memory(dp[i], 1);
+		dp[i] = ft_strjoin(env->name, env->value, 1);
 		i++;
 		env = env->next;
 	}
@@ -67,7 +64,7 @@ char	*convertto_char(t_env *env)
 {
 	char	*p;
 
-	p = ft_strjoin(env->name, env->value);
+	p = ft_strjoin(env->name, env->value, 1);
 	if (p == NULL)
 		return (NULL);
 	return (p);

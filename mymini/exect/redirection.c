@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 22:57:34 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 17:05:17 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 01:16:25 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	redirec_out(t_element *tmp, t_element *next_node, int fd)
 	fd = open(next_node->cmd, O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	if (fd < 0)
 	{
-		printf("sup fd error %d %s\n", fd, next_node->cmd);
+		perror(next_node->cmd);
 		exit(1);
 	}
 	dup2(fd, 1);
@@ -31,8 +31,7 @@ static void	redirec_inp(t_element *tmp, t_element *next_node, int fd)
 	fd = open(next_node->cmd, O_RDONLY, 0777);
 	if (fd < 0)
 	{
-		printf("minishell: %s No such file or directory\n", \
-			next_node->cmd);
+		perror(next_node->cmd);
 		exit(1);
 	}
 	dup2(fd, 0);
@@ -48,10 +47,11 @@ static void	redirec_herdoc(t_element *tmp)
 static void	redirec_add(t_element *tmp, t_element *next_node, int fd)
 {
 	next_node = tmp->next;
-	fd = open(next_node->cmd, O_CREAT | O_WRONLY | O_APPEND);
+	puts(".....");
+	fd = open(next_node->cmd, O_CREAT | O_WRONLY | O_APPEND, 0777);
 	if (fd < 0)
 	{
-		printf("add fd error %d %s\n", fd, next_node->cmd);
+		perror(next_node->cmd);
 		exit(1);
 	}
 	dup2(fd, 1);

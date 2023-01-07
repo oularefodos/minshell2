@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:04:39 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 16:46:57 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 01:54:06 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	ft_lstsize_env(t_env *lst)
 	int	len;
 
 	len = 0;
+	if(!lst)
+		return (0);
 	while (lst)
 	{
 		lst = lst->next;

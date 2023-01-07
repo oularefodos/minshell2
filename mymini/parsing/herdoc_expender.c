@@ -36,7 +36,7 @@ char	*mygetline(char *line, int index, char **env)
 	while (index > -1)
 	{
 		i = takesize_her(&line[index]);
-		temp_sub = ft_substr(line, index, i);
+		temp_sub = ft_substr(line, index, i, 1);
 		str = takevarvalue(temp_sub, env);
 		temp = line;
 		line = insert(line, index, str, i);
@@ -53,15 +53,16 @@ void	herdoc(t_element *s, char **env)
 	if (pipe(s->pip) == -1)
 		exit(1);
 	line = readline("> ");
+	add_back_memory(line, 1);
 	while (line && ft_strcmp(line, s->next->args[0]))
 	{
 		index = get_var_index(line);
 		if (index > -1)
 			line = mygetline(line, index, env);
-		printf("%d\n", index);
 		write(s->pip[1], line, ft_strlen(line));
 		write(s->pip[1], "\n", 1);
 		line = readline("> ");
+		add_back_memory(line, 1);
 	}
 	close(s->pip[1]);
 }

@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:22:07 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 20:09:45 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 01:46:38 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,11 @@ char	**fixed_char(char **str)
 			size--;
 	i = 0;
 	y = 0;
-	newstr = malloc(sizeof(char *) * (size + 1));
-	if (!newstr)
-		exit(1);
-	add_back_memory(newstr, 1);
+	newstr = ft_malloc(sizeof(char *) * (size + 1), 1);
 	while (str[i])
 	{
 		if (str[i][0])
-			newstr[y++] = ft_strdup(str[i]);
+			newstr[y++] = ft_strdup(str[i], 1);
 		i++;
 	}
 	newstr[y] = NULL;
@@ -83,7 +80,7 @@ int	takesize(char *s)
 	while (s[i] && s[i] != c)
 	{
 		i++;
-		if ((s[i] == '$' || s[i] == '\'' || s[i] == '"') && c == ' ')
+		if (!ft_isalnum(s[i]) && c == ' ')
 			break ;
 	}
 	return (i);
@@ -102,12 +99,12 @@ void	rest_expender(t_element *t, int i, char **env)
 		y = takesize(&t->args[i][index]);
 		if (t->args[i][index + 1] != '\'' && t->args[i][index + 1] != '\"')
 		{
-			temp = ft_substr(t->args[i], index, y);
+			temp = ft_substr(t->args[i], index, y, 1);
 			str = takevarvalue(temp, env);
 		}
 		else
 		{
-			temp = ft_substr(t->args[i], index + 1, y - 1);
+			temp = ft_substr(t->args[i], index + 1, y - 1, 1);
 			str = temp;
 		}
 		t->args[i] = insert(t->args[i], index, str, y);

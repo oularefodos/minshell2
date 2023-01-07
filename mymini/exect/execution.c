@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:18:27 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 17:00:03 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 01:08:49 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,13 @@ void	check_cmd(t_element *command, t_env **envv)
 	else
 	{
 		expender(command, env);
+		puts("ok8");
 		if (check_builtings(command))
 			is_builting(command, envv);
 		else
+		{
+			puts("ok2");
 			execve_cmd(command, envv, command->args);
+		}
 	}
 }

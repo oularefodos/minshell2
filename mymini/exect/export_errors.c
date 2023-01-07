@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:27:08 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 18:00:30 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/06 23:08:47 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	check_is_valid(char *str)
 	i = 1;
 	str = receive_name(str);
 	if (str[ft_strlen(str) - 1] == '+')
-		str = ft_substr(str, 0, ft_strlen(str) - 1);
+		str = ft_substr(str, 0, ft_strlen(str) - 1, 0);
 	check_empty_export(str);
 	unique_export_error(str);
 	if (str[0] != '_' && !ft_isalpha(str[0]))

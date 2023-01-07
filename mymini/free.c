@@ -59,8 +59,12 @@ void free_memory(int i)
         free(temp->memory);
         temp->memory = NULL;
         free(temp);
-        temp = NULL;
     }
+    node = NULL;
+    if (i)
+        g_global.temp = node;
+    else
+        g_global.end = node;
 }
 
 void    *ft_malloc(size_t len, int type)

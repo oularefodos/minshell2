@@ -34,20 +34,20 @@ void	back_to_home(t_env **env, t_env *pwd)
 	}
 }
 
-void	updatepwd(t_env **env, char *arg)
-{
-	t_env	*nenv;
-	t_env	*oenv;
-	char	*temp;
+// void	updatepwd(t_env **env, char *arg)
+// {
+// 	t_env	*nenv;
+// 	t_env	*oenv;
+// 	char	*temp;
 
-	nenv = finder_getter(*env, "PWD");
-	oenv = finder_getter(*env, "OLDPWD");
-	temp = oenv->value;
-	oenv->value = ft_strdup(nenv->value);
-	temp = nenv->value;
-	nenv->value = ft_concatenate(temp, "/", arg);
-	temp = NULL;
-}
+// 	nenv = finder_getter(*env, "PWD");
+// 	oenv = finder_getter(*env, "OLDPWD");
+// 	temp = oenv->value;
+// 	oenv->value = ft_strdup(nenv->value, 0);
+// 	temp = nenv->value;
+// 	nenv->value = ft_concatenate(temp, "/", arg);
+// 	temp = NULL;
+// }
 
 int	cd_home(t_element *command)
 {
