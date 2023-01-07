@@ -69,11 +69,14 @@ void	cd_error(void)
 void	cd(t_element *command, t_env **env)
 {
 	t_env	*pwd;
+	char	*ret;
 	t_env	*oldpwd;
 
 	pwd = finder_getter(*env, "PWD");
 	oldpwd = finder_getter(*env, "OLDPWD");
-	if (!getcwd(NULL, 0))
+	ret = getcwd(NULL, 0);
+	add_back_memory(ret, 1);
+	if (!ret)
 		cd_error();
 	if (!cd_home(command))
 		back_to_home(env, pwd);

@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:13:45 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 23:13:35 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 03:17:17 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	refresh_pwd(t_env **env)
 
 	head = *env;
 	pwd = getcwd(NULL, 0);
+	add_back_memory(pwd, 1);
 	while (head && ft_strcmp(head->name, "PWD"))
 		head = head->next;
 	if (head && head->value)

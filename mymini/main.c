@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 21:16:47 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 02:26:41 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 05:13:10 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ int	ft_putchar(int c)
 	write(1, &c, 1);
 	return (1);
 }
+
+int	readline_hook(void)
+{
+	return (0);
+}
+
 void	handler(int signum)
 {
 	if (signum == SIGINT)
@@ -84,9 +90,8 @@ int	main(int ac, char **str, char **env)
 
 			sr_cap = tgetstr("sr", NULL);
 			tputs(sr_cap, 0, ft_putchar);
-			printf("minishell> exit\n");
+			printf("exit   \n");
 			free_memory(0);
-			system("leaks minishell");
 			exit(g_global.exit_status);
 		}
 		if (*line)
@@ -98,7 +103,7 @@ int	main(int ac, char **str, char **env)
 				if (!envr)
 				{
 					printf("sadly ! there is no env\n");
-					return (1);
+					continue;
 				}
 				check_cmd(element, &envr);
 				free_memory(1);

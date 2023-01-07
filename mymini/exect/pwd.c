@@ -30,6 +30,7 @@ void	pwd(t_env *env, char *name)
 	char	*str;
 
 	path = getcwd(NULL, 0);
+	add_back_memory(path, 1);
 	if (path == NULL)
 	{
 		str = findevalue(env, name);

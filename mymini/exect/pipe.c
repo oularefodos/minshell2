@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:54:30 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/05 20:26:34 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 04:44:15 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	handle_pipe(t_element *node, t_env **env)
 				execve_cmd(node, env, node->args);
 			exit(0);
 		}
+		else
+			signal(SIGINT, SIG_IGN);
 		if (i < argc - 1)
 		{
 			if (dup2(fd[0], 0) == -1)
