@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:22:43 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 01:25:39 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 18:42:35 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*init_redir_value(int *len, int *c, char **str)
 {
 	*c = *str[0];
 	*len = 1;
-	return (++(*str))
+	return (++(*str));
 }
 
 void	redir_tokeniser(char **str, t_element **elmnt, int *len)

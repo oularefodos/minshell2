@@ -17,13 +17,6 @@
 
 void	ft_env2(t_env *env, t_element *command)
 {
-	if (command->args[1][0] == '-')
-	{
-		printf("env: illegall option %s\n \
-		usage: env whit no option or argument\n", command->args[1]);
-		g_global.exit_status = 256;
-		return ;
-	}
 	if (command->nbr_args > 1)
 	{
 		printf("env: %s: No such file or directory\n", command->args[1]);

@@ -77,6 +77,7 @@ t_env	*build_env(char **env)
 	{
 		pwd = ft_strjoin("PWD=", getcwd(NULL, 0), 0);
 		ft_lstadd_back((ft_lstnew(pwd, 1)), &tmp);
+		ft_lstadd_back(ft_lstnew("PATH=/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.", 1), &tmp);
 	}
 	while (env[i])
 	{

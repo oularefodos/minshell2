@@ -23,8 +23,8 @@ char	*receive_name_export(char *allstr)
 
 char	*receive_value_export(char *allstr)
 {
-	return (ft_substr(allstr, strlen(allstr) - strlen(strchr(allstr, '=')) + 1,
-			strlen(allstr), 0));
+	return (ft_substr(allstr, ft_strlen(allstr) - ft_strlen(strchr(allstr, '=')) + 1,
+			ft_strlen(allstr), 0));
 }
 void	check_empty_export(char *str)
 {

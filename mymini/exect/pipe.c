@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:54:30 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 17:43:11 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 19:11:00 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	handle_pipe(t_element *node, t_env **env)
 {
 	int		fd[2];
 	int		i;
-	// int		status;
+	int		status;
 	int		argc;
 	char	**envv;
 	int		in_tmp;
@@ -54,7 +54,7 @@ void	handle_pipe(t_element *node, t_env **env)
 				is_builting(node, env);
 			else
 				execve_cmd(node, env, node->args);
-			exit(0);
+			exit(g_global.exit_status);
 		}
 		else
 			signal(SIGINT, SIG_IGN);
@@ -77,7 +77,9 @@ void	handle_pipe(t_element *node, t_env **env)
 	close(in_tmp);
 	close(fd[0]);
 	close(fd[1]);
-	i = 0;
+	waitpid(pid, &status, 0);
+	g_global.exit_status = WEXITSTATUS(status);
+	i = 1;
 	while (i < argc)
 	{
 		wait(NULL);

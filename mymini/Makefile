@@ -6,7 +6,7 @@
 #    By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/03 04:13:27 by mmakboub          #+#    #+#              #
-#    Updated: 2023/01/07 02:25:55 by mmakboub         ###   ########.fr        #
+#    Updated: 2023/01/07 19:43:42 by mmakboub         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ FONCTIONS = ./exect/about_cd.c ./exect/cd.c\
 			./free.c
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 INCLUDE = minishell.h
 LFLAGS = -L/Users/mmakboub/.brew/opt/readline/lib 
 IFLAGS = -I/Users/mmakboub/.brew/opt/readline/include 

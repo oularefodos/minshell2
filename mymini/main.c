@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 21:16:47 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 17:49:55 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 18:03:57 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ int	main(int ac, char **str, char **env)
 					continue;
 				}
 				check_cmd(element, &envr);
-				printf("after check == %d\n", g_global.exit_status);
 				free_memory(1);
 			}
 		}

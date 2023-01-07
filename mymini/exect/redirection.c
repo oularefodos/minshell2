@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 22:57:34 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 01:16:25 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 18:05:09 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static void	redirec_herdoc(t_element *tmp)
 static void	redirec_add(t_element *tmp, t_element *next_node, int fd)
 {
 	next_node = tmp->next;
-	puts(".....");
 	fd = open(next_node->cmd, O_CREAT | O_WRONLY | O_APPEND, 0777);
 	if (fd < 0)
 	{

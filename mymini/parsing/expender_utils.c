@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:21:57 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 23:10:42 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 18:05:15 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ char	*takevarvalue(char *str, char **env)
 	char	*ret;
 	int		sz;
 
-	puts(str);
 	s = ft_strjoin(str + 1, "=", 1);
 	i = 0;
 	sz = ft_strlen(s);

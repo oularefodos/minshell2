@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:18:27 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 17:52:05 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 19:01:42 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	ft_lstsize_elem(t_element *lst)
 void	check_cmd(t_element *command, t_env **envv)
 {
 	char	**env;
+	// int		pid;
+	// int		wstatus;
 
 	env = convertto_doublep(*envv);
 	if (finder_getter(*envv, "PATH") == NULL)
@@ -53,7 +55,16 @@ void	check_cmd(t_element *command, t_env **envv)
 		if (check_builtings(command))
 			is_builting(command, envv);
 		else
-			execve_cmd(command, envv, command->args);
+		{
+			// pid = fork();
+			// if (pid == 0)
+				execve_cmd(command, envv, command->args);
+			// waitpid(pid, &wstatus, 0);
+			// if (WIFEXITED(wstatus))
+			// 	g_global.exit_status = WEXITSTATUS(wstatus);
+			// else
+			// 	g_global.exit_status = wstatus;
+		}
 	}
 
 }

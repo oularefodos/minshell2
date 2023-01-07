@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:57:46 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 17:48:18 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 19:39:42 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ char	*join_get_acces(char **splited_path, char *cmd)
 void	execve_cmd(t_element *command, t_env **env, char **argv)
 {
 	char	*path;
-	int		wstatus;
 	int		pid;
+	int		wstatus;
 
 	if (!env || !command)
 		return ;
@@ -101,18 +101,14 @@ void	execve_cmd(t_element *command, t_env **env, char **argv)
 		execve_cmd_error(path, command);
 		if (execve(path, argv, convertto_doublep(*env)) == -1)
 			execve_failure(command->cmd);
-		exit(g_global.exit_status);
+		exit(g_global.exit_status);	
 	}
 	ignsig();
 	waitpid(pid, &wstatus, 0);
 	if (WIFEXITED(wstatus))
-	{
 		g_global.exit_status = WEXITSTATUS(wstatus);
-		printf("exit1 == %d\n", g_global.exit_status);
-	}
 	else
-	{
 		g_global.exit_status = wstatus;
-		printf("exit2 == %d\n", g_global.exit_status);
-	}
+	if (ft_lstsize_elem(command) > 1)
+		exit(g_global.exit_status);
 }
