@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:22:07 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 01:46:38 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 03:08:23 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ int	checkvarexist(char *s)
 			while (s[i] != '\'')
 				i++;
 		}
-		if (s[i] == '$' && s[i + 1] != ' ' && s[i + 1])
+		if (s[i] == '$' && 
+		(ft_isalnum(s[i + 1]) || s[i + 1] == '_' 
+		|| s[i + 1] == '?' || (s[i + 1] == '\'' && !(x % 2))
+		|| s[i + 1] == '"'))
 			return (i);
 		i++;
 	}
@@ -69,19 +72,23 @@ int	takesize(char *s)
 	int	c;
 
 	i = 0;
-	if (*(s + 1) == '\'')
-		c = '\'';
-	if (*(s + 1) == '"')
-		c = '"';
-	else
-		c = ' ';
-	if (*(s + 1) == '?' || *(s + 1) == '$')
+	if (*(s + 1) == '?')
 		return (2);
-	while (s[i] && s[i] != c)
+	if (*(s + 1) == '"' || *(s + 1) == '\'')
 	{
-		i++;
-		if (!ft_isalnum(s[i]) && c == ' ')
-			break ;
+		c = *(s + 1);
+		while(s[i] != c)
+			i++;
+	}
+	else
+	{
+		i = 1;
+		while (s[i])
+		{
+			if (!ft_isalnum(s[i]) && s[i] != '_')
+				break ;
+			i++;
+		}
 	}
 	return (i);
 }
