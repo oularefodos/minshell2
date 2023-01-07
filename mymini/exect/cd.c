@@ -74,6 +74,11 @@ void	cd(t_element *command, t_env **env)
 
 	pwd = finder_getter(*env, "PWD");
 	oldpwd = finder_getter(*env, "OLDPWD");
+	if(!pwd || !pwd)
+	{
+		return(printf("there is no pwd\n"), \
+		g_global.exit_status = 1, (void)0);
+	}
 	ret = getcwd(NULL, 0);
 	add_back_memory(ret, 1);
 	if (!ret)
@@ -83,7 +88,11 @@ void	cd(t_element *command, t_env **env)
 	else if (command->nbr_args > 1)
 	{
 		if (chdir(command->args[1]) == -1)
+		{
 			printf("minishell: cd: %s\n", strerror(errno));
+			g_global.exit_status = 1;
+			return ;
+		}
 		else
 		{
 			if (!pwd || !oldpwd)
@@ -93,6 +102,7 @@ void	cd(t_element *command, t_env **env)
 			}
 			refresh_oldpwd(env, pwd);
 			refresh_pwd(env);
+			g_global.exit_status = 0;
 		}
 	}
 }

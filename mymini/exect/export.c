@@ -31,6 +31,7 @@ void	check_empty_export(char *str)
 	if (ft_strlen(str) == 0)
 	{
 		printf("minishell: export: `%s': not a valid identifier\n", str);
+		g_global.exit_status = 1;
 		return ;
 	}
 }
@@ -54,10 +55,10 @@ void	export(t_env **env, t_element *command)
 			return ;
 		if (env_finder(*env, receive_name(command->args[i])))
 		{
-			env_finder(*env,
-						receive_name(command->args[i]))
-				->value = receive_value(command->args[i]);
+			env_finder(*env, receive_name(command->args[i]))->value \
+			= receive_value(command->args[i]);
 			i++;
+			g_global.exit_status = 0;
 			continue ;
 		}
 		if (check_caract(command->args[i], '=') == 1)
@@ -93,11 +94,11 @@ void	export(t_env **env, t_element *command)
 			if (newelement == 0)
 				return ;
 			newelement->name = ft_strdup(command->args[i], 0);
-			add_back_memory(newelement->name, 0);
 			newelement->value = NULL;
 			newelement->next = NULL;
 			ft_lstadd_back(newelement, env);
 		}
 		i++;
 	}
+	g_global.exit_status = 0;
 }

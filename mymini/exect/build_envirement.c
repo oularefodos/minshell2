@@ -69,9 +69,15 @@ t_env	*build_env(char **env)
 {
 	int		i;
 	t_env	*tmp;
+	char *pwd;
 
 	tmp = NULL;
 	i = 0;
+	if(env[0] == NULL)
+	{
+		pwd = ft_strjoin("PWD=", getcwd(NULL, 0), 0);
+		ft_lstadd_back((ft_lstnew(pwd, 1)), &tmp);
+	}
 	while (env[i])
 	{
 		ft_lstadd_back(ft_lstnew(env[i], 1), &tmp);

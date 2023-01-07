@@ -102,11 +102,7 @@ t_element	*tokeniser(char *line)
 		if (!issep(*line, "<>|'\""))
 			str_tokeniser(&line, &elmnt, &len);
 		else if (*line == '\'' || *line == '"')
-		{
 			squote_tokeniser(&line, &elmnt, &len);
-			if (*line == '\0')
-				break ;
-		}
 		else if (*line == '<' || *line == '>')
 			redir_tokeniser(&line, &elmnt, &len);
 		else if (*(line++) == '|')

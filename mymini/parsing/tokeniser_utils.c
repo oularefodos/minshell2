@@ -56,15 +56,19 @@ void	squote_tokeniser(char **str, t_element **elmnt, int *len)
 	*str = line;
 }
 
+char	*init_redir_value(int *len, int *c, char **str)
+{
+	*c = *str[0];
+	*len = 1;
+	return (++(*str))
+}
+
 void	redir_tokeniser(char **str, t_element **elmnt, int *len)
 {
 	char	*line;
 	int		c;
 
-	line = *str;
-	c = *line;
-	*len = 1;
-	line++;
+	line = init_redir_value(len, &c, str);
 	if (*line == c)
 	{
 		*len = 2;

@@ -67,4 +67,5 @@ void	echo2(char **arg)
 		write(1, "\n", 1);
 	else if (arg[1] != NULL)
 		print_echoarg(arg);
+	g_global.exit_status = 0;
 }

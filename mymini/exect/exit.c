@@ -21,7 +21,7 @@ void	printferror(char *str)
 	write(1, "minishell: exit: ", 17);
 	write(1, str, ft_strlen(str));
 	write(1, ": numeric argument required\n", 28);
-	exit(255);
+	g_global.exit_status = 255;
 }
 
 int	isalldigits(const char *s)
@@ -75,12 +75,12 @@ void	ft_exit(t_element *command)
 		exit(0);
 	}
 	else if (!isalldigits(command->args[1]) \
-			|| ft_strlen(command->args[1]) > 20)
+		|| ft_strlen(command->args[1]) > 20)
 		printferror(command->args[1]);
 	else if ((command->args[1] && command->args[2]))
 	{
-		printf("exit\n");
-		printf("minishell: exit: too many arguments\n");
+		printf("exit\nminishell: exit: too many arguments\n");
+		g_global.exit_status = 1;
 	}
 	else
 	{
@@ -89,4 +89,5 @@ void	ft_exit(t_element *command)
 			exit(256 - ((exit_status * -1) % 256));
 		exit(exit_status % 256);
 	}
+	g_global.exit_status = 0;
 }

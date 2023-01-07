@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:40:03 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/06 23:05:01 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 06:48:22 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ char	*ft_concatenate(const char *s1, const char *s2, const char *s3)
 	new_str = (char *)ft_malloc((ft_strlen(s1) + \
 			ft_strlen(s2) + ft_strlen(s3) + 1) \
 			* sizeof(char), 1);
-	if (!new_str)
-		return (NULL);
 	i = 0;
 	j = 0;
 	while (s1[i])

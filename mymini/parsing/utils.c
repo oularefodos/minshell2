@@ -190,9 +190,7 @@ void	norm_two(t_element **el)
 				|| temp->type == HERDOC) && getsize(temp->next->args) > 1)
 		{
 			if (temp->prev == NULL || temp->prev->type == PIPE)
-			{
 				add_front(&temp, &temp->next->args[1], el);
-			}
 			else
 			{
 				t = temp->prev->args;

@@ -1,0 +1,6 @@
+You have access to multiple processes named minishell:
+    a) 18669 ./minishell
+    b) 19208 ./minishell
+    c) 19213 ./minishell
+
+leaks[19225]: leaks cannot find any existing process you have access to which has a name like 'minishell'; try running with `sudo`.

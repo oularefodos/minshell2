@@ -6,11 +6,29 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:57:46 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 01:10:55 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 17:48:18 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+bool	check_relative_or_absolut(char *cmd, char c)
+{
+	
+	int	i;
+
+	i = 0;
+	if (!cmd)
+		return (0);
+	while (cmd[i])
+	{
+		if (cmd[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+	
+}
 
 char	*execute_cmd(t_element *command, t_env **env)
 {
@@ -18,11 +36,12 @@ char	*execute_cmd(t_element *command, t_env **env)
 	char	*path;
 	char	**splited_path;
 
+	path = NULL;
 	if (!env)
 		return (NULL);
 	if (!command->args || !command->args[0])
 		return (ft_strdup("", 1));
-	if (check_caract(command->cmd, '/'))
+	if (check_relative_or_absolut(command->cmd, '/'))
 		return (ft_strdup(command->cmd, 1));
 	line = convertto_char(finder_getter(*env, "PATH"));
 	if (!line)
@@ -74,7 +93,6 @@ void	execve_cmd(t_element *command, t_env **env, char **argv)
 	if (!env || !command)
 		return ;
 	pid = fork();
-		puts("ok1");
 	path = execute_cmd(command, env);
 	if (pid == 0)
 	{
@@ -83,12 +101,18 @@ void	execve_cmd(t_element *command, t_env **env, char **argv)
 		execve_cmd_error(path, command);
 		if (execve(path, argv, convertto_doublep(*env)) == -1)
 			execve_failure(command->cmd);
-		exit(0);
+		exit(g_global.exit_status);
 	}
 	ignsig();
 	waitpid(pid, &wstatus, 0);
 	if (WIFEXITED(wstatus))
+	{
 		g_global.exit_status = WEXITSTATUS(wstatus);
+		printf("exit1 == %d\n", g_global.exit_status);
+	}
 	else
+	{
 		g_global.exit_status = wstatus;
+		printf("exit2 == %d\n", g_global.exit_status);
+	}
 }

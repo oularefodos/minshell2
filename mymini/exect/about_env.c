@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:04:39 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 01:54:06 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 07:29:19 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_lstsize_env(t_env *lst)
 
 t_env	*env_finder(t_env *env, char *name)
 {
-	while (env && strcmp(env->name, name))
+	while (env && ft_strcmp(env->name, name))
 		env = env->next;
 	if (env)
 		return (env);
@@ -62,6 +62,7 @@ void	printf_env(t_env **env)
 			printf("declare -x %s\n", current->name);
 		current = current->next;
 	}
+	g_global.exit_status = 0;
 }
 
 t_env	*sort_env(t_env *env)

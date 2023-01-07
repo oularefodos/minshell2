@@ -81,6 +81,4 @@ void	unset(t_env **variable, t_element *command)
 			i++;
 		}
 	}
-	else
-		printf("minishell: unset: there is no variable to be unseted\n");
 }

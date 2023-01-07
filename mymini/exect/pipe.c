@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:54:30 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 04:44:15 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/07 17:43:11 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	handle_pipe(t_element *node, t_env **env)
 {
 	int		fd[2];
 	int		i;
+	// int		status;
 	int		argc;
 	char	**envv;
 	int		in_tmp;
