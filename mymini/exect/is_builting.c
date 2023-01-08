@@ -38,19 +38,21 @@ int	check_builtings(t_element *command)
 
 void	is_builting(t_element *cmd, t_env **envv)
 {
-	handle_redirection(cmd);
-	if (!ft_strcmp(cmd->cmd, "echo"))
-		echo2(cmd->args);
-	else if (!ft_strcmp(cmd->cmd, "pwd"))
-		pwd(*envv, "PWD");
-	else if (!ft_strcmp(cmd->cmd, "cd"))
-		cd(cmd, envv);
-	else if (!ft_strcmp(cmd->cmd, "exit"))
-		ft_exit(cmd);
-	else if (!ft_strcmp(cmd->cmd, "export"))
-		export(envv, cmd);
-	else if (!ft_strcmp(cmd->cmd, "unset"))
-		unset(envv, cmd);
-	else if (!ft_strcmp(cmd->cmd, "env"))
-		ft_env2(*envv, cmd);
+	if (handle_redirection(cmd, 1) == 0)
+	{
+		if (!ft_strcmp(cmd->cmd, "echo"))
+			echo2(cmd->args);
+		else if (!ft_strcmp(cmd->cmd, "pwd"))
+			pwd(*envv, "PWD");
+		else if (!ft_strcmp(cmd->cmd, "cd"))
+			cd(cmd, envv);
+		else if (!ft_strcmp(cmd->cmd, "exit"))
+			ft_exit(cmd);
+		else if (!ft_strcmp(cmd->cmd, "export"))
+			export(envv, cmd);
+		else if (!ft_strcmp(cmd->cmd, "unset"))
+			unset(envv, cmd);
+		else if (!ft_strcmp(cmd->cmd, "env"))
+			ft_env2(*envv, cmd);
+	}
 }

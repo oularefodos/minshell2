@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 09:08:18 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/08 10:22:37 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/08 12:05:46 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ int								ft_strcmp(const char *s1, const char *s2);
 int								ft_lstsize_elem(t_element *lst);
 int								getsize(char **str);
 int								check_rest_error(int type, int next);
-void							handle_redirection(t_element *red);
+int								handle_redirection(t_element *red, int i);
 void							check_cd(t_element *command);
 int								check_error(int type, int next);
 void							herdoc(t_element *s, char **env);

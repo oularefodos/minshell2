@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:18:27 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/08 09:57:53 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/08 11:52:27 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	execve_cmd(t_element *command, t_env **env, char **argv)
 	if (pid == 0)
 	{
 		sig_default();
-		handle_redirection(command);
+		handle_redirection(command, 0);
 		if (path && path[0] == '\0')
 		{
 			if (pid)
