@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:57:46 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 19:39:42 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/08 05:11:07 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,12 @@ void	execve_cmd(t_element *command, t_env **env, char **argv)
 	{
 		sig_default();
 		handle_redirection(command);
+		if(path[0] == '\0')
+		{
+			if(pid)
+				return ;
+			exit(0);
+		}
 		execve_cmd_error(path, command);
 		if (execve(path, argv, convertto_doublep(*env)) == -1)
 			execve_failure(command->cmd);
@@ -107,8 +113,13 @@ void	execve_cmd(t_element *command, t_env **env, char **argv)
 	waitpid(pid, &wstatus, 0);
 	if (WIFEXITED(wstatus))
 		g_global.exit_status = WEXITSTATUS(wstatus);
-	else
-		g_global.exit_status = wstatus;
+	else if (WIFSIGNALED(wstatus))
+	{
+		if (wstatus == 2)
+			return (write(2, "\n", 1), g_global.exit_status = 130, (void)0);
+		if (wstatus == 3)
+			return (write(2, "Quit: 3\n", 8), g_global.exit_status = 131, (void)0);
+	}
 	if (ft_lstsize_elem(command) > 1)
 		exit(g_global.exit_status);
 }

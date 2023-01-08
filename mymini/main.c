@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 21:16:47 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 18:03:57 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/08 05:20:33 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,17 @@ int	readline_hook(void)
 
 void	handler(int signum)
 {
-	if (signum == SIGINT)
+	if (signum == SIGINT && !g_global.sig)
 	{
 		printf("\n");
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
+	}
+	else
+	{
+		rl_done = 1;
+		g_global.exit_heredoc = 0;
 	}
 }
 void	ignsig(void)
@@ -67,6 +72,11 @@ void	handling_sig(void)
 		exit(1);
 	}
 }
+
+int	event(void)
+{
+	return (0);
+}
 int	main(int ac, char **str, char **env)
 {
 	(void)ac;
@@ -77,12 +87,16 @@ int	main(int ac, char **str, char **env)
 	int fd_1 = dup(1);
 	g_global.end = NULL;
 	g_global.temp = NULL;
+	g_global.sig = 0;
 	envr = build_env(env);
 	env_initialisation(&envr);
 	while (1)
 	{
 		handling_sig();
+		g_global.exit_heredoc = 0;
 		line = readline("minishell> ");
+		g_global.exit_heredoc = 1;
+		rl_event_hook = event;
 		add_back_memory(line, 1);
 		if (!line)
 		{
@@ -90,8 +104,7 @@ int	main(int ac, char **str, char **env)
 
 			sr_cap = tgetstr("sr", NULL);
 			tputs(sr_cap, 0, ft_putchar);
-			printf("minishell> exit\n");
-			// system("leaks minishell");
+			printf("minishell> exit\n"); 
 			free_memory(0);
 			exit(g_global.exit_status);
 		}

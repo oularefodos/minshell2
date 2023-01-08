@@ -34,6 +34,8 @@ typedef struct s_garbage_collector
 typedef struct s_global
 {
 	int							exit_status;
+	int							exit_heredoc;
+	int							sig;
 	t_garbage					*temp;
 	t_garbage					*end;
 }								t_global;
@@ -106,8 +108,8 @@ int								check_caract(char *str, char c);
 void							handle_pipe(t_element *node, t_env **env);
 void							check_arg(t_element *command);
 void							ft_env2(t_env *env, t_element *command);
-void							ft_remove_from_env(t_env **begin_list,
-									t_env *data_ref);
+void	ft_remove_from_env(t_env **begin_list,
+						t_env *data_ref);
 t_env							*env_finder(t_env *env, char *name);
 t_env							*exportnameonly(t_element *command);
 void							execve_cmd(t_element *command, t_env **env,
@@ -148,8 +150,7 @@ void							norm_two(t_element **el);
 t_env							*sort_env(t_env *env);
 int								check_is_valid(char *str);
 void							path_error(char *cmd);
-void							execve_cmd_error(char *path,
-									t_element *command);
+void							execve_cmd_error(char *path,t_element *command);
 void							execve_failure(char *cmd);
 void							check_empty_export(char *str);
 void							add_back_memory(void *mem, int i);
@@ -163,4 +164,6 @@ char							*ft_strjoin(const char *s1, const char *s2,
 char							*ft_itoa(int n, int type);
 void							*ft_malloc(size_t len, int type);
 int								readline_hook(void);
+void							cd22(t_element *command, t_env **env);
+void							back_to_home(t_env **env, t_env *pwd, t_env *oldpwd);
 #endif

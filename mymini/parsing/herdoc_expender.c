@@ -50,11 +50,12 @@ void	herdoc(t_element *s, char **env)
 	char *line;
 	int index;
 
+	g_global.sig = 1;
 	if (pipe(s->pip) == -1)
 		exit(1);
 	line = readline("> ");
 	add_back_memory(line, 1);
-	while (line && ft_strcmp(line, s->next->args[0]))
+	while (line && ft_strcmp(line, s->next->args[0]) && g_global.exit_heredoc == 1)
 	{
 		index = get_var_index(line);
 		if (index > -1)
@@ -64,5 +65,6 @@ void	herdoc(t_element *s, char **env)
 		line = readline("> ");
 		add_back_memory(line, 1);
 	}
+	g_global.exit_heredoc = 0;
 	close(s->pip[1]);
 }
