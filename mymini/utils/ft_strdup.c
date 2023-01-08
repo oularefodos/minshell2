@@ -6,12 +6,11 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:43:18 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 06:49:06 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/08 09:07:29 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
 
 char	*ft_strdup(const char *s1, int type)
 {

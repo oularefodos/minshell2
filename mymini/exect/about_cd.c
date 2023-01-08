@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:13:45 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/08 05:05:03 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/08 05:59:36 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	refresh_oldpwd(t_env **env, t_env *pwd)
 	t_env	*tmp;
 	char	*joined;
 
-	
 	tmp = *env;
 	while (tmp && ft_strcmp(tmp->name, "OLDPWD"))
 		tmp = tmp->next;
@@ -31,8 +30,8 @@ void	refresh_oldpwd(t_env **env, t_env *pwd)
 	}
 	else
 	{
-		if(!pwd)
-			return;
+		if (!pwd)
+			return ;
 		joined = ft_strjoin("OLDPWD=", pwd->value, 0);
 		ft_lstadd_back(ft_lstnew(joined, 1), env);
 	}

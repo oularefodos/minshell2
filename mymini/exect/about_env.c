@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:04:39 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 07:29:19 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/08 05:41:40 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_lstsize_env(t_env *lst)
 	int	len;
 
 	len = 0;
-	if(!lst)
+	if (!lst)
 		return (0);
 	while (lst)
 	{
@@ -74,7 +74,7 @@ t_env	*sort_env(t_env *env)
 
 	temp_head = env;
 	i = ft_lstsize_env(temp_head);
-	while (i > 0)
+	while (i-- > 0)
 	{
 		temp_head = env;
 		while (temp_head != NULL && temp_head->next != NULL)
@@ -90,7 +90,6 @@ t_env	*sort_env(t_env *env)
 			}
 			temp_head = temp_head->next;
 		}
-		i--;
 	}
 	return (env);
 }

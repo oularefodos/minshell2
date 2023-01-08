@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:42:52 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 07:15:23 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/08 08:30:40 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ char	*put_my_shlvl(char *str)
 
 void	pwd_emty_env(char *name, t_env **env)
 {
-	char *pwd;
-		
+	char	*pwd;
 
 	if (ft_strcmp(name, "PWD"))
 	{

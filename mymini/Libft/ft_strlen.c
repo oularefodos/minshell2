@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 13:06:58 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 21:51:02 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/08 09:07:53 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ size_t	ft_strlen(const char *str)
 	size_t	i;
 
 	i = 0;
-	if(!str)
-		return(0);
+	if (!str)
+		return (0);
 	while (str[i] != '\0')
 		i++;
 	return (i);

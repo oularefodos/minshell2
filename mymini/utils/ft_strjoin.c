@@ -6,12 +6,11 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 02:25:18 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 06:49:16 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/08 09:07:32 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
 
 char	*ft_strjoin(const char *s1, const char *s2, int type)
 {

@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:57:46 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/08 05:11:07 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/08 09:00:48 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 bool	check_relative_or_absolut(char *cmd, char c)
 {
-	
 	int	i;
 
 	i = 0;
@@ -27,7 +26,6 @@ bool	check_relative_or_absolut(char *cmd, char c)
 		i++;
 	}
 	return (0);
-	
 }
 
 char	*execute_cmd(t_element *command, t_env **env)
@@ -84,31 +82,10 @@ char	*join_get_acces(char **splited_path, char *cmd)
 	return (NULL);
 }
 
-void	execve_cmd(t_element *command, t_env **env, char **argv)
+void	handle_exit_status(int pid, t_element *command)
 {
-	char	*path;
-	int		pid;
-	int		wstatus;
+	int	wstatus;
 
-	if (!env || !command)
-		return ;
-	pid = fork();
-	path = execute_cmd(command, env);
-	if (pid == 0)
-	{
-		sig_default();
-		handle_redirection(command);
-		if(path[0] == '\0')
-		{
-			if(pid)
-				return ;
-			exit(0);
-		}
-		execve_cmd_error(path, command);
-		if (execve(path, argv, convertto_doublep(*env)) == -1)
-			execve_failure(command->cmd);
-		exit(g_global.exit_status);	
-	}
 	ignsig();
 	waitpid(pid, &wstatus, 0);
 	if (WIFEXITED(wstatus))
@@ -118,7 +95,8 @@ void	execve_cmd(t_element *command, t_env **env, char **argv)
 		if (wstatus == 2)
 			return (write(2, "\n", 1), g_global.exit_status = 130, (void)0);
 		if (wstatus == 3)
-			return (write(2, "Quit: 3\n", 8), g_global.exit_status = 131, (void)0);
+			return (write(2, "Quit: 3\n", 8), g_global.exit_status = 131,
+				(void)0);
 	}
 	if (ft_lstsize_elem(command) > 1)
 		exit(g_global.exit_status);

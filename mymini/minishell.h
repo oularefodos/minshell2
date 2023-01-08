@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/08 09:08:18 by mmakboub          #+#    #+#             */
+/*   Updated: 2023/01/08 10:22:37 by mmakboub         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -61,6 +73,27 @@ typedef struct element
 	struct element				*prev;
 }								t_element;
 
+typedef struct s_varpipe
+{
+	int		fd[2];
+	int		i;
+	int		argc;
+	char	**envv;
+	int		in_tmp;
+	pid_t	pid;
+}	t_pipe;
+
+typedef struct s_args
+{
+	int			pid;
+	int			argc;
+	int			*fd;
+	char		**envv;
+	t_env		**env;
+	t_element	*node;
+	int			i;
+}	t_args;
+
 t_element						*tokeniser(char *line);
 t_element						*parser(char *line, char **env);
 t_element						*last(t_element *s);
@@ -85,12 +118,12 @@ void							echo2(char **arg);
 void							print_echoarg(char **arg);
 int								check_echo_n(char *arg);
 void							cd(t_element *command, t_env **env);
-void							checkhome(t_env *pwd, t_env *oldpwd,
-									t_env **env);
+void							checkhome(t_env *pwd, t_env *oldpwd, \
+t_env **env);
 void							refresh_oldpwd(t_env **env, t_env *pwd);
 t_env							*finder_getter(t_env *env, char *name);
-char							*ft_substr(char const *s, unsigned int start,
-									size_t len, int type);
+char							*ft_substr(char const *s, unsigned int start, \
+size_t len, int type);
 char							*receive_name(char *allstr);
 char							*receive_name_export(char *allstr);
 char							*receive_value(char *allstr);
@@ -108,19 +141,19 @@ int								check_caract(char *str, char c);
 void							handle_pipe(t_element *node, t_env **env);
 void							check_arg(t_element *command);
 void							ft_env2(t_env *env, t_element *command);
-void	ft_remove_from_env(t_env **begin_list,
-						t_env *data_ref);
+void							ft_remove_from_env(t_env **begin_list, \
+t_env *data_ref);
 t_env							*env_finder(t_env *env, char *name);
 t_env							*exportnameonly(t_element *command);
-void							execve_cmd(t_element *command, t_env **env,
-									char **argv);
+void							execve_cmd(t_element *command, t_env **env, \
+char **argv);
 char							*join_get_acces(char **splited_path, char *cmd);
 int								check_accecs_exec(char *joined_path);
 char							**convertto_doublep(t_env *env);
 int								ft_lstsize_env(t_env *lst);
 char							*convertto_char(t_env *env);
-char							*ft_concatenate(const char *s1, const char *s2,
-									const char *s3);
+char							*ft_concatenate(const char *s1, const char *s2, \
+const char *s3);
 void							check_cmd(t_element *command, t_env **envv);
 int								ft_isdigit(int x);
 int								ft_strcmp(const char *s1, const char *s2);
@@ -134,15 +167,15 @@ void							herdoc(t_element *s, char **env);
 char							*insert(char *str, int index, char *s, int sz);
 char							*takevarvalue(char *str, char **env);
 void							all_lower(char *cmd);
-void							add_back(t_element **node, char *str, int type,
-									int len);
-void							str_tokeniser(char **str, t_element **elmnt,
-									int *len);
+void							add_back(t_element **node, char *str, int type, \
+int len);
+void							str_tokeniser(char **str, t_element **elmnt, \
+int *len);
 int								issep(char c, char *sep);
-void							squote_tokeniser(char **str, t_element **elmnt,
-									int *len);
-void							redir_tokeniser(char **str, t_element **elmnt,
-									int *len);
+void							squote_tokeniser(char **str, t_element **elmnt, \
+int *len);
+void							redir_tokeniser(char **str, t_element **elmnt, \
+int *len);
 char							*put_my_shlvl(char *str);
 void							sig_default(void);
 void							ignsig(void);
@@ -150,20 +183,44 @@ void							norm_two(t_element **el);
 t_env							*sort_env(t_env *env);
 int								check_is_valid(char *str);
 void							path_error(char *cmd);
-void							execve_cmd_error(char *path,t_element *command);
+void							execve_cmd(t_element *command, \
+t_env **env, char **argv);
+void							execve_cmd_error(char *path, \
+t_element *command);
 void							execve_failure(char *cmd);
 void							check_empty_export(char *str);
 void							add_back_memory(void *mem, int i);
 void							free_memory(int i);
-char							*ft_substr(char const *s, unsigned int start,
-									size_t len, int type);
+char							*ft_substr(char const *s, unsigned int start, \
+size_t len, int type);
 char							**ft_split(char const *s, char c);
 char							*ft_strdup(const char *s1, int type);
-char							*ft_strjoin(const char *s1, const char *s2,
-									int type);
+char							*ft_strjoin(const char *s1, const char *s2, \
+int type);
 char							*ft_itoa(int n, int type);
 void							*ft_malloc(size_t len, int type);
 int								readline_hook(void);
 void							cd22(t_element *command, t_env **env);
-void							back_to_home(t_env **env, t_env *pwd, t_env *oldpwd);
+void							back_to_home(t_env **env, t_env *oldpwd);
+char							*concat(char *s1, char *s2);
+char							**ft_concat(char **s1, char **s2);
+void							add_node_back(t_element **node, t_element *el);
+char							**double_dup(char **s);
+void							handle_exit_status(int pid, t_element *command);
+char							*join_get_acces(char **splited_path, char *cmd);
+int								check_accecs_exec(char *joined_path);
+char							*execute_cmd(t_element *command, t_env **env);
+bool							check_relative_or_absolut(char *cmd, char c);
+void							check_empty_export(char *str);
+void							dup_0(int i, int argc, int fd[2]);
+void							dup_1(int in_tmp, int fd[2], int pid, int argc);
+void							lineisempty(char *line);
+void							handling_sig(void);
+int								readline_hook(void);
+void							handler(int signum);
+void							ignsig(void);
+void							sig_default(void);
+int								event(void);
+int								ft_putchar(int c);
+
 #endif

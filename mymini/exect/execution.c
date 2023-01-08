@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:18:27 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 19:01:42 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/08 09:57:53 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,38 @@ int	ft_lstsize_elem(t_element *lst)
 	return (len);
 }
 
+void	execve_cmd(t_element *command, t_env **env, char **argv)
+{
+	char	*path;
+	int		pid;
+
+	if (!env || !command)
+		return ;
+	pid = fork();
+	if (pid < 0)
+		return (g_global.exit_status = 1, (void)0);
+	path = execute_cmd(command, env);
+	if (pid == 0)
+	{
+		sig_default();
+		handle_redirection(command);
+		if (path && path[0] == '\0')
+		{
+			if (pid)
+				return ;
+			exit(0);
+		}
+		execve_cmd_error(path, command);
+		if (execve(path, argv, convertto_doublep(*env)) == -1)
+			execve_failure(command->cmd);
+		exit(g_global.exit_status);
+	}
+	handle_exit_status(pid, command);
+}
+
 void	check_cmd(t_element *command, t_env **envv)
 {
 	char	**env;
-	// int		pid;
-	// int		wstatus;
 
 	env = convertto_doublep(*envv);
 	if (finder_getter(*envv, "PATH") == NULL)
@@ -46,25 +73,13 @@ void	check_cmd(t_element *command, t_env **envv)
 		return ;
 	}
 	if (ft_lstsize_elem(command) > 1)
-	{
 		handle_pipe(command, envv);
-	}
 	else
 	{
 		expender(command, env);
 		if (check_builtings(command))
 			is_builting(command, envv);
 		else
-		{
-			// pid = fork();
-			// if (pid == 0)
-				execve_cmd(command, envv, command->args);
-			// waitpid(pid, &wstatus, 0);
-			// if (WIFEXITED(wstatus))
-			// 	g_global.exit_status = WEXITSTATUS(wstatus);
-			// else
-			// 	g_global.exit_status = wstatus;
-		}
+			execve_cmd(command, envv, command->args);
 	}
-
 }

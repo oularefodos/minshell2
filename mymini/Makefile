@@ -6,7 +6,7 @@
 #    By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/03 04:13:27 by mmakboub          #+#    #+#              #
-#    Updated: 2023/01/08 05:18:49 by mmakboub         ###   ########.fr        #
+#    Updated: 2023/01/08 10:33:30 by mmakboub         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ FONCTIONS = ./exect/about_cd.c ./exect/cd.c\
 			./exect/echo2.c\
 			./exect/about_env.c ./exect/env.c\
 			./exect/exit.c\
-			./exect/export.c ./exect/export_errors.c\
+			./exect/export.c ./exect/export_errors.c ./exect/export_utils.c\
 			./exect/is_builting.c\
-			./exect/pipe.c\
+			./exect/pipe.c ./exect/pipe_utils.c\
             ./exect/pwd.c\
             ./exect/unset.c\
             ./exect/utils.c\
@@ -50,11 +50,11 @@ FONCTIONS = ./exect/about_cd.c ./exect/cd.c\
 			./parsing/grammar_utils.c\
 			./parsing/parser.c\
 			./parsing/tokeniser.c\
-			./parsing/tokeniser_utils.c\
-			./parsing/utils.c\
+			./parsing/tokeniser_utils.c ./parsing/tokeniser_utils2.c\
+			./parsing/utils.c ./parsing/utils2.c\
 			./exect/redirection.c\
-			./exect/execution.c\
-			./main.c\
+			./exect/execution.c ./exect/signals2.c\
+			./main.c ./exect/signals.c\
 			./free.c
 
 CC = cc

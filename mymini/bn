@@ -1,0 +1,299 @@
+1
+147
+Libft
+Makefile
+a.out.dSYM
+bn
+exect
+ffjm
+fil
+fil2
+fil25
+file
+file12
+free.c
+free.o
+g
+jk
+lim
+ls
+m
+m2
+main.c
+main.o
+minishell
+minishell.h
+mn
+parsing
+signals2.c
+t
+utils
+1
+147
+Libft
+Makefile
+a.out.dSYM
+bn
+exect
+ffjm
+fil
+fil2
+fil25
+file
+file12
+file2
+free.c
+free.o
+g
+jk
+lim
+ls
+m
+m2
+main.c
+main.o
+minishell
+minishell.h
+mn
+parsing
+signals2.c
+t
+utils
+1
+147
+Libft
+Makefile
+a.out.dSYM
+bn
+exect
+ffjm
+fil
+fil2
+fil25
+file
+file12
+file2
+free.c
+free.o
+g
+jk
+lim
+ls
+m
+m2
+main.c
+main.o
+minishell
+minishell.h
+mn
+parsing
+signals2.c
+t
+utils
+total 304
+drwxr-xr-x   2 mmakboub  candidate     68 Jan  7 22:36 1
+-rwxr-xr-x   1 mmakboub  candidate    116 Jan  8 05:19 147
+drwxr-xr-x@ 65 mmakboub  candidate   2210 Jan  8 10:45 Libft
+-rw-r--r--@  1 mmakboub  candidate   2981 Jan  8 10:33 Makefile
+drwxr-xr-x@  3 mmakboub  candidate    102 Jan  5 20:15 a.out.dSYM
+-rwxr-xr-x   1 mmakboub  candidate    522 Jan  8 11:05 bn
+drwxr-xr-x@ 49 mmakboub  candidate   1666 Jan  8 10:45 exect
+-rwxr-xr-x   1 mmakboub  candidate      4 Jan  8 09:56 ffjm
+-rwxr-xr-x   1 mmakboub  candidate      0 Jan  8 10:57 fil
+-rwxr-xr-x   1 mmakboub  candidate      0 Jan  8 10:57 fil2
+-rwxr-xr-x   1 mmakboub  candidate      0 Jan  8 10:58 fil25
+-rwxr-xr-x   1 mmakboub  candidate      0 Jan  8 11:04 file
+-rwxr-xr-x   1 mmakboub  candidate      0 Jan  8 09:58 file12
+-rwxr-xr-x   1 mmakboub  candidate      0 Jan  8 11:05 file2
+-rw-r--r--@  1 mmakboub  candidate   2006 Jan  8 08:54 free.c
+-rw-r--r--   1 mmakboub  candidate   1904 Jan  8 10:45 free.o
+-rwxr-xr-x   1 mmakboub  candidate      3 Jan  8 07:41 g
+-rw-r--r--   1 mmakboub  candidate      0 Jan  8 10:58 jk
+-rwxr-xr-x   1 mmakboub  candidate  23333 Jan  8 11:02 lim
+-rwxr-xr-x   1 mmakboub  candidate      0 Jan  8 05:20 ls
+-rwxr-xr-x   1 mmakboub  candidate  11537 Jan  8 10:59 m
+-rwxr-xr-x   1 mmakboub  candidate  11595 Jan  8 11:00 m2
+-rw-r--r--@  1 mmakboub  candidate   1776 Jan  8 10:28 main.c
+-rw-r--r--   1 mmakboub  candidate   1820 Jan  8 10:45 main.o
+-rwxr-xr-x   1 mmakboub  candidate  50492 Jan  8 10:45 minishell
+-rw-r--r--@  1 mmakboub  candidate   7585 Jan  8 10:22 minishell.h
+-rwxr-xr-x   1 mmakboub  candidate    124 Jan  8 06:33 mn
+drwxr-xr-x@ 26 mmakboub  candidate    884 Jan  8 10:45 parsing
+-rw-r--r--   1 mmakboub  candidate      0 Jan  8 10:17 signals2.c
+-rwxr-xr-x   1 mmakboub  candidate      3 Jan  8 08:03 t
+drwxr-xr-x@ 12 mmakboub  candidate    408 Jan  8 10:45 utils
+
+./1:
+
+./Libft:
+total 504
+-rw-r--r--@ 1 mmakboub  candidate  2001 Jan  6 23:15 Makefile
+-rw-r--r--@ 1 mmakboub  candidate  1343 Jan  6 19:20 ft_atoi.c
+-rw-r--r--  1 mmakboub  candidate  1044 Jan  8 10:45 ft_atoi.o
+-rw-r--r--@ 1 mmakboub  candidate  1044 Jan  6 19:20 ft_bzero.c
+-rw-r--r--  1 mmakboub  candidate   676 Jan  8 10:45 ft_bzero.o
+-rw-r--r--@ 1 mmakboub  candidate  1066 Jan  6 19:20 ft_calloc.c
+-rw-r--r--  1 mmakboub  candidate   776 Jan  8 10:45 ft_calloc.o
+-rw-r--r--@ 1 mmakboub  candidate  1051 Jan  6 19:20 ft_isalnum.c
+-rw-r--r--  1 mmakboub  candidate   704 Jan  8 10:45 ft_isalnum.o
+-rw-r--r--@ 1 mmakboub  candidate  1027 Jan  6 19:20 ft_isalpha.c
+-rw-r--r--  1 mmakboub  candidate   680 Jan  8 10:45 ft_isalpha.o
+-rw-r--r--@ 1 mmakboub  candidate   991 Jan  6 19:20 ft_isascii.c
+-rw-r--r--@ 1 mmakboub  candidate   994 Jan  6 19:20 ft_isdigit.c
+-rw-r--r--  1 mmakboub  candidate   664 Jan  8 10:45 ft_isdigit.o
+-rw-r--r--@ 1 mmakboub  candidate   991 Jan  6 19:20 ft_isprint.c
+-rw-r--r--  1 mmakboub  candidate   664 Jan  8 10:45 ft_isprint.o
+-rw-r--r--@ 1 mmakboub  candidate  1002 Jan  6 19:20 ft_lstadd_front.c
+-rw-r--r--@ 1 mmakboub  candidate  1118 Jan  6 19:20 ft_lstclear.c
+-rw-r--r--@ 1 mmakboub  candidate  1045 Jan  6 19:20 ft_lstdelone.c
+-rw-r--r--@ 1 mmakboub  candidate  1018 Jan  6 19:20 ft_lstlast.c
+-rw-r--r--@ 1 mmakboub  candidate  1030 Jan  6 19:20 ft_lstsize.c
+-rw-r--r--@ 1 mmakboub  candidate  1166 Jan  6 19:20 ft_memchr.c
+-rw-r--r--  1 mmakboub  candidate   732 Jan  8 10:45 ft_memchr.o
+-rw-r--r--@ 1 mmakboub  candidate  1195 Jan  6 19:20 ft_memcmp.c
+-rw-r--r--  1 mmakboub  candidate   756 Jan  8 10:45 ft_memcmp.o
+-rw-r--r--@ 1 mmakboub  candidate  1236 Jan  6 19:20 ft_memcpy.c
+-rw-r--r--  1 mmakboub  candidate   748 Jan  8 10:45 ft_memcpy.o
+-rw-r--r--@ 1 mmakboub  candidate  1262 Jan  6 19:20 ft_memmove.c
+-rw-r--r--  1 mmakboub  candidate   816 Jan  8 10:45 ft_memmove.o
+-rw-r--r--@ 1 mmakboub  candidate  1084 Jan  6 19:20 ft_memset.c
+-rw-r--r--  1 mmakboub  candidate   700 Jan  8 10:45 ft_memset.o
+-rw-r--r--@ 1 mmakboub  candidate   970 Jan  6 19:20 ft_putchar_fd.c
+-rw-r--r--  1 mmakboub  candidate   688 Jan  8 10:45 ft_putchar_fd.o
+-rw-r--r--@ 1 mmakboub  candidate  1062 Jan  6 19:20 ft_putendl_fd.c
+-rw-r--r--  1 mmakboub  candidate   880 Jan  8 10:45 ft_putendl_fd.o
+-rw-r--r--@ 1 mmakboub  candidate  1144 Jan  6 19:20 ft_putnbr_fd.c
+-rw-r--r--  1 mmakboub  candidate   824 Jan  8 10:45 ft_putnbr_fd.o
+-rw-r--r--@ 1 mmakboub  candidate  1038 Jan  6 19:20 ft_putstr_fd.c
+-rw-r--r--  1 mmakboub  candidate   752 Jan  8 10:45 ft_putstr_fd.o
+-rw-r--r--@ 1 mmakboub  candidate  1110 Jan  6 19:20 ft_strchr.c
+-rw-r--r--  1 mmakboub  candidate   748 Jan  8 10:45 ft_strchr.o
+-rw-r--r--@ 1 mmakboub  candidate  1059 Jan  6 19:32 ft_strcmp.c
+-rw-r--r--  1 mmakboub  candidate   780 Jan  8 10:45 ft_strcmp.o
+-rw-r--r--@ 1 mmakboub  candidate  1058 Jan  6 19:20 ft_striteri.c
+-rw-r--r--@ 1 mmakboub  candidate  1225 Jan  6 19:20 ft_strlcat.c
+-rw-r--r--  1 mmakboub  candidate   928 Jan  8 10:45 ft_strlcat.o
+-rw-r--r--@ 1 mmakboub  candidate  1192 Jan  6 19:20 ft_strlcpy.c
+-rw-r--r--  1 mmakboub  candidate   840 Jan  8 10:45 ft_strlcpy.o
+-rw-r--r--@ 1 mmakboub  candidate  1039 Jan  8 09:07 ft_strlen.c
+-rw-r--r--  1 mmakboub  candidate   708 Jan  8 10:45 ft_strlen.o
+-rw-r--r--@ 1 mmakboub  candidate  1224 Jan  6 19:20 ft_strmapi.c
+-rw-r--r--  1 mmakboub  candidate   896 Jan  8 10:45 ft_strmapi.o
+-rw-r--r--@ 1 mmakboub  candidate  1128 Jan  6 19:20 ft_strncmp.c
+-rw-r--r--  1 mmakboub  candidate   784 Jan  8 10:45 ft_strncmp.o
+-rw-r--r--@ 1 mmakboub  candidate  1282 Jan  6 19:20 ft_strnstr.c
+-rw-r--r--  1 mmakboub  candidate   952 Jan  8 10:45 ft_strnstr.o
+-rw-r--r--@ 1 mmakboub  candidate  1123 Jan  6 19:20 ft_strrchr.c
+-rw-r--r--  1 mmakboub  candidate   800 Jan  8 10:45 ft_strrchr.o
+-rw-r--r--@ 1 mmakboub  candidate   988 Jan  6 19:20 ft_tolower.c
+-rw-r--r--  1 mmakboub  candidate   656 Jan  8 10:45 ft_tolower.o
+-rw-r--r--@ 1 mmakboub  candidate   988 Jan  6 19:20 ft_toupper.c
+-rw-r--r--  1 mmakboub  candidate   656 Jan  8 10:45 ft_toupper.o
+-rw-r--r--@ 1 mmakboub  candidate  2593 Jan  6 23:15 libft.h
+
+./a.out.dSYM:
+total 0
+drwxr-xr-x@ 4 mmakboub  candidate  136 Jan  5 20:15 Contents
+
+./a.out.dSYM/Contents:
+total 8
+-rw-r--r--@ 1 mmakboub  candidate  634 Jan  5 20:15 Info.plist
+drwxr-xr-x@ 3 mmakboub  candidate  102 Jan  5 20:15 Resources
+
+./a.out.dSYM/Contents/Resources:
+total 0
+drwxr-xr-x@ 3 mmakboub  candidate  102 Jan  5 20:15 DWARF
+
+./a.out.dSYM/Contents/Resources/DWARF:
+total 128
+-rw-r--r--@ 1 mmakboub  candidate  63141 Jan  5 20:15 a.out
+
+./exect:
+total 368
+-rw-r--r--@ 1 mmakboub  candidate  1737 Jan  8 05:59 about_cd.c
+-rw-r--r--  1 mmakboub  candidate  1700 Jan  8 10:45 about_cd.o
+-rw-r--r--@ 1 mmakboub  candidate  2311 Jan  8 05:41 about_env.c
+-rw-r--r--  1 mmakboub  candidate  2168 Jan  8 10:45 about_env.o
+-rwxr-xr-x@ 1 mmakboub  candidate  2315 Jan  8 06:00 build_envirement.c
+-rw-r--r--  1 mmakboub  candidate  2356 Jan  8 10:45 build_envirement.o
+-rwxr-xr-x@ 1 mmakboub  candidate  2541 Jan  8 06:01 cd.c
+-rw-r--r--  1 mmakboub  candidate  2752 Jan  8 10:45 cd.o
+-rwxr-xr-x@ 1 mmakboub  candidate  1689 Jan  7 07:23 echo2.c
+-rw-r--r--  1 mmakboub  candidate  1780 Jan  8 10:45 echo2.o
+-rwxr-xr-x@ 1 mmakboub  candidate  1296 Jan  7 18:44 env.c
+-rw-r--r--  1 mmakboub  candidate  1004 Jan  8 10:45 env.o
+-rwxr-xr-x@ 1 mmakboub  candidate  1777 Jan  8 08:30 env_initialisation.c
+-rw-r--r--  1 mmakboub  candidate  2020 Jan  8 10:45 env_initialisation.o
+-rw-r--r--@ 1 mmakboub  candidate  2210 Jan  8 09:57 execution.c
+-rw-r--r--  1 mmakboub  candidate  2300 Jan  8 10:45 execution.o
+-rwxr-xr-x@ 1 mmakboub  candidate  2638 Jan  8 09:00 execve.c
+-rw-r--r--  1 mmakboub  candidate  2744 Jan  8 10:45 execve.o
+-rw-r--r--@ 1 mmakboub  candidate  1762 Jan  8 09:49 execve_errors.c
+-rw-r--r--  1 mmakboub  candidate  2012 Jan  8 10:45 execve_errors.o
+-rwxr-xr-x@ 1 mmakboub  candidate  2319 Jan  8 10:45 exit.c
+-rw-r--r--  1 mmakboub  candidate  2488 Jan  8 10:45 exit.o
+-rwxr-xr-x@ 1 mmakboub  candidate  2726 Jan  8 09:02 export.c
+-rw-r--r--  1 mmakboub  candidate  2740 Jan  8 10:45 export.o
+-rw-r--r--@ 1 mmakboub  candidate  1787 Jan  7 21:55 export_errors.c
+-rw-r--r--  1 mmakboub  candidate  1872 Jan  8 10:45 export_errors.o
+-rw-r--r--  1 mmakboub  candidate  1392 Jan  8 09:03 export_utils.c
+-rw-r--r--  1 mmakboub  candidate  1524 Jan  8 10:45 export_utils.o
+-rwxr-xr-x@ 1 mmakboub  candidate  1953 Jan  5 21:04 is_builting.c
+-rw-r--r--  1 mmakboub  candidate  2280 Jan  8 10:45 is_builting.o
+-rwxr-xr-x@ 1 mmakboub  candidate  2260 Jan  8 09:04 pipe.c
+-rw-r--r--  1 mmakboub  candidate  2492 Jan  8 10:45 pipe.o
+-rw-r--r--  1 mmakboub  candidate  1343 Jan  8 09:04 pipe_utils.c
+-rw-r--r--  1 mmakboub  candidate  1312 Jan  8 10:45 pipe_utils.o
+-rwxr-xr-x@ 1 mmakboub  candidate  1429 Jan  7 03:18 pwd.c
+-rw-r--r--  1 mmakboub  candidate  1344 Jan  8 10:45 pwd.o
+-rw-r--r--@ 1 mmakboub  candidate  2168 Jan  8 08:37 redirection.c
+-rw-r--r--  1 mmakboub  candidate  1984 Jan  8 10:45 redirection.o
+-rw-r--r--  1 mmakboub  candidate  1363 Jan  8 10:32 signals.c
+-rw-r--r--  1 mmakboub  candidate  1696 Jan  8 10:45 signals.o
+-rw-r--r--  1 mmakboub  candidate  1448 Jan  8 10:33 signals2.c
+-rw-r--r--  1 mmakboub  candidate  1808 Jan  8 10:45 signals2.o
+-rw-r--r--@ 1 mmakboub  candidate     0 Jan  6 01:45 test.c
+-rwxr-xr-x@ 1 mmakboub  candidate  2264 Jan  7 06:30 unset.c
+-rw-r--r--  1 mmakboub  candidate  2084 Jan  8 10:45 unset.o
+-rwxr-xr-x@ 1 mmakboub  candidate  2183 Jan  7 06:48 utils.c
+-rw-r--r--  1 mmakboub  candidate  2336 Jan  8 10:45 utils.o
+
+./parsing:
+total 192
+-rw-r--r--@ 1 mmakboub  candidate  1883 Jan  7 08:24 delete_qote.c
+-rw-r--r--  1 mmakboub  candidate  1788 Jan  8 10:45 delete_qote.o
+-rw-r--r--@ 1 mmakboub  candidate  2796 Jan  8 08:40 expender.c
+-rw-r--r--  1 mmakboub  candidate  2848 Jan  8 10:45 expender.o
+-rw-r--r--@ 1 mmakboub  candidate  1688 Jan  7 18:05 expender_utils.c
+-rw-r--r--  1 mmakboub  candidate  1736 Jan  8 10:45 expender_utils.o
+-rw-r--r--@ 1 mmakboub  candidate  2382 Jan  7 08:24 grammar.c
+-rw-r--r--  1 mmakboub  candidate  2344 Jan  8 10:45 grammar.o
+-rw-r--r--@ 1 mmakboub  candidate  1362 Jan  7 08:24 grammar_utils.c
+-rw-r--r--  1 mmakboub  candidate  1108 Jan  8 10:45 grammar_utils.o
+-rw-r--r--@ 1 mmakboub  candidate  2161 Jan  8 08:40 herdoc_expender.c
+-rw-r--r--  1 mmakboub  candidate  2468 Jan  8 10:45 herdoc_expender.o
+-rw-r--r--@ 1 mmakboub  candidate  1113 Jan  7 08:24 parser.c
+-rw-r--r--  1 mmakboub  candidate   824 Jan  8 10:45 parser.o
+-rw-r--r--@ 1 mmakboub  candidate  2426 Jan  8 08:47 tokeniser.c
+-rw-r--r--  1 mmakboub  candidate  2412 Jan  8 10:45 tokeniser.o
+-rw-r--r--@ 1 mmakboub  candidate  2202 Jan  8 08:42 tokeniser_utils.c
+-rw-r--r--  1 mmakboub  candidate  2132 Jan  8 10:45 tokeniser_utils.o
+-rw-r--r--  1 mmakboub  candidate  1021 Jan  8 08:47 tokeniser_utils2.c
+-rw-r--r--  1 mmakboub  candidate   656 Jan  8 10:45 tokeniser_utils2.o
+-rw-r--r--@ 1 mmakboub  candidate  2695 Jan  8 08:45 utils.c
+-rw-r--r--  1 mmakboub  candidate  2348 Jan  8 10:45 utils.o
+-rw-r--r--  1 mmakboub  candidate  2241 Jan  8 08:44 utils2.c
+-rw-r--r--  1 mmakboub  candidate  2220 Jan  8 10:45 utils2.o
+
+./utils:
+total 80
+-rw-r--r--@ 1 mmakboub  candidate  1386 Jan  6 23:20 ft_itoa.c
+-rw-r--r--  1 mmakboub  candidate  1068 Jan  8 10:45 ft_itoa.o
+-rw-r--r--@ 1 mmakboub  candidate  1674 Jan  6 23:56 ft_split.c
+-rw-r--r--  1 mmakboub  candidate  1652 Jan  8 10:45 ft_split.o
+-rw-r--r--@ 1 mmakboub  candidate  1147 Jan  8 09:07 ft_strdup.c
+-rw-r--r--  1 mmakboub  candidate   812 Jan  8 10:45 ft_strdup.o
+-rw-r--r--@ 1 mmakboub  candidate  1356 Jan  8 09:07 ft_strjoin.c
+-rw-r--r--  1 mmakboub  candidate   988 Jan  8 10:45 ft_strjoin.o
+-rw-r--r--@ 1 mmakboub  candidate  1439 Jan  7 06:49 ft_substr.c
+-rw-r--r--  1 mmakboub  candidate  1076 Jan  8 10:45 ft_substr.o

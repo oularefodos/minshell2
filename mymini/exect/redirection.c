@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 22:57:34 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/08 05:09:21 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/08 08:37:36 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void	handle_redirection(t_element *red)
 	next_node = NULL;
 	while (tmp)
 	{
-		if(tmp->type == PIPE)
-			break;
+		if (tmp->type == PIPE)
+			break ;
 		if (tmp->type == SUP)
 			redirec_out(tmp, next_node, fd);
 		if (tmp->type == INF)

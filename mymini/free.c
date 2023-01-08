@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/08 08:54:24 by mmakboub          #+#    #+#             */
+/*   Updated: 2023/01/08 08:54:54 by mmakboub         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 t_garbage	*new_node(void *mem)
@@ -71,7 +83,7 @@ void	free_memory(int i)
 
 void	*ft_malloc(size_t len, int type)
 {
-	void *ret;
+	void	*ret;
 
 	ret = malloc(len);
 	if (!ret)

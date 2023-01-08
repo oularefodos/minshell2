@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   herdoc_expender.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/08 08:38:53 by mmakboub          #+#    #+#             */
+/*   Updated: 2023/01/08 08:40:54 by mmakboub         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 int	takesize_her(char *str)
@@ -47,15 +59,16 @@ char	*mygetline(char *line, int index, char **env)
 
 void	herdoc(t_element *s, char **env)
 {
-	char *line;
-	int index;
+	char	*line;
+	int		index;
 
 	g_global.sig = 1;
 	if (pipe(s->pip) == -1)
 		exit(1);
 	line = readline("> ");
 	add_back_memory(line, 1);
-	while (line && ft_strcmp(line, s->next->args[0]) && g_global.exit_heredoc == 1)
+	while (line && ft_strcmp(line, s->next->args[0]) \
+	&& g_global.exit_heredoc == 1)
 	{
 		index = get_var_index(line);
 		if (index > -1)

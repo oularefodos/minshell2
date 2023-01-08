@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:19:48 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 19:55:51 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/08 09:49:51 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	path_error(char *cmd)
 {
-	int fd;
+	int	fd;
 
 	(void)cmd;
 	fd = dup(1);
@@ -39,9 +39,9 @@ void	execve_cmd_error(char *path, t_element *command)
 
 void	execve_failure(char *cmd)
 {
-	(void)cmd;
-	int fd;
+	int	fd;
 
+	(void)cmd;
 	fd = dup(1);
 	dup2(2, 1);
 	if (cmd && cmd[0] == '.' && cmd[1] == '/')

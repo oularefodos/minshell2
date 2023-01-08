@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:22:43 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/08 05:14:05 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/08 08:42:10 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	str_tokeniser(char **str, t_element **elmnt, int *len)
 {
 	char	*line;
 	int		s;
-	
+
 	line = *str;
 	if (*(line - 1) == 32)
 		s = 1;

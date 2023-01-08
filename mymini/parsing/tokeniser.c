@@ -6,21 +6,11 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:22:51 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 00:58:53 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/08 08:47:10 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-t_element	*last(t_element *s)
-{
-	t_element	*c;
-
-	c = s;
-	while (c->next)
-		c = c->next;
-	return (c);
-}
 
 int	issep(char c, char *sep)
 {
@@ -73,12 +63,12 @@ void	add_back(t_element **node, char *str, int type, int len)
 	}
 }
 
-void replace(char *line)
+void	replace(char *line)
 {
 	int	i;
 
 	i = -1;
-	while(line[++i])
+	while (line[++i])
 	{
 		if (line[i] == '\t' || line[i] == '\r')
 			line[i] = ' ';

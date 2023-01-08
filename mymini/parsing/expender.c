@@ -6,7 +6,7 @@
 /*   By: mmakboub <mmakboub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:22:07 by mmakboub          #+#    #+#             */
-/*   Updated: 2023/01/07 03:08:23 by mmakboub         ###   ########.fr       */
+/*   Updated: 2023/01/08 08:40:02 by mmakboub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	checkvarexist(char *s)
 			while (s[i] != '\'')
 				i++;
 		}
-		if (s[i] == '$' && 
-		(ft_isalnum(s[i + 1]) || s[i + 1] == '_' 
-		|| s[i + 1] == '?' || (s[i + 1] == '\'' && !(x % 2))
+		if (s[i] == '$' && \
+		(ft_isalnum(s[i + 1]) || s[i + 1] == '_' \
+		|| s[i + 1] == '?' || (s[i + 1] == '\'' && !(x % 2)) \
 		|| s[i + 1] == '"'))
 			return (i);
 		i++;
@@ -77,7 +77,7 @@ int	takesize(char *s)
 	if (*(s + 1) == '"' || *(s + 1) == '\'')
 	{
 		c = *(s + 1);
-		while(s[i] != c)
+		while (s[i] != c)
 			i++;
 	}
 	else
